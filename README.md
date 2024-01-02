@@ -92,11 +92,11 @@
 - sudo lshw -C network - отобразить информацию о сетевом оборудовании с правами суперпользователя root
 - sudo –l –U user1 - посмотреть список команд, доступных для выполнения пользователю user1. 
 ##### Командная строка sudo может быть использована в следующих форматах:
-sudo -h | -K | -k | -V
-sudo -v [-AknS] [-g group] [-h host] [-p prompt] [-u user]
-sudo -l [-AknS] [-g group] [-h host] [-p prompt] [-U user] [-u user] [command]
-sudo [-AbEHknPS] [-C num] [-g group] [-h host] [-p prompt] [-u user] [VAR=value] [-i|-s] []
-sudo -e [-AknS] [-C num] [-g group] [-h host] [-p prompt] [-u user] file
+- sudo -h | -K | -k | -V
+- sudo -v [-AknS] [-g group] [-h host] [-p prompt] [-u user]
+- sudo -l [-AknS] [-g group] [-h host] [-p prompt] [-U user] [-u user] [command]
+- sudo [-AbEHknPS] [-C num] [-g group] [-h host] [-p prompt] [-u user] [VAR=value] [-i|-s] []
+- sudo -e [-AknS] [-C num] [-g group] [-h host] [-p prompt] [-u user] file
 
 ![Основные команды работы с файлами](https://github.com/tvgVita69/Linux_begin/assets/98489171/d0f35cbf-9b6b-49c0-ba05-752a2e26e428)
 #### Примеры использования команд.
