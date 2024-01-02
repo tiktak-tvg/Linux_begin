@@ -120,6 +120,7 @@
 - touch /bin/mycustomfile 2> errfile
 - cat errfile
 
+![Дополнительные команды работы с файлами](https://github.com/tvgVita69/Linux_begin/assets/98489171/c8ae620c-f17b-4771-bb2f-434ba7f7550d)
 
 
 
