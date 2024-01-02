@@ -108,6 +108,17 @@
 - ls -l *test*
 - rm *test*
 
+#### Перенаправление ввода-вывода и ошибок.
+- cat > testfile
+Введите строку и нажмите Enter <br>
+Нажмите Ctrl+D – (EOF) для завершения работы
+- cat testfile > testfile 2> errfile
+- cat errfile
+- cat /etc/passwd > testfile2
+- cat < /etc/group > testfile
+- ls -l /etc > mylist
+- touch /bin/mycustomfile 2> errfile
+- cat errfile
 
 
 
