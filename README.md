@@ -43,4 +43,5 @@
 - Bourne again shell (bash)*
 –C shell (csh)
 - TC shell (tcsh)
+- 
 *В Linux стандартной оболочкой по умолчанию является bash
