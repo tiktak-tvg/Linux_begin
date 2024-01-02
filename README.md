@@ -19,3 +19,12 @@
 - info
 
 ![man_система помощи](https://github.com/tvgVita69/Linux_begin/assets/98489171/dbe09058-bc5b-4385-a47c-673e3964ab51)
+
+![Иерархия файловой системы](https://github.com/tvgVita69/Linux_begin/assets/98489171/82618256-a45b-4976-b355-a8e3475b352d)
+
+![Разделы man](https://github.com/tvgVita69/Linux_begin/assets/98489171/f44cb710-397e-4899-9b2c-2e4cb7778ed5)
+
+Для получения краткой информации о программе, написанной сообществом GNU, следует использовать параметр --help.
+Примеры:
+- ls --help
+- cat --help
