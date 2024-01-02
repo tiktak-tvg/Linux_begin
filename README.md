@@ -98,6 +98,7 @@
 - sudo [-AbEHknPS] [-C num] [-g group] [-h host] [-p prompt] [-u user] [VAR=value] [-i|-s] []
 - sudo -e [-AknS] [-C num] [-g group] [-h host] [-p prompt] [-u user] file
 
+### Модуль 4. Основные команды.
 ![Основные команды работы с файлами](https://github.com/tvgVita69/Linux_begin/assets/98489171/d0f35cbf-9b6b-49c0-ba05-752a2e26e428)
 #### Примеры использования команд.
 
