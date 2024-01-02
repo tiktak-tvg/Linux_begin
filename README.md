@@ -115,6 +115,7 @@
 - b — блочное устройство
 - p — pipe (FIFO) файл
 - s — файл типа socket
+![Система беопастности](https://github.com/tvgVita69/Linux_begin/assets/98489171/b23a31f0-b73c-48b3-a626-c4e035246740)
 
 ### Модуль 6. Основные команды.
 ![Основные команды работы с файлами](https://github.com/tvgVita69/Linux_begin/assets/98489171/d0f35cbf-9b6b-49c0-ba05-752a2e26e428)
