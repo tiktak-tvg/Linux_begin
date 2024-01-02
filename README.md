@@ -128,10 +128,13 @@
 
 #### Числовой формат записи прав.
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/922aecbe-c18e-48db-bd4b-dfd2d3ec73ec)
-
-
-
-
+#### Символьный формат записи прав.
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/6ed0b22e-59fc-4db4-ab5d-e6e803e01db8)
+#### Специальные права.
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/6635fd97-90c9-4629-b7e1-ed1a30a35ca9)
+#### Права доступа по умолчанию.
+- Для директорий — 777
+- Для файлов — 666
 ### Модуль 6. Основные команды.
 ![Основные команды работы с файлами](https://github.com/tvgVita69/Linux_begin/assets/98489171/d0f35cbf-9b6b-49c0-ba05-752a2e26e428)
 #### Примеры использования команд.
