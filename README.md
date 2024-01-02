@@ -122,6 +122,28 @@
 
 ![Дополнительные команды работы с файлами](https://github.com/tvgVita69/Linux_begin/assets/98489171/c8ae620c-f17b-4771-bb2f-434ba7f7550d)
 
+#### Примеры использования дополнительных команд.
+- df -h
+- du -h /var/log
+- ls /etc | sort | less
+- ls /etc/*.conf | wc -l
+- cat /etc/services | head
+- ls -l /etc | tr 'rwx' 'RWX'
+- ls -l /etc | tee test | tail
+- wc -c test
+- dd if=/dev/cdrom of=~/my.iso
+- cat | uniq -d
+- grep -rsni pppd /usr/share/doc
+- cat > test
+- line1:the 1st
+- line2:the 2nd
+- line3:the 3rd
+{нажмите Ctrl+D}
+- cut -f 1 -d: test > tmp1
+- cut -f 2 -d: test > tmp2
+- paste tmp2 tmp1 > test
+- rm tmp* && cat test
+
 
 
 
