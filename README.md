@@ -12,3 +12,9 @@
 - Gentoo Linux 10.1
 - OpenMandriva Lx 4.0
 - Slackware 15.0
+
+### Модуль 1. Знакомство с командами системой помощи UNIX
+man
+--help
+info
+![man_система помощи](https://github.com/tvgVita69/Linux_begin/assets/98489171/d2c45766-b0bc-4b46-b8ef-7a40a869f2b2)
