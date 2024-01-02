@@ -116,7 +116,7 @@
 - p — pipe (FIFO) файл
 - s — файл типа socket
    
-![Система беопастности](https://github.com/tvgVita69/Linux_begin/assets/98489171/b23a31f0-b73c-48b3-a626-c4e035246740)
+![Система беопастности](https://github.com/tvgVita69/Linux_begin/assets/98489171/c5f699f8-0890-402a-812b-eacd79b4fc39)
 #### Типы прав доступа к файлам.
 - r — право на чтение из файла
 - w — право на запись в файл
@@ -127,11 +127,11 @@
 - x — право на «прохождение» в и сквозь директорию
 
 #### Числовой формат записи прав.
-![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/922aecbe-c18e-48db-bd4b-dfd2d3ec73ec)
+![Числовой формат записи прав](https://github.com/tvgVita69/Linux_begin/assets/98489171/2745fca1-99ee-4e04-ab2d-286c8f330119)
 #### Символьный формат записи прав.
-![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/6ed0b22e-59fc-4db4-ab5d-e6e803e01db8)
+![Символьный формат записи прав](https://github.com/tvgVita69/Linux_begin/assets/98489171/2b58f7c6-ec27-405b-84b8-ede0fa0a26e1)
 #### Специальные права.
-![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/6635fd97-90c9-4629-b7e1-ed1a30a35ca9)
+![Специальные права](https://github.com/tvgVita69/Linux_begin/assets/98489171/a14075af-024f-4b8c-a9da-644a45273e97)
 #### Права доступа по умолчанию.
 - Для директорий — 777
 - Для файлов — 666
