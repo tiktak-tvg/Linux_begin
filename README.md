@@ -14,7 +14,8 @@
 - Slackware 15.0
 
 ### Модуль 1. Знакомство с командами системой помощи UNIX
-man
---help
-info
-![man_система помощи](https://github.com/tvgVita69/Linux_begin/assets/98489171/d2c45766-b0bc-4b46-b8ef-7a40a869f2b2)
+- man
+- --help
+- info
+
+![man_система помощи](https://github.com/tvgVita69/Linux_begin/assets/98489171/dbe09058-bc5b-4385-a47c-673e3964ab51)
