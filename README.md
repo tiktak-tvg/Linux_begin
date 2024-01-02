@@ -109,7 +109,7 @@
 - rm *test*
 
 #### Перенаправление ввода-вывода и ошибок.
-- cat > testfile
+- cat > testfile <br>
 Введите строку и нажмите Enter <br>
 Нажмите Ctrl+D – (EOF) для завершения работы
 - cat testfile > testfile 2> errfile
