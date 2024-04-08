@@ -38,11 +38,19 @@
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/2496663b-99fa-4995-8e39-75b8e80eacbf)
   
-> Выведем всё в байтах
+> Выведем всё в байтах.
 - ``` parted /dev/sda unit B print free ```
 
-![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/f4cafb0f-0fc7-47b0-806b-c773178d06d9)
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/c880a641-1037-4c7e-9a33-8e59fd031478)
 
+Нам нужна последняя цифра из свободного пространства, чтобы добавить к диску sda 3.
 
+> Выполнякем команду.
+- ``` parted /dev/sda unit B resizepart 3  107374165503B ```
 
-  
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/399a5c34-49f3-460e-a711-8b3a8ca6e8c5)
+
+> Выполнякем команду.
+ - ``` parted /dev/sda unit B print free и parted /dev/sda print free ``` 
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/05c3cd48-f4f8-4ce7-bfc9-2521e27ef759)
