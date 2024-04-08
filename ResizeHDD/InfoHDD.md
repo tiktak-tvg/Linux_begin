@@ -84,7 +84,7 @@ ls -la /dev/disk/by-path
 - pvscan - сканирование дисков на предмет PV
 - pvs - вывод информации о PV
 - pvdisplay - вывод атрибутов PV
->- Volume Group
+> Volume Group
 - vgcfgbackup - резервное копирование области описания VG в файл
 - vgcfgrestore - восстановление области описания VG из файла
 - vgconvert - конвертация метаданных из LVM1 в LVM2
