@@ -64,3 +64,29 @@ ls -la /dev/disk/by-id
 ls -la /dev/disk/by-uuid
 ls -la /dev/disk/by-path
 ```
+#### LVM
+Чтобы отобразить все доступные блочные устройства, которыми может управлять LVM, введите команду 
+
+``` lvmdiskscan ```
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/19c96793-f4c2-4b96-9db3-19e2172874d9)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
