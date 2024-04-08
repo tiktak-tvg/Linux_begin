@@ -18,3 +18,8 @@ df -hT
 ``` fdisk -l ```
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/5cbbe679-74ce-400e-a8b8-787387c6704b)
+
+``` cfdisk```
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/97df5cb1-8bf2-488e-a447-35bf2cc37524)
+
