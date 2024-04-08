@@ -41,7 +41,8 @@
 > Выведем всё в байтах
 - ``` parted /dev/sda unit B print free ```
 
-![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/993a049b-82ca-40ec-8aed-5312268b853f)
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/f4cafb0f-0fc7-47b0-806b-c773178d06d9)
+
 
 
   
