@@ -15,3 +15,6 @@ df -hT
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/e1b6a7f8-24ec-40bd-83b6-bd6d58aae22f)
 
+``` fdisk -l ```
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/5cbbe679-74ce-400e-a8b8-787387c6704b)
