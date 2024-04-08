@@ -30,7 +30,7 @@
 - ``` df -hT ```
 - ``` lsblk ```
 
-![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/72f1a2c9-31c6-473c-8c23-60c023586899)
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/375130bd-8920-46b0-af47-e05a539d87e4)
   
 Это чтобы потом сверить показатели, сейчас нашего добавленного пространства нет.
 
