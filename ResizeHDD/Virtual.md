@@ -4,3 +4,11 @@
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/366f16ad-0318-4ac1-8db8-c4b8c3da2dae)
 
+```
+df -H 
+df -hT
+```  
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/d1377fdb-42bd-440d-9bd9-d30372c0d39b)
+
+
