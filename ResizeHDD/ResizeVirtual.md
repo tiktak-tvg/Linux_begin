@@ -34,13 +34,14 @@
   
 Это чтобы потом сверить показатели, сейчас нашего добавленного пространства нет. Теперь в дело вступает утилита parted.
 > Выполнякем команды.
-
 - ``` parted /dev/sda print free ```
+
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/2496663b-99fa-4995-8e39-75b8e80eacbf)
   
 > Выведем всё в байтах
 - ``` parted /dev/sda unit B print free ```
 
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/993a049b-82ca-40ec-8aed-5312268b853f)
 
 
   
