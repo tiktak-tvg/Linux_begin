@@ -18,5 +18,8 @@
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/906dde16-0772-4c93-b651-092d00f96c51)
 
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/630d5104-0705-49de-9f59-653d8820438b)
+
+
 > Выполнякм команды.
 ``` df -hT ```
