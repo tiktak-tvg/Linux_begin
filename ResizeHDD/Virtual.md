@@ -28,6 +28,8 @@ df -hT
 ``` lsblk  или lsblk /dev/sda```
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/e1b6a7f8-24ec-40bd-83b6-bd6d58aae22f)
+``` lsblk -f ```
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/edd84e57-d119-43d6-8edd-9dd7e59b5d55)
 
 ``` fdisk -l ```
 
