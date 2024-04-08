@@ -11,4 +11,7 @@ df -hT
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/d1377fdb-42bd-440d-9bd9-d30372c0d39b)
 
+``` lsblk ```
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/e1b6a7f8-24ec-40bd-83b6-bd6d58aae22f)
 
