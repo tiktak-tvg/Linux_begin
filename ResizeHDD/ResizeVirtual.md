@@ -5,10 +5,18 @@
 >- vgs	выдает форматированный вывод о группах томов 
 >- lvs	вывод списка логических томов
 >- fdisk -l	просмотр разделов диска
-apt -y install cloud-guest-utils	установка утилиты growpart для Ubuntu, Debian
-growpart /dev/sda 2	расширение раздела /dev/sda2
-pvresize /dev/sda2	расширение существующего физического тома /dev/sda2
-lvextend -r -l +100%FREE /dev/centos/root	расширение логического тома /dev/centos/root из группы томов centos
-df -hT	вывод списка разделов и файловых систем
-xfs_growfs /dev/mapper/centos-root	увеличение размера файловой системы XFS на логическом томе /dev/mapper/centos-root (для Fedora, CentOS, RHEL, Oracle Linux, Alma Linux, Rocky Linux)
-resize2fs /dev/mapper/ubuntu-root	увеличение размера файловой системы EXT4 на логическом томе /dev/mapper/ubuntu-root (для Ubuntu, Debian)
+>- apt -y install cloud-guest-utils	установка утилиты growpart для Ubuntu, Debian
+>- growpart /dev/sda 2	расширение раздела /dev/sda2
+>- pvresize /dev/sda2	расширение существующего физического тома /dev/sda2
+>- df -hT	вывод списка разделов и файловых систем
+>- resize2fs /dev/mapper/ubuntu-root	увеличение размера файловой системы EXT4 на логическом томе /dev/mapper/ubuntu-root (для Ubuntu, Debian)
+
+#### Увеличение диского пространства можно сделать через разные утилиты parted,growpart,fdisk,cfdisk.
+##### Увеличение диского пространства c помощью parted
+
+Выключаем виртуальную машину и расширяем диск с помощью ``Менеджер виртуальных дисков``
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/906dde16-0772-4c93-b651-092d00f96c51)
+
+> Выполнякм команды.
+``` df -hT ```
