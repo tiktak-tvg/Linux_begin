@@ -54,3 +54,13 @@
  - ``` parted /dev/sda unit B print free и parted /dev/sda print free ``` 
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/05c3cd48-f4f8-4ce7-bfc9-2521e27ef759)
+
+> Смотрим ``df -hT``
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/aa080791-6f79-441e-a701-f1788e6b66c3)
+
+> Теперь надо ядру сообщить, что таблица разделов поменялась. Иначе команда ``df -hT`` будет не правильно показывать пространство.
+- ``` resize2fs /dev/sda3 ```
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/e27f0dc2-dcbf-45b7-bfeb-6855573f5824)
+  
