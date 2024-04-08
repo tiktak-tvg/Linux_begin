@@ -27,9 +27,11 @@ df -hT
 ``` lsblk  или lsblk /dev/sda```
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/e1b6a7f8-24ec-40bd-83b6-bd6d58aae22f)
+
 ``` lsblk -f ```
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/edd84e57-d119-43d6-8edd-9dd7e59b5d55)
+
 ``` lsblk -o name,size,type,mountpoints,model,serial ```
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/d008be3d-94f2-4671-add3-0320c39d6093)
@@ -50,3 +52,9 @@ df -hT
 ``` ls -la /dev/disk ```
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/5e4dc3cc-509d-4cc7-9fca-33e267bea9c8)
+
+```
+ls -la /dev/disk/by-id 
+ls -la /dev/disk/by-uuid
+ls -la /dev/disk/by-path
+```
