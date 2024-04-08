@@ -18,7 +18,9 @@
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/906dde16-0772-4c93-b651-092d00f96c51)
 
-![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/630d5104-0705-49de-9f59-653d8820438b)
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/44c6d6c7-dfdb-484d-aac4-2715162fb1b7)
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/fb2a3cda-6301-4568-93b6-fd7a308d033c)
 
 
 > Выполнякм команды.
