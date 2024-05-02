@@ -30,4 +30,17 @@ Command 'mount.nfs' not found, but can be installed with
 надо установить пакет
 apt install nfs-common
 ```
+После установки опять попробовать подключиться.
 
+```
+mount.nfs 192.168.100.100:iso /mnt/iso
+```
+
+Проверяем подключилась ли общая папка.
+
+```
+ls /mnt/iso
+```
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/d97983fb-085c-4033-8f3a-6578322e9f10)
+
+В NFS существует три типа монтирования: предопределенное, ручное и автоматическое.
