@@ -41,6 +41,6 @@ mount.nfs 192.168.100.100:iso /mnt/iso
 ```
 ls /mnt/iso
 ```
-![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/d97983fb-085c-4033-8f3a-6578322e9f10)
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/b21046c7-cf40-44d3-a3e8-888fcde8d5d5)
 
 В NFS существует три типа монтирования: предопределенное, ручное и автоматическое.
