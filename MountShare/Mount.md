@@ -25,6 +25,17 @@ mount.nfs 192.168.100.100:iso /mnt/iso
 ```
 Если выйдет ошибка.
 
+Команда для проверки, имеется ли уже установленный NFS-клиент.
+> Для ОС Debian или Ubuntu:
+``` 
+dpkg -l nfs-common
+```
+> Для ОС CentOS или Red Hat:
+
+```
+rpm -qa|grep nfs
+```
+
 ```
 Command 'mount.nfs' not found, but can be installed with
 надо установить пакет
