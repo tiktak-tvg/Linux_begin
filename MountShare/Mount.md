@@ -98,5 +98,8 @@ mount -o udp 192.168.10.27:/iso /mnt/udpiso
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/8539774b-f350-45a8-aed0-9ab5740a2d20)
 
+#### Подключение файловых систем NFS с помощью /etc/fstab
+
+``` 192.168.10.27:/iso    /mnt/iso   nfs    rsize=8192,wsize=8192,timeo=14,intr,udp```
 
 
