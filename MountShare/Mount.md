@@ -82,5 +82,16 @@ ls /mnt/iso
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/1463bae2-d291-4086-8533-3479753ecd23)
 
+#### Подключение файловых систем NFS с помощью /etc/fstab
+
+``` 192.168.10.27:/iso    /mnt/iso   nfs    rsize=8192,wsize=8192,timeo=14,intr```
+
+#### NFS поверх TCP.
+
+При подключении экспортированной файловой системы NFS на клиентском компьютере передайте параметр ``-o udp`` команде ``mount``.
+
+mount -o udp 192.168.10.27:/iso /mnt/iso
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/d6c87371-1a7c-4197-8b9d-590c7bf132b0)
 
 
