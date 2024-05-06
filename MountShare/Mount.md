@@ -67,3 +67,9 @@ ls /mnt/iso
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/ceb66d0f-be6a-49a5-b36e-2796b864bfab)
 
+Далее, можно настроить права и доступ на выполнение.
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/1463bae2-d291-4086-8533-3479753ecd23)
+
+
+
