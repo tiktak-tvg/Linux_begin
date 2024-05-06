@@ -96,6 +96,7 @@ mkdir /mnt/udpiso
 mount -o udp 192.168.10.27:/iso /mnt/udpiso
 ```
 
-![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/d6c87371-1a7c-4197-8b9d-590c7bf132b0)
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/8539774b-f350-45a8-aed0-9ab5740a2d20)
+
 
 
