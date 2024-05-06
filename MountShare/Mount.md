@@ -52,13 +52,16 @@ ls /mnt/iso
 Далее открываем консоль cmd и прописываем следующие команды.
 
 > Для начала посмотрим какие папки доступны и которая нам нужна.
-  - ``showmount -e 192.168.10.x``
+> Например.
+  - ``showmount -e 192.168.10.27``
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/1bedde4c-59b6-4063-a6f5-9f0af09fac4c)
 
   - далее, команду подключения диска
       
-```  mount -o anon \\192.168.10.x\iso X: ```
+```  mount -o anon \\192.168.10.27\iso X: ```
+
+где X это любой свободный виртуальный диск.
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/81106d99-5363-458e-9e08-25fc28dc7fa3)
 
