@@ -65,3 +65,5 @@ ls /mnt/iso
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/81106d99-5363-458e-9e08-25fc28dc7fa3)
 
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/ceb66d0f-be6a-49a5-b36e-2796b864bfab)
+
