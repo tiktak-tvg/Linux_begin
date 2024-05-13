@@ -1,4 +1,4 @@
-#### Перенос виртуальной машины OS Debian c Citrix XenServer на VMware ESXi Server 8.0. 
+#### Перенос виртуальной машины Linux c Citrix XenServer на VMware ESXi Server 8.0. 
 
 Выбираем, что копируем. Виртуальную машину не выключаем.
 
