@@ -13,33 +13,29 @@
 
 Выбираем, сеть и Datastore.
  
-
-
-
-
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/23adb544-2997-478d-9a85-88aea3bfbcaa)
 
 Проверяем настройки перед конвертированием.
  
 Редактируем сеть (выбираем Vlan-ы, которые были привязаны к виртуальной машине).
  
-
-
-
-
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/5b8a9dbf-fb3f-48d9-a4f1-142a8020dbfb)
 
 Оставляем как есть.
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/1ee744fe-30e6-4daf-befe-988dbd95bbe1)
  
 Оставляем как есть.
  
-
-
-
-
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/e1394716-349c-4a69-b759-e275399c470f)
 
 Оставляем как есть.
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/f804554c-7a39-4e78-81a6-becf565a1963)
  
 Оставляем как есть.
  
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/b8fc232c-fdd0-4759-8150-42eaad6beab4)
 
 
 
