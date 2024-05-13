@@ -16,10 +16,12 @@
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/23adb544-2997-478d-9a85-88aea3bfbcaa)
 
 Проверяем настройки перед конвертированием.
- 
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/5b8a9dbf-fb3f-48d9-a4f1-142a8020dbfb) 
+
 Редактируем сеть (выбираем Vlan-ы, которые были привязаны к виртуальной машине).
  
-![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/5b8a9dbf-fb3f-48d9-a4f1-142a8020dbfb)
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/627dbc6e-d397-4630-9935-172682500745)
 
 Оставляем как есть.
 
