@@ -51,3 +51,7 @@ sh /mnt/VBoxLinuxAdditions.run
 
 Ну как по мне, лучше пользоваться ``cockpit`` или ``putty`` или ``mobaXterm``. На самой виртуалке, если только ставить эксперименты с сетью.
 
+Получили полный, расширяемый экран после установки VBoxLinuxAdditions.
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/50d00b3e-ddaf-47b6-82a6-27f2cd731239)
+
