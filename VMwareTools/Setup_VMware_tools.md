@@ -26,5 +26,11 @@ $ sudo apt-get install open-vm-tools
 
 В итоге появится строка с IP адресом и ``VMTools running``.
 
+До
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/ab39eb58-9367-4848-aaad-40558cbcd660)
+
+После
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/51121954-f585-4d83-a07a-46bcf2f43f66)
+
