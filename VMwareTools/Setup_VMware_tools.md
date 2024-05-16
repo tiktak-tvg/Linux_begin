@@ -10,7 +10,7 @@ VMware поддерживает следующие операционные си
 
 > Пример установки open-vm-tools на OS Debian.
 
-Добавим репозиторий deb http://ftp.debian.org/debian/ bookworm main contrib в файл /etc/apt/sources.list.
+Добавим репозиторий ``deb http://ftp.debian.org/debian/ bookworm main contrib`` в файл ``/etc/apt/sources.list``.
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/d7b1afa3-9ea0-45fa-829b-5898052bb143)
 
