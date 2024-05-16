@@ -28,7 +28,7 @@ $ sudo apt-get install open-vm-tools
 
 До
 
-![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/3e949e3a-97de-490a-bf04-69e054ed5b53)
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/22df330d-de20-43b8-ac77-515bee0629a5)
 
 После
 
