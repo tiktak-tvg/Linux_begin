@@ -2,10 +2,7 @@
 
 При выполнении обоновления ``apt update`` сообщение об ошибке:
 
-```
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/ff2ece09-6c39-4d72-b7bb-c2344bedaaef)
-
-```
 
 > Решение.
 
