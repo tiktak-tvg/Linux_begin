@@ -72,10 +72,11 @@ firewall-cmd --list-ports
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/43958ecf-0e17-4084-aeb9-610c95dee388)
 
+firewall-cmd --zone=public --add-port=2255/tcp --permanent
+
+firewall-cmd --reload
+
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/ce03d1a9-4fce-4e8a-b1c2-f407cd0c6024)
-
-
-![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/6851e5ab-04b6-4c79-89bf-900713ccc405)
 
 sudo systemctl restart sshd
 
@@ -83,5 +84,15 @@ sudo systemctl status ssh
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/6f4c6393-e37c-47ca-b019-077c38d5087d)
 
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/31b41b87-4287-4ce5-b66e-32bb6424a502)
+
+Редактируем ``nano /etc/ssh/sshd_config``
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/cfaf1c7e-2202-4550-a5b3-b5be70085ff3)
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/73c2123a-aed4-4de0-8e4b-c99b266ddd06)
+
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/b6c20e57-10e5-49a4-a447-8d8a3d327673)
 
 
