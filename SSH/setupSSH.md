@@ -129,9 +129,9 @@ sudo systemctl status ssh
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/73c2123a-aed4-4de0-8e4b-c99b266ddd06)
 
-22 порт не работает.
+22 порт не работает, но в файерволе открыт.
 
-![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/7969e5c2-274b-44d5-9fde-145459b04d34)
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/0f41f1cd-b79e-4cef-867f-c6b583245871)
 
 И в статусе он нам теперь показывает правильный порт на который мы его поменяли.<br>
 
