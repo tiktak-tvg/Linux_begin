@@ -1,56 +1,61 @@
 #### Установка ssh на Ubuntu/Debian.
 
+```
 sudo apt update 
-
 sudo apt install ssh
-
 sudo apt install openssh-server
-
 sudo systemctl enable --now ssh
-
 sudo systemctl status ssh
-
 sudo systemctl enable ssh
-
 sudo systemctl stop ssh
-
 sudo systemctl start ssh
+```
 
 ##### Меняем порт.
 
+```
 sudo nano /etc/ssh/sshd_config
-
 port 2212
-
 sudo systemctl restart sshd
-
 sudo systemctl status ssh
-
+```
 
 ##### Если надо сделать отключение.
 
+```
 sudo systemctl disable ssh --now
+```
 
 ##### Настройка файервола.
 
+```
 sudo ufw status verbose
+```
 
 Разрешить входящие SSH-соединения, выполните команду:
 
+```
 sudo ufw allow ssh
+```
 
 Если использует другой порт, вам необходимо указать его в явном виде:
 
+```
 sudo ufw allow 2212
-
 sudo ufw enable
+```
 
 Если запретить 22 порт, то так:
 
+```
 sudo ufw deny 22
+```
 
 ##### Подключение через powershell
+
+```
 ssh имя пользователя@192.168.133.128 -p 2212
+```
 
 #### Установка ssh на Centos.
 
