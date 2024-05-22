@@ -88,10 +88,10 @@ sudo systemctl stop ssh
 sudo systemctl start ssh
 ```
 
-##### Как поменять порт.
+#### Как поменять порт.
 
 Немного посложнее, чем на Ubuntu.<br>
-Смотрим через какой порт сейчас работает ssh, по умолчанию 22.<br>
+##### Смотрим через какой порт сейчас работает ssh, по умолчанию 22.<br>
 ```
 sudo semanage port -l | grep ssh
 ```
@@ -103,7 +103,7 @@ sudo semanage port -l | grep ssh
 sudo semanage port -a -t ssh_port_t -p tcp 2255
 ```
 
-Проверяем, что добавился.<br>
+##### Проверяем, что добавился.<br>
 ```
 sudo semanage port -l | grep ssh
 ```
@@ -131,7 +131,7 @@ firewall-cmd --reload
 sudo systemctl restart sshd
 ```
 
-И видим, что в файерволе он открыт ``Connection refused``.<br>
+##### И видим, что в файерволе он открыт ``Connection refused``.<br>
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/7672d63d-7516-42d8-b570-e5ab80653ae7)
 
 ```
@@ -156,7 +156,7 @@ sudo systemctl status ssh
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/0f41f1cd-b79e-4cef-867f-c6b583245871)
 
-И в статусе он нам теперь показывает правильный порт на который мы его поменяли.<br>
+##### И в статусе он нам теперь показывает правильный порт на который мы его поменяли.<br>
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/a0334310-8c9e-47ea-be05-e905d633218b)
 
@@ -167,7 +167,7 @@ firewall-cmd --runtime-to-permanent
 ```
 
 ##### Можно поменять порт в службе ssh в файерволе, по умолчанию он так и остался 22 и открыт.<br>
-Закрываем порт, редактируем службу ssh.
+##### Закрываем порт, редактируем службу ssh.
 
 ```
 Порт можно закрыть так firewall-cmd --zone=public --remove-port=22/tcp --permanent
