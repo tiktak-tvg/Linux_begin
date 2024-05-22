@@ -119,7 +119,7 @@ sudo systemctl status ssh
 
 Проверяем соединение, его до сих пор нет.<br>
 
-![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/31b41b87-4287-4ce5-b66e-32bb6424a502)
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/b6ae4157-2266-4ee7-9d22-cc6307d87cb1)
 
 Для окончательной замены порта, редактируем файл ``nano /etc/ssh/sshd_config``
 
