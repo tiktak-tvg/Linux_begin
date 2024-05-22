@@ -14,6 +14,10 @@ sudo systemctl status ssh
 
 sudo systemctl enable ssh
 
+sudo systemctl stop ssh
+
+sudo systemctl start ssh
+
 ##### Меняем порт.
 
 sudo nano /etc/ssh/sshd_config
