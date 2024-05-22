@@ -147,6 +147,9 @@ firewall-cmd --runtime-to-permanent
 Закрываем порт, редактируем службу ssh.
 
 ```
+Порт можно закрыть так firewall-cmd --zone=public --remove-port=22/tcp --permanent
+Либо правилом firewall-cmd --zone=public --add-rich-rule 'rule family="ipv4" source address="0.0.0.0" port port=22 protocol=tcp reject'
+firewall-cmd --reload
 Все службы находятся здесь ls /usr/lib/firewalld/services/
 Нам нужна ssh.xml
 Редактируем.
