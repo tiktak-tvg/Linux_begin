@@ -129,7 +129,7 @@ sudo systemctl status ssh
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/73c2123a-aed4-4de0-8e4b-c99b266ddd06)
 
-22 порт не работает, но в файерволе открыт.
+Подключение по порту 22 не работает.
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/0f41f1cd-b79e-4cef-867f-c6b583245871)
 
@@ -137,7 +137,27 @@ sudo systemctl status ssh
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/a0334310-8c9e-47ea-be05-e905d633218b)
 
+Сохранить все изменения в файерволе сделав их постоянными.<br>
 
+```
+firewall-cmd --runtime-to-permanent
+```
+
+Можно поменять порт в службе ssh в файерволе, по умолчанию он так и остался 22 и открыт.<br>
+Закрываем порт, редактируем службу ssh.
+
+```
+Все службы находятся здесь ls /usr/lib/firewalld/services/
+Нам нужна ssh.xml
+Редактируем.
+nano /usr/lib/firewalld/services/ssh.xml
+```
+Получаем результат.
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/5458d19c-f68f-40df-bc19-2f1175435ee5)
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/0263ff33-2612-4321-94a9-8543d4ee85a6)
+                                                            
 
 
 
