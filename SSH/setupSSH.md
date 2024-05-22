@@ -173,11 +173,27 @@ firewall-cmd --runtime-to-permanent
 Порт можно закрыть так firewall-cmd --zone=public --remove-port=22/tcp --permanent
 Либо правилом firewall-cmd --zone=public --add-rich-rule 'rule family="ipv4" source address="0.0.0.0" port port=22 protocol=tcp reject'
 firewall-cmd --reload
+```
+
+Меняем порт на службе в ручную.
+
+```
 Все службы находятся здесь ls /usr/lib/firewalld/services/
 Нам нужна ssh.xml
 Редактируем.
 nano /usr/lib/firewalld/services/ssh.xml
+Меняем порт 22 на 2255
 ```
+
+Или через команду.
+
+```
+sudo firewall-cmd --service=ssh --remove-port=22/tcp --permanent
+sudo firewall-cmd --service=ssh --add-port=2255/tcp --permanent
+sudo firewall-cmd --reload
+sudo firewall-cmd --info-service=ssh
+```
+
 ##### Получаем результат.
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/5458d19c-f68f-40df-bc19-2f1175435ee5)
