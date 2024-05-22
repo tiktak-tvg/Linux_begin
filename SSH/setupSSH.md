@@ -171,7 +171,7 @@ firewall-cmd --runtime-to-permanent
 
 ```
 Порт можно закрыть так firewall-cmd --zone=public --remove-port=22/tcp --permanent
-Либо правилом firewall-cmd --zone=public --add-rich-rule 'rule family="ipv4" source address="0.0.0.0" port port=22 protocol=tcp reject'
+Либо правилом firewall-cmd --zone=public --add-rich-rule 'rule family="ipv4" source address="192.168.x.x" port port=22 protocol=tcp reject'
 firewall-cmd --list-rich-rules
 firewall-cmd --reload
 ```
