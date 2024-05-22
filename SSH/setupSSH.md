@@ -27,9 +27,27 @@ sudo systemctl restart sshd
 sudo systemctl status ssh
 
 
-##### Отключение.
+##### Если надо сделать отключение.
 
 sudo systemctl disable ssh --now
+
+##### Настройка файервола.
+
+sudo ufw status verbose
+
+Разрешить входящие SSH-соединения, выполните команду:
+
+sudo ufw allow ssh
+
+Если использует другой порт, вам необходимо указать его в явном виде:
+
+sudo ufw allow 2212
+
+sudo ufw enable
+
+Если запретить 22 порт, то так:
+
+sudo ufw deny 22
 
 ##### Подключение через powershell
 ssh имя пользователя@192.168.133.128 -p 2212
