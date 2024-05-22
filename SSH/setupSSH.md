@@ -103,10 +103,12 @@ firewall-cmd --reload
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/ce03d1a9-4fce-4e8a-b1c2-f407cd0c6024)
 
 Перезагружаем службу, можно этого не делать, просто хочу показать, что на ssh порт ещё не поменялся.<br>
+
 ```
 sudo systemctl restart sshd
 ```
 
+И видим, что в файерволе он открыт ``Connection refused``.<br>
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/7672d63d-7516-42d8-b570-e5ab80653ae7)
 
 ```
