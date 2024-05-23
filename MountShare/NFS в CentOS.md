@@ -63,6 +63,11 @@ firewall-cmd --add-service=mountd --permanent
 firewall-cmd --permanent --add-port=111/tcp        можно открыть порт для RPC
 firewall-cmd --permanent --add-port=20048/tcp      можно открыть порт для NFS
 firewall-cmd --reload
+если хотите использовать iptable
+iptables -t filter -A INPUT -p tcp --dport 111 -j ACCEPT
+iptables -t filter -A INPUT -p tcp --dport 2049 -j ACCEPT
+iptables -t filter -A INPUT -p tcp --dport 20048 -j ACCEPT
+service iptables save
 iptables-save
 ```
 
