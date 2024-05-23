@@ -6,6 +6,10 @@
 
 Устанавливаем пакет на две виртуальные машины.
 
+``yum install nfs-utils nfs4-acl-tools [On CentOS/RHEL]``
+
+``apt install nfs-common nfs4-acl-tools [On Debian/Ubuntu]``
+
 ```
 yum install nfs-utils
 ```
