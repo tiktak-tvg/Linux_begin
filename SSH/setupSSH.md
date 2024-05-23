@@ -72,8 +72,8 @@ sudo apt update
 sudo apt install ssh
 sudo apt install openssh-server
 ```
-
-##### Устанавливаем пакет который нам понадобиться для замены порта на ssh.<br>
+##### Первый вариант.
+##### Устанавливаем пакет который нам понадобиться для добавления порта на ssh.<br>
 ```
 yum install policycoreutils-python
 ```
@@ -169,6 +169,7 @@ sudo systemctl status ssh
 firewall-cmd --runtime-to-permanent
 ```
 
+##### Второй вариант.
 ##### Можно поменять порт в службе ssh в файерволе, по умолчанию он так и остался 22 и открыт.<br>
 ##### Закрываем порт, редактируем службу ssh.
 
