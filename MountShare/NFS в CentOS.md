@@ -200,5 +200,6 @@ AnonymousGid
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/e5b24e33-82a2-4232-a134-4fbd3c7e71a6)
 
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/95208f46-638d-4f9f-97c1-e2b07ab1bb85)
 
 
