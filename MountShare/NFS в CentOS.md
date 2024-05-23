@@ -189,12 +189,12 @@ AnonymousGid
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/235209d8-37ff-406e-b4ef-731843833456)
 
-Я сделал для наглядности AnonymousUid 1000 AnonymousGid 0
 
 Результат.
 
-![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/64ebf89c-a6df-484e-b3ef-7fe05f88705f)
 
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/2fcaa135-5afd-46fa-b971-cfadc549c1a2)
 
 
 
