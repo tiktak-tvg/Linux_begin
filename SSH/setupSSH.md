@@ -222,6 +222,8 @@ iptables -L -n   а можно сразу посмотреть
 iptables-save | less  или так
 ```
 
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/6b317a82-7384-4284-9874-7c191e49330d)
+
 
 
 
