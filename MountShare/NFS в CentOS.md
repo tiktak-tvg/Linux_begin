@@ -47,7 +47,7 @@ cat /var/nfs/export01/file.txt
 Eсли настроен dns можно прописать имя компьютера вместо IP адреса с которого будем подключаться ``cent2.local``. <br>
 ```
 nano /etc/exports
-/var/nfs/export01   192.168.85.138 
+/var/nfs/export01   192.168.85.138(sync) 
 ```
 
 Осталось дело за малым, включить службу в файерволе.
@@ -63,6 +63,7 @@ iptables-save
 ```
 exportfs
 exportfs -v
+exportfs -va
 ```
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/ea5cf174-a55a-420d-98dd-bbd69c2b496a)
