@@ -141,7 +141,7 @@ New-PSdrive -PSProvider FileSystem -Name G -Root \\192.168.85.139\export01 -Pers
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/29f4017e-84da-4d7e-b9e5-8d8c85b060dc)
 
-![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/584259bb-8db3-4fcf-b87d-3b42aed52a9f)
+
 
 
 
