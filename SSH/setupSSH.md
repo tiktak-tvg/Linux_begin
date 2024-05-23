@@ -73,11 +73,12 @@ sudo apt install ssh
 sudo apt install openssh-server
 ```
 ##### Первый вариант.
-##### Устанавливаем пакет который нам понадобиться для добавления порта на ssh.<br>
+##### Устанавливаем пакет который нам понадобиться для добавления порта на ssh через semanage.<br>
 ```
 yum install policycoreutils-python
+sudo semanage port -l | grep ssh
 ```
-Порверим статус ssh.<br>
+Проверим статус ssh.<br>
 ```
 sudo systemctl status ssh
 ```
@@ -91,7 +92,7 @@ sudo systemctl stop ssh
 sudo systemctl start ssh
 ```
 
-#### Как поменять порт.
+#### Как поменять порт?
 
 Немного посложнее, чем на Ubuntu.<br>
 ##### Смотрим через какой порт сейчас работает ssh, по умолчанию 22.<br>
