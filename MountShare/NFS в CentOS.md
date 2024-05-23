@@ -173,7 +173,9 @@ New-PSdrive -PSProvider FileSystem -Name G -Root \\192.168.85.139\var\nfs\export
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/3310c7c4-1094-4c15-9fcd-3cf0479e8fd5)
 
-Добавляем два параметра в реестр. Значение 1000 или значение с полными правами ``root`` 0.
+Добавляем два параметра в реестр. Значение десятичное 1000 или с полными правами ``root`` 0.
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/d4706470-ae56-40e2-b0ff-cd7a05e34521)
 
 ```
 AnonymousUid
