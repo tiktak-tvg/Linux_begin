@@ -104,8 +104,11 @@ ps -A | grep nfs
 Полезные команды.
 
 Для перезапуска сервера ``systemctl restart nfs``
+
 Для перезапуска только службы сервера ``systemctl try-restart nfs``
+
 Для перезагрузки конфигурационных файлов ``systemctl reload nfs``
+
 Если редактируете файл ``nano /etc/sysconfig/nfs`` перезапуск ``systemctl restart nfs-config``
 
 
