@@ -179,6 +179,11 @@ New-PSdrive -PSProvider FileSystem -Name G -Root \\192.168.85.139\var\nfs\export
 AnonymousUid
 AnonymousGid
 ```
+Далее перезагружаем клиентский компьютер, тот где добавляли данные в реестр.
+
+Вот это рестартить бесполезно.
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/8560e868-cc9c-4a7e-b57b-f859e01d7bb0)
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/235209d8-37ff-406e-b4ef-731843833456)
 
