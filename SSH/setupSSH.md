@@ -212,6 +212,16 @@ sudo firewall-cmd --info-service=ssh                                выводи
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/0263ff33-2612-4321-94a9-8543d4ee85a6)
                                                             
+По умолчанию брандмауэр работает без каких-либо правил.<br> 
+В приведенном ниже примере показано, как просмотреть список правил.
+
+```
+iptables-save | tail -n3
+iptables-save | tail -n4...  можно перебирать последние записи
+iptables -L -n   а можно сразу посмотреть
+iptables-save | less  или так
+```
+
 
 
 
