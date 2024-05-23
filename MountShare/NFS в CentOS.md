@@ -165,6 +165,24 @@ New-PSdrive -PSProvider FileSystem -Name G -Root \\192.168.85.139\var\nfs\export
 - *\var\nfs\exp" - локальный путь к каталогу на NFS-сервере;
 - *G* - буква диска Windows
 
+По UUID и GUI.
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/0938befb-a1b9-4ec1-bfc5-7e95abe82cb9)
+
+Редактируем реестр.
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/3310c7c4-1094-4c15-9fcd-3cf0479e8fd5)
+
+Добавляем два параметра в реестр. Значение 1000 или значение с полными правами ``root`` 0.
+
+```
+AnonymousUid
+AnonymousGid
+```
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/235209d8-37ff-406e-b4ef-731843833456)
+
+
 
 
 
