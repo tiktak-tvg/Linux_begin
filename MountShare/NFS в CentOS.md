@@ -54,6 +54,8 @@ nano /etc/exports
 
 ```
 firewall-cmd --add-service=nfs --permanent
+firewall-cmd --add-service=rpc-bind --permanent
+firewall-cmd --add-service=mountd --permanent 
 firewall-cmd --reload
 iptables-save
 ```
@@ -121,6 +123,25 @@ mount a
 
 Если редактируете файл ``nano /etc/sysconfig/nfs`` перезапуск ``systemctl restart nfs-config``
 
+Как подключатся из Windows было ранее написано. Только дайте права на файл ``chmod 0777 /var/nfs/exp/*.*`` на ``cent1``.
+
+Открываем консоль Windows (cmd или powershell) и пишем команды.
+
+```
+Для cmd - showmount -e 192.168.85.139                      
+Mount -o anon \\192.168.85.139\var\nfs\exp R:
+
+Для powershell - showmount -e 192.168.85.139
+монтируем
+New-PSdrive -PSProvider FileSystem -Name G -Root \\192.168.85.139\export01 -Persist
+диск доступен с командной строки
+```
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/76f314fb-25d1-4a55-8053-d588b0eff2e4)
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/29f4017e-84da-4d7e-b9e5-8d8c85b060dc)
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/584259bb-8db3-4fcf-b87d-3b42aed52a9f)
 
 
 
