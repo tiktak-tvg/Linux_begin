@@ -165,7 +165,7 @@ New-PSdrive -PSProvider FileSystem -Name G -Root \\192.168.85.139\var\nfs\export
 - *\var\nfs\exp" - локальный путь к каталогу на NFS-сервере;
 - *G* - буква диска Windows
 
-По UID и GUI.
+По UID и GUI. По желанию. Работает и без правки.
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/0938befb-a1b9-4ec1-bfc5-7e95abe82cb9)
 
