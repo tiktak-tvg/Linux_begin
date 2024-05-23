@@ -50,16 +50,7 @@ nano /etc/exports
 /var/nfs/export01   192.168.85.138 
 ```
 
-Проверяем.
-```
-exportfs
-exportfs -a
-exportfs -v
-```
-
-![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/e4947762-6629-4b95-9fc8-026bfd6cf5b7)
-
-Осталось малое, включить службу в файерволе.
+Осталось дело за малым, включить службу в файерволе.
 
 ```
 firewall-cmd --add-service=nfs --permanent
@@ -67,7 +58,7 @@ firewall-cmd --reload
 iptables-save
 ```
 
-Проверяем еще раз.
+Проверяем.
 
 ```
 exportfs
@@ -76,7 +67,8 @@ exportfs -v
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/ea5cf174-a55a-420d-98dd-bbd69c2b496a)
 
-Переходим на вторую виртуальную машину ``cent2``. Монтируем диск ``/mnt`` с удаленной машины 
+Если нет ошибок переходим на вторую виртуальную машину ``cent2``. <br>
+И пытаемся примонтировать диск на ``/mnt`` с удаленной машины. 
 
 ```
 mount 192.168.85.139:/var/nfs/export01 /mnt
