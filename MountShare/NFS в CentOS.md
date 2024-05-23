@@ -69,6 +69,7 @@ iptables -t filter -A INPUT -p tcp --dport 2049 -j ACCEPT
 iptables -t filter -A INPUT -p tcp --dport 20048 -j ACCEPT
 service iptables save
 iptables-save
+systemctl restart iptables
 ```
 
 Применяем ``exportfs -a`` и проверяем.
@@ -134,7 +135,7 @@ mount a
 
 Если редактируете файл ``nano /etc/sysconfig/nfs`` перезапуск ``systemctl restart nfs-config``
 
-Как подключатся из Windows было ранее написано. Только дайте права на файл ``chmod 0777 /var/nfs/exp/*.*`` на ``cent1``.
+Как подключатся из Windows было ранее написано. Только дайте права на файл ``chmod -R 777 /var/nfs/exp или chmod 0777 /var/nfs/exp/*.*`` на ``cent1``.
 
 Открываем консоль Windows (cmd или powershell) и пишем команды.
 
