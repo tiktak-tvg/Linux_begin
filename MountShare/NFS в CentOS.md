@@ -190,9 +190,9 @@ AnonymousGid
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/235209d8-37ff-406e-b4ef-731843833456)
 
 
-Результат.
+Результат, после перезагрузки.
 
-
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/e7e1e3fb-6605-489b-96b9-1c95c981560c)
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/2fcaa135-5afd-46fa-b971-cfadc549c1a2)
 
