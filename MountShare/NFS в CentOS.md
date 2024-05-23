@@ -152,15 +152,18 @@ Mount -o anon \\192.168.85.139\var\nfs\exp R:
 
 Для powershell - showmount -e 192.168.85.139
 монтируем
-New-PSdrive -PSProvider FileSystem -Name G -Root \\192.168.85.139\export01 -Persist
-диск доступен с командной строки
+New-PSdrive -PSProvider FileSystem -Name G -Root \\192.168.85.139\var\nfs\export01 -Persist
+диск доступен с командной строке
 ```
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/76f314fb-25d1-4a55-8053-d588b0eff2e4)
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/29f4017e-84da-4d7e-b9e5-8d8c85b060dc)
 
-
+- *-o anon* - подключаться с правами анонимного пользователя;
+- *\\192.168.85.139" - имя или IP адрес NFS-сервера;
+- *\var\nfs\exp" - локальный путь к каталогу на NFS-сервере;
+- *G* - буква диска Windows
 
 
 
