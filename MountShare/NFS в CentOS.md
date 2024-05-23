@@ -23,7 +23,7 @@ systemctl status nfs-server
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/9335e9f1-4a11-48d6-a185-3922660c9a82)
 
-Далее, запускаем сервер.
+Далее, запускаем сервер на cent1.
 
 ```
 systemctl start nfs-server
