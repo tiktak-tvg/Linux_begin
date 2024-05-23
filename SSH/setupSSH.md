@@ -200,10 +200,10 @@ nano /usr/lib/firewalld/services/ssh.xml
 ##### Или через команду.
 
 ```
-sudo firewall-cmd --service=ssh --remove-port=22/tcp --permanent
-sudo firewall-cmd --service=ssh --add-port=2255/tcp --permanent
-sudo firewall-cmd --reload
-sudo firewall-cmd --info-service=ssh
+sudo firewall-cmd --service=ssh --remove-port=22/tcp --permanent    закрываем порт
+sudo firewall-cmd --service=ssh --add-port=2255/tcp --permanent     меняем на новый порт
+sudo firewall-cmd --reload                                          применяем настройки
+sudo firewall-cmd --info-service=ssh                                выводим информацию
 ```
 
 ##### Получаем результат.
