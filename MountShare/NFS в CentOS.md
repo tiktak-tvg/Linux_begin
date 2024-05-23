@@ -58,7 +58,7 @@ firewall-cmd --reload
 iptables-save
 ```
 
-Проверяем.
+Применяем ``exportfs -a`` и проверяем.
 
 ```
 exportfs
@@ -100,6 +100,16 @@ ps -A | grep nfs
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/3db34e57-2750-432c-a055-6732e4d9c16a)
 
 Подключение настроено.
+
+Чтобы NFS каталог автоматически монтировался при перезагрузке, нужно открыть файл ``fstab``.
+
+```
+nano /etc/fstab
+добавить строку
+192.168.85.139:/var/nfs/export01 /mnt/ nfs rw,sync,hard,intr 0 0
+Сохранить и выйти. Далее монтируем
+mount a
+```
 
 Полезные команды.
 
