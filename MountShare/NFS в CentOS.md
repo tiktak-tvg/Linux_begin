@@ -23,7 +23,7 @@ systemctl status nfs-server
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/9335e9f1-4a11-48d6-a185-3922660c9a82)
 
-Далее, запускаем сервер на cent1.
+Далее, запускаем сервер на ``cent1``.
 
 ```
 systemctl start nfs-server
@@ -33,7 +33,7 @@ systemctl start nfs-server
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/484f6dfc-2469-47ef-8bf3-1a810f924b90)
 
-Теперь, создаём каталог, сделаем файл с надписью ``Hello, NFS!``.
+Теперь, создаём каталог, сделаем файл с надписью ``Hello, NFS!`` на ``cent1``.
 
 ```
 mkdir /var/nfs/export01 -p
@@ -44,7 +44,7 @@ cat /var/nfs/export01/file.txt
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/4e1ed825-4f59-42f7-8ed7-a7e7ccd21fb0)
 
 Редактируем файл подключения.<br>
-Eсли настроен dns можно прописать имя компьютера с которого будем подключаться ``cent2.local``. <br>
+Eсли настроен dns можно прописать имя компьютера вместо IP адреса с которого будем подключаться ``cent2.local``. <br>
 ```
 nano /etc/exports
 /var/nfs/export01   192.168.85.138 
