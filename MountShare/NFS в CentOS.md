@@ -196,6 +196,9 @@ AnonymousGid
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/2fcaa135-5afd-46fa-b971-cfadc549c1a2)
 
+Можно читать и записывать, полные права.
+
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/e5b24e33-82a2-4232-a134-4fbd3c7e71a6)
 
 
 
