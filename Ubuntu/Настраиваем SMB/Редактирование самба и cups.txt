@@ -1,0 +1,5 @@
+sudo gedit /etc/samba/smb.conf
+
+sudo /etc/init.d/smbd restart
+
+
