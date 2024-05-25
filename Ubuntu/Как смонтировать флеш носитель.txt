@@ -1,0 +1,66 @@
+Как смонтировать флеш носитель с полными правами доступа
+
+#открываешь терминал
+#посмотри как называется диск флеш носителя - командой 
+lsblk
+например, показал: sdb - sdb4
+
+#создаёшь папку в папке /home/user
+cd /home/user
+sudo mkdir folder_name #(folder_name - свое название папки)
+
+#даёшь разрешение всех прав на эту папку 
+sudo chmod 0777 folder_name
+
+#монтируешь флешку в /home/user/folder_name
+#команда 
+sudo mount -t vflat /dev/sdb4  /home/user/folder_name
+
+#этот параметр (-t vflat) можно указать явно, можно не указывать 
+sudo mount  /dev/sdb4  /home/user/folder_name
+
+#vflat - если флешка отформатирована в fat32 (в Ubuntu определяется как msdos)
+#ntfs - если флешка отформатирована в ntfs
+
+#чтобы имена созданных файлов корректно отображались в старых ОС (например, DOS)
+sudo mount -t vflat -o codepage=866,iocharset=utf8  /dev/sdb4  /home/user/folder_name
+
+#Монтирование образов дисков
+mount -o loop -t iso9660 file.iso /home/user/folder_name
+
+Как смонтировать флеш носитель с полными правами доступа через fstab
+#открываешь терминал
+#просмотр дисков
+fdisk -l | grep sd*
+
+Диск /dev/sda: 223,6 GiB, 240057409536 байт, 468862128 секторов
+/dev/sda1     2048   1050623   1048576   512M EFI
+/dev/sda2  1050624 468860927 467810304 223,1G Файловая система Linux
+Диск /dev/sdb: 15,1 GiB, 16231956480 байт, 31703040 секторов
+Тип метки диска: dos
+/dev/sdb1  *                0        0        0     0B             0 Пустой
+/dev/sdb4                 256 31703039 31702784  15,1G             c W95 FAT32 (LBA)
+
+#sdb4 - это моя флешка
+# узнаем UUID для записи в fstab
+ blkid /dev/sdb4
+#в моём случае UUID флешки такой C897-2377
+/dev/sdb4: LABEL="BOOTEFI" UUID="C897-2377" TYPE="vfat" PARTUUID="cad4ebea-04"
+
+#или другой командой
+ ls -la /dev/disk/by-uuid/ | grep sdb4
+#в этом случае UUID флешки такой же C897-2377
+lrwxrwxrwx 1 root root  10 июл  8 16:47 C897-2377 -> ../../sdb4
+
+#или другой командой
+lsblk -o +uuid,name | grep sdb
+
+#Теперь зная UUID можно смонтировать флешку через fstab либо в редакторе (sudo nano /etc/fstab), либо командой:
+sudo sh -c 'echo "UUID=C897-2377  /home/user/folder_name       vfat    umask=0777      0       1" >> /etc/fstab'
+sudo mount -a
+#Теперь флешка если вставлена перед включением компьютера будет монтироваться автоматически
+
+
+
+
+
