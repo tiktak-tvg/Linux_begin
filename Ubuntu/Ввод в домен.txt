@@ -1,0 +1,326 @@
+Сверяем время
+sudo net time set niigb.loc
+
+Копируем содержимое файлов dhclient.conf,smb.conf,krb5.conf по пути
+sudo gedit /etc/dhcp/dhclient.conf
+sudo gedit /etc/samba/smb.conf
+sudo gedit /etc/krb5.conf
+
+Теперь перезагрузим сетевуху
+sudo /etc/init.d/networking restart
+
+Проверяем на ошибки samba
+testparm
+
+Проверка, что мы можем авторизоваться в домене.
+kinit sol@niigb.loc -имя пользователя админа домена
+Проверяем, что билет получен
+klist
+
+Если всё хорошо, то после этой команды
+net ads testjoin
+увидим
+Join is OK
+
+Подключаем к домену
+sudo net ads join -U sol -D niigb.loc
+
+sol - имя мользователя админа
+
+Распространённые ошибки kinit
+kinit(v5): Clock skew too great while getting initial credentials
+Это значит, что у вашего компьютера не синхронизировано время с доменконтроллером (см. выше).
+
+kinit(v5): Preauthentication failed while getting initial credentials
+Вы ввели неверный пароль. 
+
+Failed to join domain: This operation is only allowed for the PDC of the domain.
+Ошибка в smb.conf
+security = ADS
+
+Редактируем
+[global]
+   workgroup = NIIGB
+   realm = NIIGB.LOC
+   security = ADS
+#  security = USER
+   encrypt passwords = true
+#   wins support = yes
+   client min protocol = SMB2
+   client max protocol = SMB3
+#   name resolve order = lmhosts host wins bcast
+# синхронизация samba и unix паролей
+   unix password sync = yes
+# по умолчанию все файлы, начинающиеся с точки будут иметь атрибут "скрытый"
+   hide dot files = yes
+# следовать по симлинкам
+   unix extensions = no
+   wide links = yes
+   follow symlinks = yes
+   dns proxy = no
+   interfaces = enp1s0
+   log file = /var/log/samba/log.%m
+   max log size = 10000
+   panic action = /usr/share/samba/panic-action %d
+   server role = standalone server
+   passdb backend = tdbsam
+   obey pam restrictions = yes
+   passwd program = /usr/bin/passwd %u
+   passwd chat = *Enter\snew\s*\spassword:* %n\n *Retype\snew\s*\spassword:* %n\n *password\supdated\ssuccessfully* .
+   pam password change = yes
+   map to guest = bad password
+   usershare allow guests = no
+   unix charset = utf8
+   dos charset = cp1251
+   encrypt passwords = yes
+   client use spnego = yes
+   client ntlmv2 auth = yes
+   restrict anonymous = 2
+   socket options = TCP_NODELAY
+
+# Отключаем любые попытки тачки стать контроллером домена
+   domain master = no
+   local master = no
+   preferred master = no
+   os level = 0
+   domain logons = no
+# Отключаем поддержку принтеров
+   load printers = no
+   show add printer wizard = no
+   printcap name = /dev/null
+   disable spoolss = yes
+# Включаем интеграцию с Winbind
+   domain logons = yes
+   winbind refresh tickets = yes
+   winbind enum groups = yes
+   winbind enum users = yes
+   winbind use default domain = yes
+   winbind cache time = 40
+   template shell = /bin/false
+   winbind refresh tickets = yes
+   winbind separator = /
+   idmap config * : backend = tdb
+   idmap config * : range = 3000-7999
+   idmap config NIIGB:backend = ad
+   idmap config NIIGB:schema_mode = rfc2307
+   idmap config NIIGB:range = 10000-999999
+   idmap config NIIGB:unix_nss_info = yes
+[public]
+   comment = Shared folder
+   path = /home/user/public
+   read only = no
+   browseable = yes
+   guest ok = no
+   create mask = 0777
+   directory mask = 0777
+   writable = yes
+[users]
+   comment = Home Directories
+   path = /home/user
+   read only = yes
+   browseable = yes
+   guest ok = no
+   create mask = 0777
+   directory mask = 0777
+   writable = yes
+
+Редактируем
+[logging]
+default = FILE:/var/log/krb5libs.log
+kdc = FILE:/var/log/krb5kdc.log
+admin_server = FILE:/var/log/kadmind.log
+
+[libdefaults]
+default_realm = NIIGB.LOC
+kdc_timesync = 1
+ccache_type = 4
+dns_lookup_realm = true
+dns_lookup_kdc = true
+ticket_lifetime = 24h
+forwardable = yes
+verify_ap_req_nofail = false
+
+[realms]
+NIIGB.LOC = {
+kdc = PHOENIX.NIIGB.LOC:88
+admin_server = PHOENIX.NIIGB.LOC:749
+default_domain = NIIGB.LOC
+}
+
+[domain_realms]
+.niigb.loc = NIIGB.LOC
+niigb.loc = NIIGB.LOC
+
+[login]
+krb4_convert=false
+krb4_get_tickets=false
+
+[kdc]
+profile = /var/kerberos/krb5kdc/kdc.conf
+
+[appdefaults]
+pam = {
+debug = false
+ticket_lifetime = 36000
+renew_lifetime = 36000
+forwardable = true
+krb4_convert = false
+}
+
+
+#[libdefaults]
+#[libdefaults]
+#dns_lookup_realm = true
+#dns_lookup_kdc = true
+#default_realm = NIIGB.LOC
+
+# The following krb5.conf variables are only for MIT Kerberos.  
+#krb4_config = /etc/krb.conf  
+#krb4_realms = /etc/krb.realms  
+#kdc_timesync = 1  
+#ccache_type = 4  
+#forwardable = true  
+#proxiable = true
+
+# The following libdefaults parameters are only for Heimdal Kerberos.  
+#v4_instance_resolve = false  
+#v4_name_convert = {  
+#	host = {  
+#    	rcmd = host  
+#    	ftp = ftp  
+#	}
+#	plain = {  
+#		something = something-else  
+#	}  
+#}
+#fcc-mit-ticketflags = true
+
+#[realms]  
+#NIIGB.LOC = {  
+#	kdc = HELIOS.NIIGB.LOC:88  
+#	admin_server = HELIOS.NIIGB.LOC 
+#	default_domain = NIIGB.LOC  
+#}
+
+#[domain_realm]  
+#.niigb.loc = NIIGB.LOC  
+#niigb.loc = NIIGB.LOC
+
+#[login]  
+#krb4_convert = false  
+#krb4_get_tickets = false
+#	default_realm = NIIGB.LOC
+#
+# The following krb5.conf variables are only for MIT Kerberos.
+#	kdc_timesync = 1
+#	ccache_type = 4
+#	forwardable = true
+#	proxiable = true
+#	v4_instance_resolve = false
+#	v4_name_convert = {
+#		host = {
+#			rcmd = hast
+#			ftp = ftp
+#		}
+#		plain = {
+#			something = something-else
+#		}
+#	}
+	
+# The following encryption type specification will be used by MIT Kerberos
+# if uncommented.  In general, the defaults in the MIT Kerberos code are
+# correct and overriding these specifications only serves to disable new
+# encryption types as they are added, creating interoperability problems.
+#
+# The only time when you might need to uncomment these lines and change
+# the enctypes is if you have local software that will break on ticket
+# caches containing ticket encryption types it doesn't know about (such as
+# old versions of Sun Java).
+
+#	default_tgs_enctypes = des3-hmac-sha1
+#	default_tkt_enctypes = des3-hmac-sha1
+#	permitted_enctypes = des3-hmac-sha1
+
+# The following libdefaults parameters are only for Heimdal Kerberos.
+#	fcc-mit-ticketflags = true
+#
+#[realms]
+#	NIIGB.LOC = {
+#		kdc = helios.niigb.loc
+#		kdc = phoenix.niigb.loc
+#		admin_server = helios
+#		default_domain = NIIGB.LOC
+#	}
+#	ATHENA.MIT.EDU = {
+#		kdc = kerberos.mit.edu
+#		kdc = kerberos-1.mit.edu
+#		kdc = kerberos-2.mit.edu:88
+#		admin_server = kerberos.mit.edu
+#		default_domain = mit.edu
+#	}
+#	ZONE.MIT.EDU = {
+#		kdc = casio.mit.edu
+#		kdc = seiko.mit.edu
+#		admin_server = casio.mit.edu
+#	}
+#	CSAIL.MIT.EDU = {
+#		admin_server = kerberos.csail.mit.edu
+#		default_domain = csail.mit.edu
+#	}
+#	IHTFP.ORG = {
+#		kdc = kerberos.ihtfp.org
+#		admin_server = kerberos.ihtfp.org
+#	}
+#	1TS.ORG = {
+#		kdc = kerberos.1ts.org
+#		admin_server = kerberos.1ts.org
+#	}
+#	ANDREW.CMU.EDU = {
+#		admin_server = kerberos.andrew.cmu.edu
+#		default_domain = andrew.cmu.edu
+#	}
+#       CS.CMU.EDU = {
+#                kdc = kerberos-1.srv.cs.cmu.edu
+#                kdc = kerberos-2.srv.cs.cmu.edu
+#                kdc = kerberos-3.srv.cs.cmu.edu
+#                admin_server = kerberos.cs.cmu.edu
+#        }
+#	DEMENTIA.ORG = {
+#		kdc = kerberos.dementix.org
+#		kdc = kerberos2.dementix.org
+#		admin_server = kerberos.dementix.org
+#	}
+#	stanford.edu = {
+#		kdc = krb5auth1.stanford.edu
+#		kdc = krb5auth2.stanford.edu
+#		kdc = krb5auth3.stanford.edu
+#		master_kdc = krb5auth1.stanford.edu
+#		admin_server = krb5-admin.stanford.edu
+#		default_domain = stanford.edu
+#	}
+#       UTORONTO.CA = {
+#                kdc = kerberos1.utoronto.ca
+#                kdc = kerberos2.utoronto.ca
+#                kdc = kerberos3.utoronto.ca
+#                admin_server = kerberos1.utoronto.ca
+#                default_domain = utoronto.ca
+#	}
+
+#[domain_realm]
+#	.mit.edu = ATHENA.MIT.EDU
+#	mit.edu = ATHENA.MIT.EDU
+#	.media.mit.edu = MEDIA-LAB.MIT.EDU
+#	media.mit.edu = MEDIA-LAB.MIT.EDU
+#	.csail.mit.edu = CSAIL.MIT.EDU
+#	csail.mit.edu = CSAIL.MIT.EDU
+#	.whoi.edu = ATHENA.MIT.EDU
+#	whoi.edu = ATHENA.MIT.EDU
+#	.stanford.edu = stanford.edu
+#	.slac.stanford.edu = SLAC.STANFORD.EDU
+#        .toronto.edu = UTORONTO.CA
+#        .utoronto.ca = UTORONTO.CA
+#	.niigb.loc = NIIGB.LOC
+#	niigb.loc = NIIGB.LOC
+#[login]
+#	krb4_convert = false
+#	krb4_get_tickets = false	

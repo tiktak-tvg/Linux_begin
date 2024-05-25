@@ -1,0 +1,22 @@
+sudo apt-get install krb5-user
+sudo apt-get install samba
+sudo apt-get install winbind
+
+
+apt-get install resolvconf
+
+$ sudo nano /etc/resolvconf/resolv.conf.d/base 
+Затем поместите свой список серверов имен так:
+
+ nameserver 192.168.x.x nameserver 192.168.x.x 
+Наконец, обновите resolvconf :
+
+ $ sudo resolvconf -u 
+
+
+ /etc/dhcp/dhclient.conf
+
+supersede domain-name "niigb.loc"
+prepend domain-name-servers 192.168.17.7
+
+sudo service network-manager restart
