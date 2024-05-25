@@ -1,0 +1,13 @@
+﻿mount -t cifs //192.168.99.105/1C#В проводнике
+smb://192.168.17.226/public
+или так правильно
+smb://niigb;sol@192.168.17.226/public/
+#В терминале
+sudo smbclient -U sol -L 192.168.17.226
+
+Cоединение через gvfs
+Если не работает установить 
+sudo apt gvfs-backends
+Копирование файлов через терминал по сети 
+mount -t cifs //192.168.17.226/public /mnt -o user=sol,password=pass123
+cp -R 'Имя папки' /mnt/'Имя папки'

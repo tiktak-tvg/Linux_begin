@@ -1,0 +1,22 @@
+Пример.
+Не забудьте поменять пользователя на подключение.
+И удалить из закладок.
+Чтобы подключения не отображались на рабочем столе
+Открываем редактор dconf (gconf-editor)
+В ключе /org/gnome/nautilus/desktop/volumes-visible
+снимаем галочку(выключаем).
+
+//192.168.17.2/dsk_common/common  /home/user/disc_o/  cifs domain=niigb.loc,username=starav,password=7777,rw,nounix,iocharset=utf8,file_mode=0777,dir_mode=0777
+//192.168.17.13/common.dho   /home/user/disc_z/  cifs  username=starav,password=7777,rw,nounix,vers=2.0,iocharset=utf8,file_mode=0777,dir_mode=0777
+
+user,rw,credenttials=/root/.cifsmnt 0 0
+
+
+
+sudo umount -a
+sudo mount -a
+
+
+Проверка соединения
+sudo smbclient -m smb2 -L 192.168.17.13 -U sol
+sudo smbclient -m smb2 -L 192.168.17.20 -U sol

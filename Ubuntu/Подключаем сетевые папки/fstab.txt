@@ -1,0 +1,24 @@
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/sda2 during installation
+UUID=107648c2-80c4-43a2-ab2a-c4a37d001157 /               ext4    errors=remount-ro 0       1
+# /boot/efi was on /dev/sda1 during installation
+UUID=65FA-E861  /boot/efi       vfat    umask=0077      0       1
+/swapfile                                 none            swap    sw              0       0
+
+
+//SRV-FS1.niigb.loc/dsk_common/common  /home/user/disk_o/  cifs domain=niigb.loc,username=starav,password=7777,rw,nounix,iocharset=utf8,file_mode=0777,dir_mode=0777
+//gefest/common.dho   /home/user/disk_z/  cifs  username=starav,password=7777,rw,nounix,vers=2.0,iocharset=utf8,file_mode=0777,dir_mode=0777 0 0
+
+
+
+
+
+#//SRV-FS1.niigb.loc/dsk_common/common  /home/user/disk_o/  cifs domain=niigb.loc,username=starav,password=7777,rw,nounix,iocharset=utf8,file_mode=0777,dir_mode=0777
+#//gefest/common.dho   /home/user/disk_z/  cifs  username=niigb\starav,password=7777,rw,nounix,vers=2.0,iocharset=utf8,uid=500 0 0
+#UUID=65FA-E861  /boot/efi       vfat    umask=0077      0       1
