@@ -1,0 +1,42 @@
+﻿Все ppd файлы лежат в двух местах
+
+/etc/cups/ppd
+
+и здесь
+
+/usr/share/cups/model
+
+
+Ссылки на ppd
+http://www.openprinting.org/driver/hpijs-pcl5e
+http://www.openprinting.org/driver/hpijs-pcl5c
+http://www.openprinting.org/driver/hpijs-pcl3
+
+
+Как установить драйвера для принтеров HP
+Скачиваем по этой ссылке прогу hplip-3.20.3.run
+
+https://developers.hp.com/hp-linux-imaging-and-printing/gethplip
+Если нет интернета она в корне
+
+И устанавливаем как показано здесь
+https://developers.hp.com/hp-linux-imaging-and-printing/install/install/index
+
+
+
+
+Поиск драйверов
+В комплект поставки CUPS входят универсальные файлы PPD для сотен моделей принтеров, но если производитель какой-либо модели принтера не предоставил драйвер для Linux, то существуют следующие ресурсы с драйверами:
+
+Foomatic;
+Gimp-Print;
+сайт коммерческой версии CUPS;
+драйверы PostScript для Windows.
+
+Foomatic — бесплатный проект, объединяющий все распространенные системы печати Linux (CUPS, LPRng, LPD, GNUlpr, PPR, PDQ, CPS).
+
+Проект Gimp-Print изначально был задуман в качестве модуля печати для Gimp, но позднее его рамки были расширены до общей поддержки печати в Linux. Драйверы Gimp-Print отличаются высочайшим качеством.
+
+Пакеты Gimp-Print и Foomatic гарантируют полноту набора драйверов и наличие всех обязательных подсистем.
+
+Перед приобретением принтера следует обязательно свериться со списком совместимости оборудования установленного дистрибутива Linux или с базой данных принтеров linuxprinting.org.

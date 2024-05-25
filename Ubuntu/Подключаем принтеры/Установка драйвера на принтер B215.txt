@@ -1,0 +1,35 @@
+Скопировать папку DriverB215 в папку public
+Запустить терминал и перейти в папку public
+Выполнить команды
+ls
+
+sudo chmod 0777 DriverB215
+sudo chmod +x DriverB215    #на все скрипты в папке DriverB215
+cd DriverB215
+cd noarch
+sudo chmod +x noarch        #на все скрипты в папке
+sudo chmod +x package-install.sh
+
+Далее находим папку DriverB215 и правой кнопкой запустить в терминале
+Выполняем команды
+ls
+sudo ./install-printer.sh
+sudo ./install-scanner.sh
+
+Далее устанавливаем принтер.
+При выборе драйвера выбираем драйвер PPD
+Находим файл 
+
+/home/user/Рабочий стол/Проводник/public/DriverB215/noarch/share/ppd
+
+
+/Xerox_B215_Series.ppd
+
+
+
+Выводим пробную печать.
+
+Если не работает админка localhost:631
+Запустить в терминале две команды
+sudo cupsctl WebInterface=Yes
+sudo cupsctl FileDevice=Yes

@@ -1,0 +1,13 @@
+Скачаваес драва
+sudo wget -O foo2zjs.tar.gz http://foo2zjs.rkkda.com/foo2zjs.tar.gz
+
+Скачиваем прошивку
+sudo getweb 1018
+sudo getweb 1005
+sudo getweb 1020
+sudo getweb 1100
+
+Заходим в папку с прошивкой
+cd /lib/firmware/hp
+
+sudo cp sihp1018.dl /usr/share/foo2zjs/sihp1018.dl
