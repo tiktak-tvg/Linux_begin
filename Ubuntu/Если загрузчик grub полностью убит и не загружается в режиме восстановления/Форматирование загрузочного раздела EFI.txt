@@ -1,0 +1,19 @@
+﻿# Внимание!!! Это для продвинутых пользователей.
+# Как переформатировать загузочный сектор.
+
+sudo umount /dev/sdb
+
+# Чтобы задать файловую систему FAT32 делаем
+sudo mkfs.vfat /dev/sdb
+# После успешного выполнения этой команды раздел будет отформатирован.
+sudo mount /dev/sdb
+
+# Если будет ошибка (can't find UUID=xxxx-xxxx), замените UUID диска sda1
+ls -la /dev/disk/by-uuid/
+
+# Этот вариант загрузки в BIOS:
+efibootmgr -c -d /dev/sda -p НОМЕР_РАЗДЕЛА -L "Ubuntu" -l "\Efi\ubuntu\grubx64.efi"
+efibootmgr -c -d /dev/sda -p  1 -w -L  Ubuntu -l "\Efi\ubuntu\grubx64.efi"
+
+sudo efibootmgr - просмотреть список доступных вариантов загрузки.
+sudo efibootmgr --bootnum xxxx --delete-bootnum - удалить вариант с номером xxxx.

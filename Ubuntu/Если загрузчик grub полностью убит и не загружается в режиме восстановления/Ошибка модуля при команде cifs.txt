@@ -1,0 +1,30 @@
+﻿# Внимание!!! Это для продвинутых пользователей.
+
+
+
+
+# Решение - доустановить пакет linux-image-*
+sudo apt-get install linux-image-$(uname -r)
+
+
+# либо если он уже стоит - скорее всего нет директории /lib/modules/4.4.0-21-generic/kernel. Тогда нужно переустановить пакет:
+sudo apt-get install --reinstall linux-image-$(uname -r)
+
+
+# Проверить какие файлы поставил пакет можно командой dpkg-query:
+sudo dpkg-query -L linux-image-4.4.0-21-generic
+
+
+# Далее проверяем модуль поддержки языка iochrset=utf8
+sudo ls /lib/modules/$(uname -r)/kernel/fs/nls/nls_utf8.ko
+
+
+# Если он не установлен ls_utf8.ko': Нет такого файла или каталога
+
+# И если sudo apt-get install -f linux-modules-extra-4.18.0-51-generic 
+
+# Невозможно найти пакет linux-modules-extra-4.18.0-51-generic
+
+# Переустанавливаем пакет
+sudo apt update 
+sudo apt install linux-modules-extra-4.18.0-15-generic
