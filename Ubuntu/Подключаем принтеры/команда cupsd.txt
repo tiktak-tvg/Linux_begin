@@ -1,0 +1,28 @@
+sudo cupsctl WebInterface=Yes
+sudo usermod -aG lpadmin user
+sudo /etc/init.d/cups restart
+sudo nano /etc/cups/cups-files.conf добавляем SystemGroup lpadmin
+echo "ServerName $(cat /etc/hostname)" > /etc/cups/client.conf
+ServerAlias * #принтсервер примимал любые обращения
+При использовании ядра собранного самостоятельно, возможно придется вручную загрузить модуль Шаблон:Ic:
+ #modprobe usbcore
+dmesg  #tail /var/log/messages.log
+Если вы желаете использовать принтер с параллельным портом, настройка в общем-то такая же, за исключением модулей:
+# modprobe lp
+# modprobe parport
+# modprobe parport_pc
+dmesg
+Должно быть показано что-то вроде этого:
+lp0: using parport0 (polling)
+
+при использовании адаптера с USB на параллельный порт, CUPS не сможет обнаружить принтер. В качестве обходного пути - добавьте принтер используя другие типы соединений, а затем измените DeviceID в файле Шаблон:Ic:
+DeviceID = parallel:/dev/usb/lp0
+
+Проверить подключение
+sudo smbclient -U user -L localhost
+
+sudo smbclient -U sol -L 192.168.17.226
+
+/etc/samba/smb.conf
+client max protocol = NT1
+

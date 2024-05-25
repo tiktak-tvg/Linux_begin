@@ -1,0 +1,49 @@
+00# Посмотреть доступность служб
+top
+service --status-all
+systemctl status cups
+
+systemctl list-units --type service
+systemctl list-units --type service -all
+# отфильтруем только службы
+systemctl list-unit-files --type service
+# Запущеные
+systemctl list-units --type service --state running
+# Не запущенные
+systemctl list-units --type service --state failed
+# Запускаем службу
+sudo systemctl start cups.service
+# Остановить службу 
+sudo systemctl stop cups
+# Состояние службы
+sudo systemctl status cups
+# Службы запускаемые автоматические
+systemctl list-unit-files --state enabled
+
+# чтобы включить localhost:6
+
+31
+sudo cupsctl WebInterface=Yes
+# перезапуск службы cups
+sudo /etc/init.d/cups restart
+# проверка на ошибки службы cupsd
+cupsd -t   #cupsd -h
+# добавить службу в автозагрузку
+sudo systemctl enable cups
+# Убрать из автозагрузки службу
+sudo systemctl disable
+# Посмотреть разрешена ли сейчас автозагрзука для службы
+sudo systemctl is-enabled cups 
+
+
+# Проверка доступности USB принтера
+lsusb
+lsmod | grep usb
+# Подгружаем модули
+sudo modprobe usbcore
+sudo modprobe usbhid
+sudo modprobe ehci_hcd
+sudo modprobe ohci_hcd
+sudo modprobe usb-storage
+# Обновляем ядро
+sudo depmod -a
