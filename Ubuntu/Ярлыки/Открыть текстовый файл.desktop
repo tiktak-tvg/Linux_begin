@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Открыть текстовый файл
+Icon=/usr/share/icons/cab_view.png
+Exec=gedit /home/user/public/Temp/smb.txt
+Terminal=false
+Hidden=false

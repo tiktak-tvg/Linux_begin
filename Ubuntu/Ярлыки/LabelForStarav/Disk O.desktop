@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Disk Z
+Icon=/usr/share/icons/cab_view.png
+Exec=nemo smb://niigb.loc;starav@gefest/common.dho
+Terminal=false
+Hidden=false
