@@ -1,0 +1,144 @@
+#!/bin/bash
+https://eax.me/debian-paketes/
+Далее закомментированные строки с описанием:
+
+# Настройка Ubuntu после уставновки
+# Обновление системы
+
+apt update
+apt upgrade -y
+
+# Добавление репозиториев
+# Добавляете необходимые репозитории для дальнейшей установки программного обеспечения:
+
+#deb http://my.cool.repo.ubu/ubuntu jaunty main
+#deb http://ru.archive.ubuntu.com/ubuntu/ jaunty main restricted
+#deb-src http://ru.archive.ubuntu.com/ubuntu/ jaunty main restricted
+#deb http://ru.archive.ubuntu.com/ubuntu/ jaunty-updates main restricted
+#deb-src http://ru.archive.ubuntu.com/ubuntu/ jaunty-updates main restricted
+#deb http://ru.archive.ubuntu.com/ubuntu/ jaunty universe
+#deb-src http://ru.archive.ubuntu.com/ubuntu/ jaunty universe
+#deb http://ru.archive.ubuntu.com/ubuntu/ jaunty-updates universe
+#deb-src http://ru.archive.ubuntu.com/ubuntu/ jaunty-updates universe
+#deb http://ru.archive.ubuntu.com/ubuntu/ jaunty multiverse
+#deb-src http://ru.archive.ubuntu.com/ubuntu/ jaunty multiverse
+#deb http://ru.archive.ubuntu.com/ubuntu/ jaunty-updates multiverse
+#deb-src http://ru.archive.ubuntu.com/ubuntu/ jaunty-updates multiverse
+#deb http://security.ubuntu.com/ubuntu jaunty-security main restricted
+#deb-src http://security.ubuntu.com/ubuntu jaunty-security main restricted
+#deb http://security.ubuntu.com/ubuntu jaunty-security universe
+#deb-src http://security.ubuntu.com/ubuntu jaunty-security universe
+#deb http://security.ubuntu.com/ubuntu jaunty-security multiverse
+#deb-src http://security.ubuntu.com/ubuntu jaunty-security multiverse
+#deb http://archive.ubuntu.com/ubuntu/ jaunty main
+
+# Меняем имя хоста
+hostname ub01
+sh -c 'echo "127.0.0.1 ub01" >> /etc/hosts'
+# Репозиторий Ubuntu от Canonical с тестовыми сборками ядра. Хотите всегда самое новое ядро?
+#add-apt-repository ppa:canonical-kernel-team/ppa -y
+
+# Содержит много полезных программ, в том числе проприетарные программы и кодеки.
+sh -c 'echo "deb http://archive.canonical.com/ubuntu/ wily partner" >> /etc/apt/sources.list.d/canonical_partner.list'
+
+# Ubuntu 17.0 не выше. Панель Docky, очень похожая на панель MacOS, но в отличии от Cario-dock более легкая и потребляет меньше системных ресурсов
+#sh -c 'echo "deb http://ppa.launchpad.net/docky-core/stable/ubuntu bionic" >> /etc/apt/sources.list.d/canonical_partner.list'
+#add-apt-repository ppa:docky-core/stable -y
+
+# Версия Wine, специально пропатченая для запуска клиента Netfix в Ubuntu
+add-apt-repository ppa:ehoover/compholio -y
+
+# Официальный официальные репозитории Ubuntu 16.04 PPA команды Gnome3 
+add-apt-repository ppa:gnome3-team/gnome3 -y
+
+# Репозиторий Gnome Shell
+add-apt-repository ppa:ricotz/testing -y
+
+# Официальный PPA браузера Google Chrome
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+
+# Более новые версии пакетов от разработчиков Kubuntu
+#add-apt-repository ppa:kubuntu-ppa/backports
+
+# Репозиторий Skype от Microsoft
+apt-key adv --keyserver pgp.mit.edu --recv-keys 0xd66b746e -y
+sh -c 'echo "deb http://download.skype.com/linux/repos/debian/ stable non-free" >> /etc/apt/sources.list'
+
+# PPA содержащий самые последние версии Sun Java
+add-apt-repository ppa:sun-java-community-team/sun-java6 -y
+
+# PPA с тестовыми версиями мессенджера Thunderbird
+add-apt-repository ppa:mozillateam/thunderbird-next -y
+
+# PPA тестовых версий эмулятора Windows приложений в Linux - Wine
+add-apt-repository ppa:ubuntu-wine/ppa -y
+
+# PPA с новыми и экспериментальными версиями драйверов для видеокарт
+add-apt-repository ppa:xorg-edgers/ppa
+
+# Репозиторий виджетов и индикаторов для панели Ubuntu от разработчика Atareo
+#add-apt-repository ppa:atareao/atareao -y
+
+# Репозиторий для создания бекапа системы
+add-apt-repository ppa:nemh/systemback -y
+
+#add-apt-repository "deb http://archive.canonical.com/ $(lsb_release -sc) partner" -y
+
+# PPA-репозиторий для установки программы Telegram
+#add-apt-repository –y ppa:atareao/telegram -y
+
+# PPA-репозиторий для установки оболочки cinnamon 
+add-apt-repository ppa:gwendal-lebihan-dev/cinnamon-nightly -y
+apt install numix-gtk-theme -y
+
+# После того как необходимые репозитории добавлены, необходимо обновить систему:
+# Обновление системы после подключения репозиториев
+
+apt update
+apt full-upgrade
+
+# Теперь, когда репозитории добавлены и система обновлена, наступила очередь в установке программ:
+# Установка программ
+# Для установки программ достаточно один раз ввести команду sudo apt install, а затем через пробел в данную строку добавлять сколько угодно программ, главное чтобы они были правильно составлены. Если какая-то программа состоит из нескольких слов, её команда должна быть монолитной, т.е. все слова в ней должны вводится через чёрточку, например: unity-tweak-tool:
+
+apt install mc net-tools telegram skype systemback unity-tweak-tool ubuntu-cleaner -y
+# Установка оболочки cinnamon
+apt install cinnamon blueberry -y
+#apt-get install -y cinnamon lightdm 
+#dpkg -i ~/Загрузки/*.deb
+
+# Установка teamviewer
+apt -y install  cifs-utils
+apt -y install gdebi-core
+wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
+dpkg -i teamviewer_amd64.deb
+
+# Установка xrdp
+#apt --fix-broken install -y
+#apt-get install xrdp
+#systemctl enable xrdp
+#apt-get install mate-core mate-desktop-environment mate-notification-daemon -y
+#ufw allow 3389/tcp
+#/etc/init.d/xrdp restart
+
+# Установка дополнительных кодеков
+# Мультимедиа и кодеки
+apt install ubuntu-restricted-extras -y
+
+# Отключить отчёты о сбоях в системе
+
+sed -i "s/enabled=1/enabled=0/g" '/etc/default/apport'
+
+# Поскольку в системе образовались лишние пакеты, которые не опираются ни на какой репозиторий, то удаляем их:
+
+# apt-get autoremove
+
+# Также удаляем пакеты, которые установились, но не используются и больше обновляться не будут:
+
+# apt-get autoclean
+
+# Проверим, не нарушились какие-либо зависимости между оставшимися пакетами:
+
+apt-get check
+

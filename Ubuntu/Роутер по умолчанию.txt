@@ -1,0 +1,11 @@
+route add default gw 192.168.17.254
+sudo apt-get install resolvconf
+
+apt-get install fping
+dig -t SRV _ldap._tcp.niigb.loc | grep -A2 "ANSWER SECTION"
+
+apt-get -y install realmd sssd sssd-tools samba-common krb5-user packagekit 
+samba-common-bin samba-libs adcli ntp
+
+
+user
