@@ -1,0 +1,33 @@
+Переходи в папку со скриптами
+user@ub3-12:cd /home/user/public/Scripts
+user@ub3-12:~/public/Scripts$
+
+Вводим команду
+user@ub3-12:~/public/Scripts$ 
+sudo ./comment.sh  
+или
+sudo ./'comment (name_str).sh'
+или так
+sudo sh /home/user/public/Scripts/comment.sh
+или так
+sudo sh 192.168.19.33/home/user/public/Scripts/comment.sh
+
+Смотрим результат
+nano /etc/fstab
+
+
+#UUID=65FA-E861  /boot/efi       vfat    umask=0077      0       1
+
+sudo ./comment.sh               - команда комментирует строку по номеру строки 
+sudo ./'comment (name_str).sh'  - команда комментирует строку по имени 
+
+
+!!!!!!!!!!!
+Перед выполнением не забудьте дать разрешение на выполнение скрипта если вы их скопировали в другое место.
+
+chmod +x comment.sh
+chmod +x uncomment.sh
+chmod +x 'comment (name_str).sh'
+chmod +x 'uncomment (name_str).sh' 
+!!!!!!!!!!!
+
