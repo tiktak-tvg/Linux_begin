@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=DCOM2
+Terminal=false
+Exec=/home/user/public/DCOM/InobitecDICOMViewer/DicomViewerLauncher.sh
+Hidden=false
+Icon=/usr/share/icons/Windows 10 Icons/48x48/apps/kscreensaver.png
+Name[ru_RU]=DCOM

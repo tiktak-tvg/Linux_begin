@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=DCOM
+GenericName=Keywords=java;DCOM;intellij;
+Exec=/home/user/public/DCOM/InobitecDICOMViewer/DicomViewerLauncher.sh
+Terminal=true
+Type=Application
+Icon=/usr/share/icons/Windows 10 Icons/48x48/apps/screensaver.png
+NoDisplay=false
+Hidden=false
