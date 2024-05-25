@@ -1,0 +1,101 @@
+# Устанавливаем программу сканера xsane
+user@ub3-12:~$ sudo aptitude install sane xsane
+
+# Смотрим отображается ли наш принтер
+user@ub3-12:~$ lsusb
+
+# Находим наш принтер со сканером (в данный момент принтер со сканером подключен по USB)
+user@ub3-12:~$ sane-find-scanner -q
+found USB scanner (vendor=0x0924 [Xerox], product=0x42e9 [B215]) at libusb:001:006
+
+# Обязательно добавляем пользователя user  в группу scanner
+user@ub3-12:~$ sudo gpasswd -a user scanner
+
+# Проверяем добавился пользователь user в группу scaner
+user@ub3-12:~$ sudo grep user /etc/group
+или так
+user@ub3-12:~$ groups
+
+# Можно посмотреть настройки сканера
+user@ub3-12:~$ scanimage -T
+
+
+
+# Можно проверить какие устройства принтеры и сканеры доступны
+user@ub3-12:~$ hp-check -rt
+------------------------------
+| DISCOVERED SCANNER DEVICES |
+------------------------------
+
+device `smfp:usb;0924;42e9;529048527' is a Xerox B215 Multifunction Printer on USB Scanner
+-//-
+
+# Для работы от пользователя user, устанавливаем права доступа для user на папки
+user@ub3-12:~$ sudo chmod 777 /etc/sane.d
+user@ub3-12:~$ sudo chmod 777 /etc/sane.d/*
+user@ub3-12:~$ sudo chown user:user /etc/sane.d
+user@ub3-12:~$ sudo chown user:user /etc/sane.d/*
+
+user@ub3-12:~$ sudo chmod 777 /home/user/.sane
+user@ub3-12:~$ sudo chmod 777 /home/user/.sane/*
+user@ub3-12:~$ sudo chmod 777 /home/user/.config/gtk-2.0/
+user@ub3-12:~$ sudo chmod 777 /home/user/.config/gtk-2.0/*
+user@ub3-12:~$ sudo chmod 777 /home/user/.local
+user@ub3-12:~$ sudo chmod 777 /home/user/.local/share
+user@ub3-12:~$ sudo chmod 777 /home/user/.local/share/*
+
+user@ub3-12:~$ sudo chown user:user .sane
+user@ub3-12:~$ sudo chown user:user .sane/*
+user@ub3-12:~$ sudo chown user:user .sane/xsane
+user@ub3-12:~$ sudo chown user:user .local
+user@ub3-12:~$ sudo chown user:user .local/*
+user@ub3-12:~$ sudo chown user:user .local/share
+user@ub3-12:~$ sudo chown user:user .local/share/*
+user@ub3-12:~$ sudo chown user:user /home/user/.config/gtk-2.0
+user@ub3-12:~$ sudo chown user:user /home/user/.config/gtk-2.0/*
+
+# !!!!!Ошибки при запуске (ошибки права доступа)
+(xsane:10792): Gtk-WARNING **: 12:09:58.442: Attempting to read the recently used resources file at 
+`/home/user/.local/share/recently-used.xbel', but the parser failed: Не удалось открыть файл «/home/user/.local/share/recently-used.xbel»: 
+Отказано в доступе.
+(xsane:10792): Gtk-WARNING **: 12:09:58.536: Failed to read filechooser settings from 
+"/home/user/.config/gtk-2.0/gtkfilechooser.ini": 
+Отказано в доступе
+(xsane:13841): Gdk-CRITICAL **: 12:36:48.351: IA__gdk_drawable_unref: assertion 'GDK_IS_DRAWABLE (drawable)' failed
+[xsane] ERROR: xsane-startimage not found. Looks like xsane is not installed correct.
+(xsane:13841): Gtk-WARNING **: 12:36:56.760: Attempting to read the recently used resources file at `/home/user/.local/share/recently-used.xbel', but the parser failed: Не удалось открыть файл «/home/user/.local/share/recently-used.xbel»: Отказано в доступе.
+
+# Внимательно проверяем права пользователя на указанные папки!!!!!!!!!!!!!!!!!!!!! 
+# Например. Проверяем права доступа к файлам программы сканера на скрытую папку и файлы в ней sane и sane/xsane
+user@ub3-12:~$ ls -la .sane
+
+drwxrwxrwx  3 user user 4096 авг 12 12:46 .
+drwxrwxrwx 42 user user 4096 авг 12 15:55 ..
+drwxrwxrwx  3 user user 4096 авг 12 12:07 xsane
+
+# так не должно быть!!!!!
+user@ub3-12:~$ ls -la .sane/xsane
+итого 32
+drwxrwxrwx 3 user user 4096 авг 12 12:07 .
+drwxrwxrwx 3 user user 4096 авг 12 12:46 ..
+drwx------ 2 root root 4096 авг 12 10:41 batch-lists
+-rw------- 1 root root 4360 авг 12 12:46 xsane.mdf
+-rw------- 1 root root 5298 авг 12 12:46 xsane.rc
+
+# должно быть так
+user@ub3-12:~$ sudo chown user:user .sane/xsane/*
+user@ub3-12:~$ ls -la .sane/xsane
+итого 32
+drwxrwxrwx 3 user user 4096 авг 12 12:07 .
+drwxrwxrwx 3 user user 4096 авг 12 12:46 ..
+drwx------ 2 user user 4096 авг 12 10:41 batch-lists
+-rw------- 1 user user 4360 авг 12 12:46 xsane.mdf
+-rw------- 1 user user 5298 авг 12 12:46 xsane.rc
+
+
+
+# Запускаем
+user@ub3-12:~$ xsane
+
+
+
