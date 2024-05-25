@@ -1,0 +1,55 @@
+Добавить репозиторий через терминал
+Нужен для установки программы
+sudo add-apt-repository ppa:ubuntu-mozilla-daily/firefox-aurora
+
+Посмотреть репозитории
+inxi -r
+Посмотреть список файлов скачаного пакета firefox
+dpkg-query -L firefox
+Посмотреть применяемую политику к firefox
+apt policy firefox
+Посмотреть версию мозиллы
+firefox -v
+Mozilla Firefox 75.0
+
+Можно запустить переустановку пакета, но не обязательно
+sudo apt-get install --reinstall firefox
+Перезагружаем компьютер
+
+И запускаем мозилу
+можно через терминал
+sudo firefox &
+
+Если вы удалили мозиллу
+Проверить удалены ли файлы из папки /home/user/.cache/mozilla
+Удалить можно под root
+или через терминал
+sudo rm -r ~/.cache/mozilla
+
+Если не устанавливается, можно попробовать так
+sudo dpkg --purge --force-depends firefox
+запустить установку пакета
+sudo apt-get install firefox
+
+Посмотреть список доступных версий пакета
+sudo apt-cache madison firefox
+
+Список установленных пакетов и поиск по нему
+dpkg -l | grep firefox
+
+Обновление всех пакетов
+sudo apt-get -V upgrade
+
+Как удалить мозиллу
+Удаление пакета:
+sudo apt-get remove firefox
+
+Удаление вместе с файлами конфигурации:
+sudo apt-get purge firefox
+
+Удаление пакетов, которые были установлены в качестве зависимостей и более не требуются:
+sudo apt-get autoremove # --purge для удаления конфигов
+
+Чистка кэша deb-пакетов (каталог /var/cache/apt/archives/):
+sudo apt-get clean
+
