@@ -44,25 +44,25 @@ cd /home/user/linux-amd64/
 
 **установите базовые пакеты:** 
 
-apt-get install cprocsp-curl* lsb-cprocsp-base* lsb-cprocsp-capilite* lsb-cprocsp-kc1-64* lsb-cprocsp-rdr-64*
+``apt-get install cprocsp-curl* lsb-cprocsp-base* lsb-cprocsp-capilite* lsb-cprocsp-kc1-64* lsb-cprocsp-rdr-64*``
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/9b8cea4d-13a1-4b39-acba-2b34d02cc6f0)
 
 **установите пакеты для поддержки токенов (Рутокен S и Рутокен ЭЦП):**
 
-apt-get install cprocsp-rdr-gui-gtk* cprocsp-rdr-rutoken* cprocsp-rdr-pcsc* lsb-cprocsp-pkcs11* pcsc-lite-rutokens pcsc-lite-ccid
+``apt-get install cprocsp-rdr-gui-gtk* cprocsp-rdr-rutoken* cprocsp-rdr-pcsc* lsb-cprocsp-pkcs11* pcsc-lite-rutokens pcsc-lite-ccid``
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/881491a6-dfbf-4ab4-a43a-fd2a20f17284)
 
 **Для установки сертификатов Главного удостоверяющего центра:**
 
-apt-get install lsb-cprocsp-ca-certs*
+``apt-get install lsb-cprocsp-ca-certs*``
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/f4da6e1e-3979-446b-9f48-eb64641ff610)
 
 **Если есть потребность в установке графических Инструментов КриптоПро:** 
 
-apt-get install cprocsp-cptools*
+``apt-get install cprocsp-cptools*``
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/8f7b69ac-cf40-4f7b-8325-a5e28140777d)
 
