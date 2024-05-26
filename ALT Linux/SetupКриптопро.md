@@ -71,4 +71,5 @@ apt-get install cprocsp-cptools*
 https://www.cryptopro.ru/sites/default/files/products/cades/demopage/cades_bes_sample.html
 ```
 
-![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/7aa18769-6e10-4672-bcfb-a73d767d79a5)
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/be8ff6a8-1bc3-47e8-8245-0a6f0dd6545f)
+
