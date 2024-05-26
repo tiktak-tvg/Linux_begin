@@ -6,7 +6,7 @@
 epm update && epm upgrade  или apt-get update && apt-get upgrade 
 ```
 
-Скачиваем с сайта в ручную.
+Скачиваем с сайта ``https://cryptopro.ru/`` в ручную.
 
 - КриптоПро ЭЦП Browser plug-in
 - КриптоПро CSP<br>
