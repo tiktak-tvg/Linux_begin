@@ -68,6 +68,8 @@ lxsession -s LXDE -e LXDE
 # gpasswd -a user fuse
 ```
 
+![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/7024bb47-530c-4916-a5a0-7418b1d7e146)
+
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/e9fae79f-6d2a-48ef-8e16-4fb749298e76)
 
 Для подключения можно использовать FreeRDP — клиент для подключения к удаленному рабочему столу по протоколу RDP.
