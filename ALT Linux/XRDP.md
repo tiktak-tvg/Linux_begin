@@ -108,4 +108,6 @@ https://www.altlinux.org/Education_applications/Remmina
 
 https://www.altlinux.org/Remmina
 
+https://www.altlinux.org/VNC
+
 
