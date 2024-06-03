@@ -102,6 +102,10 @@ xfreerdp /drive:Epson,/home/cas/epson /v:10.4.129.129 /u:user /p:123
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/12c4092b-76fc-42ee-a98d-6392a306448d)
 
+https://wiki.altlinux.org/Xrdp
 
+https://www.altlinux.org/Education_applications/Remmina
+
+https://www.altlinux.org/Remmina
 
 
