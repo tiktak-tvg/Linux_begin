@@ -1,0 +1,133 @@
+Для того, чтобы дата в консоли отображалась на русском языке, а время в 24-х часовом формате, достаточно сформировать locale ru_RU и изменить только формат времени, оставив все остальное на английском языке.
+
+sudo locale-gen ru_RU.UTF-8
+sudo update-locale LANG=en_US.UTF-8 LC_TIME="ru_RU.UTF-8"
+sudo locale
+sudo locale -a -v
+
+Посмотреть все пояса
+timedatectl list-timezones | grep Europe
+изменяем текущий часовой пояс.
+sudo timedatectl set-timezone Europe/Moscow
+
+hostnamectl set-hostname posdb
+
+Посмотреть версию релиза
+lsb_release -a
+Посмотреть версию ядра
+uname -r
+
+
+apt update
+apt upgrade
+apt list --upgradable
+reboot
+apt install update-notifier-common
+
+
+cd /etc/apt/apt.conf.d
+nano 50unattended-upgrades
+Unattended-Upgrade::Automatic-Reboot "true";
+Unattended-Upgrade::Automatic-Reboot-Time "03:00";
+
+nano 20auto-upgrades
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Unattended-Upgrade "1";
+
+systemctl status unattended-upgrades.service
+cd ..
+
+apt install сockpit
+systemctl status cockpit.socket 
+
+Отключить сообщения Ubuntu Pro:
+sudo pro config set apt_news=false
+
+adduser vmsoft
+sudo usermod -a -G sudo vmsoft
+compgen -u
+
+
+
+apt install lxde-core lxappearance -y
+reboot
+
+sudo apt install xrdp
+adduser xrdp ssl-cert
+nano /etc/xrdp/startwm.sh
+#test -x /etc/X11/Xsession && exec /etc/X11/Xsession
+#exec /bin/sh /etc/X11/Xsession
+lxsession -s LXDE -e LXDE
+reboot
+
+ufw status
+
+nano /etc/ssh/sshd_config
+systemctl restart sshd
+
+nano /etc/netplan/00-installer-config.yaml
+# This is the network config written by 'subiquity'
+network:
+  ethernets:
+    ens160:
+      dhcp4: no
+      addresses:
+        - 192.168.3.46/22
+      routes:
+       - to: default
+       - to: 192.168.96.0/21
+         via: 192.168.3.231
+         on-link: true
+      nameservers:
+        addresses:
+          - 192.168.3.210
+    ens192:
+      dhcp4: no
+      addresses:
+        - 109.95.217.162/27
+      gateway4: 109.95.217.161
+      nameservers:
+        addresses:
+          - 192.168.3.210
+  version: 2
+  renderer: NetworkManager
+
+netplan apply
+
+ip ro add 192.168.96.0/21 via 192.168.3.231
+echo "nameserver 8.8.8.8" | sudo tee -a /etc/resolv.conf &>/dev/null
+sudo ip link set wlan down
+sudo ip link set wlan up
+ДНС настраивается здесь: /etc/systemd/resolved.conf.
+nano /etc/hosts
+
+https://blog.netskills.ru/2017/11/network-documentation.html
+https://www.youtube.com/watch?v=0_MYHqKNScM
+
+vg.tananykin@mriprogress.local
+Ксенофобия
+
+qwErtyqAz123
+
+https://partnerweb.vmware.com/GOSIG/home.html
+
+Руководство по установке гостевой операционной системы
+Поддерживаемые гостевые операционные системы
+VMware поддерживает следующие операционные системы Windows, Linux, Unix, Macintosh и другие. 
+Операционные системы, не указанные в списке, не поддерживаются.
+
+Чтобы узнать, какие настройки гостевой операционной системы 
+поддерживаются для конкретной версии vSphere или vCenter, 
+см. матрицу поддержки настроек гостевой ОС .
+
+Add the following line to the /etc/apt/sources.list file.
+deb http://ftp.debian.org/debian/ bookworm main contrib
+Run the commands:
+$ sudo apt-get update
+$ sudo apt-get install open-vm-tools
+
+АО "НИИМА "Прогресс"
+Тананыкин Виталий Георгиевич		Заместитель начальника информационнных технологий		16.05.2024	
+агрегирование https://sites.google.com/site/lebedevum/voprosy-i-otvety/centos7/bond01
+VBoxLinuxAdditions
+progress 666666

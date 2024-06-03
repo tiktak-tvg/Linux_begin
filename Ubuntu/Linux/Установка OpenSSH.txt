@@ -1,0 +1,39 @@
+sudo apt update && sudo apt upgrade
+reboot
+sudo apt install ssh
+sudo apt install openssh-server
+sudo systemctl enable --now ssh
+sudo systemctl status ssh
+sudo systemctl enable ssh
+
+Меняем порт
+sudo nano /etc/ssh/sshd_config
+port 2212
+
+sudo systemctl restart ssh
+sudo systemctl restart sshd
+
+Отключение
+sudo systemctl disable ssh --now
+
+Подключение
+powershell
+ssh sol@192.168.133.128 -p 2255
+
+
+То необходимо установить пакет, который содержит эту утилиту.
+
+Для Debian, Linux Mint, Ubuntu, Kali Linux.<br>
+```
+sudo apt install dnsutils
+```
+
+Для Arch Linux.<br>
+```
+sudo pacman -S bind-tools
+```
+
+В CentOS и близких дистрибутивах.<br>
+```
+sudo yum install bind-utils
+```
