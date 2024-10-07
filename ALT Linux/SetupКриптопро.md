@@ -89,6 +89,8 @@ https://www.altlinux.org/%D0%9A%D1%80%D0%B8%D0%BF%D1%82%D0%BE%D0%9F%D1%80%D0%BE#
 
 Не забудьте добавить в настройке список доверенных сайтов.
 
+```
 https://chrome-extension://epebfcehmdedogndhlcacafjaacknbcm/trusted_sites.html
+```
 
 ![image](https://github.com/user-attachments/assets/1496f5b4-e032-46a8-bf54-d6da68f43e95)
