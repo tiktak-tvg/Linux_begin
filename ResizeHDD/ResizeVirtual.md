@@ -64,3 +64,7 @@
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/e27f0dc2-dcbf-45b7-bfeb-6855573f5824)
   
+Если даннные не обновились после команды ``df -hT``, перезагружаем компьютер и ещё раз ``` resize2fs /dev/sda3 ```
+
+![image](https://github.com/user-attachments/assets/19a74e53-742d-463c-ac0f-a31b88686a3c)
+
