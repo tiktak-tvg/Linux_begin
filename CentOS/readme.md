@@ -3,3 +3,7 @@
 
 ![image](https://github.com/user-attachments/assets/5260a5ed-7b64-4cdc-bf59-288c7250a82d)
 
+в редакторе vi 
+i - редактировать
+Esc - выход из редактора
+:wq - не забудте записать (первая буква :w write) 
