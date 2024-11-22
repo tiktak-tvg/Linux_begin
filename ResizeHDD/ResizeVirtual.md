@@ -66,5 +66,7 @@
   
 Если даннные не обновились после команды ``df -hT``, перезагружаем компьютер и ещё раз ``` resize2fs /dev/sda3 ```
 
-![image](https://github.com/user-attachments/assets/19a74e53-742d-463c-ac0f-a31b88686a3c)
+
+
+![image](https://github.com/user-attachments/assets/388ad8ac-c2e2-453e-9865-d7a6888c95fd)
 
