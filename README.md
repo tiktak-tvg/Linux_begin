@@ -1,11 +1,11 @@
 # Linux_begin.<br>
 #### Дистрибутив GNU/Linux — общее определение операционных систем, использующих ядро Linux, готовых для конечной установки на пользовательское оборудование.<br>
 ##### Наиболее распространённых дистрибутивы:<br>
-- Ubuntu 22.04 "Jammy Jellyfish"
-- Debian 10 "Buster"
+- Ubuntu 22.04
+- Debian 10
 - Fedora 31
-- Linux Mint 19.1 "Tessa"
-- Elementary OS 5.0 "Hera"
+- Linux Mint 19.1 
+- Elementary OS 5.0 
 - Arch Linux
 - OpenSUSE 15.1
 - Zorin OS 15
