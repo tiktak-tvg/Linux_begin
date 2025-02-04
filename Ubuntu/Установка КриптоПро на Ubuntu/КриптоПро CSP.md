@@ -87,12 +87,10 @@ sudo rm /usr/share/chromium-browser/extensions/iifchhfnnmpdbibifmljnfjhpififfog.
 sudo rm /usr/share/chromium/extensions/iifchhfnnmpdbibifmljnfjhpififfog.json
 ```
 
-
 Вы можете протестировать работу, используя тестовый серверный сертификат, полученный в нашем тестовом удостоверяющем центре:
 
-по ГОСТ 2001 - https://www.cryptopro.ru/certsrv/
-
-по ГОСТ 2012 - https://testgost2012.cryptopro.ru/certsrv/
+> по ГОСТ 2001 - https://www.cryptopro.ru/certsrv/
+> по ГОСТ 2012 - https://testgost2012.cryptopro.ru/certsrv/
 
 Чтобы в расширении Альтернативное имя субъекта сертификата сервера были записаны нужные DNS имена, нужно в форме запроса на сертификат в веб-интерфейсе в поле Атрибуты указать значение вида (несколько DNS имен указываются через символ &):
 ```bash
@@ -101,10 +99,8 @@ san:dns=domain1.ru&dns=domain2.ru
 ```
 
 ###### Установка тестовых сертификатов
-
-1. Качаем корневой сертификат
-
-2. Устанавливаем его
+> 1. Качаем корневой сертификат
+> 2. Устанавливаем его
 ```bash
 Код:
 /opt/cprocsp/bin/amd64/certmgr -inst -store uroot -file certnew.cer
