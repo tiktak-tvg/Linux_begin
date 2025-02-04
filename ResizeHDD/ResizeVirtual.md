@@ -24,9 +24,9 @@
 
 ##### Увеличение диского пространства c помощью parted
 > Выполнякем команды.
-
-- ``` df -hT ```
-- ``` lsblk ```
+```bash
+#df -hT 
+#lsblk ```
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/375130bd-8920-46b0-af47-e05a539d87e4)
   
