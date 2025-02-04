@@ -4,11 +4,11 @@
 
 Скачиваем
 
-    ``wget -c http://trueconf.ru/download/trueconf-client-i386.deb``
+    wget -c http://trueconf.ru/download/trueconf-client-i386.deb
     
 или
 
-    ``wget -c http://trueconf.ru/download/trueconf-client-amd64.deb``
+    wget -c http://trueconf.ru/download/trueconf-client-amd64.deb
 
 Установка:
 ```bash
@@ -52,7 +52,7 @@ exit
 
 Запуск из командной строки
 
-    ``Trueconf``
+    Trueconf
 
 
 
