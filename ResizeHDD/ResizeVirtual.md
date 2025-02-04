@@ -66,7 +66,7 @@
   
 Если даннные не обновились после команды ``df -hT``, перезагружаем компьютер и ещё раз ``` resize2fs /dev/sda3 ```
 
-На OS Centos бывает такое.
+На OS Centos.
 
 ![image](https://github.com/user-attachments/assets/388ad8ac-c2e2-453e-9865-d7a6888c95fd)
 
