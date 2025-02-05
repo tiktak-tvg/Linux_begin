@@ -1,0 +1,153 @@
+#! /bin/bash
+sudo apt-get -y install nano 
+sudo apt-get -y install curl 
+sudo apt-get -y install openssl 
+sudo apt-get -y install libnss3-tools 
+sudo apt-get -y install chrony 
+sudo apt-get -y install krb5-config 
+sudo apt-get -y install krb5-locales 
+sudo apt-get -y install krb5-user 
+sudo apt-get -y install libpam-krb5 
+sudo apt-get -y install samba   
+sudo apt-get -y install smbclient
+sudo apt-get -y install winbind
+sudo apt-get -y install libpam-winbind
+sudo apt-get -y install libnss-winbind
+sudo apt-get -y install gss-ntlmssp
+sudo apt-get -y install ldap-utils
+sudo apt-get -y install cifs-utils
+sudo apt-get -y install libsasl2-modules-gssapi-mit
+
+
+
+NEW_HOSTNAME=ub005
+NEW_DOMAINNAME=servdc1.conto.local
+DNS_SERVERS='192.168.129.100 192.168.129.101'
+DOMAIN_CONTROLLERS='servdc1.conto.local servdc2.conto.local'
+DEFAULT_REALM="${NEW_DOMAINNAME^^}"
+NETBIOS_DOMAIN_NAME=$(echo $DEFAULT_REALM | sed '1,$ s/\..*//g')
+
+#########################################
+### Setup NTP servers
+#########################################
+sed -i "/^pool.*\$/ s/^/#/" /etc/chrony/chrony.conf
+sed -i "/^server.*\$/ s/^/#/" /etc/chrony/chrony.conf
+
+for dc in $DOMAIN_CONTROLLERS;
+do
+echo "server $dc iburst" | sudo tee -a /etc/chrony/chrony.conf
+done
+
+#########################################
+### Setup Kerberos /etc/krb5.conf
+#########################################
+LIBDEFAULTS=$(cat <<EOF
+[libdefaults] dns_lookup_kdc = true
+dns_lookup_realm = false
+default_realm = $DEFAULT_REALM
+clockskew = 300
+default_ccache_name = FILE:/tmp/krb5cc_%{uid}
+EOF
+)
+
+REALMS_KDC=$(for i in $DOMAIN_CONTROLLERS; do echo "kdc = $i";done)
+
+REALMS=$(cat <<EOF
+
+[realms] $DEFAULT_REALM = {
+$REALMS_KDC
+default_domain = $DEFAULT_REALM
+}
+EOF
+)
+DOMAIN_REALM=$(cat <<EOF
+
+[domain_realm] .$NEW_DOMAINNAME = $DEFAULT_REALM
+$NEW_DOMAINNAME = $DEFAULT_REALM
+[appdefaults] pam = {
+ticket_lifetime = 1d
+renew_lifetime = 1d
+forwardable = true
+proxiable = false
+minimum_uid = 1
+}
+EOF
+)
+echo "$LIBDEFAULTS" > /etc/krb5.conf
+echo "$REALMS" >> /etc/krb5.conf
+echo "$DOMAIN_REALM" >> /etc/krb5.conf
+
+########################################
+#### Configure /etc/samba/smb.conf
+########################################
+SMB_CONF=$(cat <<EOF
+# smb.conf is the main Samba configuration file. You find a full commented
+# version at /usr/share/doc/packages/samba/examples/smb.conf.SUSE if the
+# samba-doc package is installed.
+[global] 
+workgroup = $NETBIOS_DOMAIN_NAME
+passdb backend = tdbsam
+map to guest = Bad User
+include = /etc/samba/dhcp.conf
+usershare allow guests = No
+idmap gid = 10000-20000
+idmap uid = 10000-20000
+realm = $DEFAULT_REALM
+security = ADS
+template homedir = /home/%D/%U
+template shell = /bin/bash
+usershare max shares = 100
+encrypt passwords = yes
+kerberos method = secrets and keytab
+winbind nested groups = yes
+winbind offline logon = yes
+winbind refresh tickets = yes
+winbind use default domain = yes
+dns proxy = no
+domain master = no
+local master = no
+preferred master = no
+load printers = no
+show add printer wizard = no
+printcap name = /dev/null
+disable spoolss = yes
+client use spnego = yes
+client ntlmv2 auth = yes
+EOF
+)
+
+mv /etc/samba/smb.conf /etc/samba/smb.conf.bak_'date +"%d.%m.%y_%H-%M"'
+echo "$SMB_CONF" > /etc/samba/smb.conf
+
+########################################
+#### Configure /etc/nsswitch.conf
+########################################
+sed -i '/^passwd:.*systemd$/ s/$/ winbind/' /etc/nsswitch.conf
+sed -i '/^group:.*systemd$/ s/$/ winbind/' /etc/nsswitch.conf
+sed -i '/^hosts:/ s/:.*$/: files dns/' /etc/nsswitch.conf
+
+##########################################
+#### Configure PAM
+##########################################
+sed -i "/^Default:.*\$/ s/:.*$/: yes/" /usr/share/pam-configs/mkhomedir
+sed -i '/^mkhomedir/D' /var/lib/pam/seen
+pam-auth-update –package
+###############################################
+### Setup Services
+###############################################
+systemctl enable ssh
+systemctl enable nmbd.service
+systemctl enable smbd.service
+systemctl enable winbind.service
+
+###############################################
+### Setting HOSTNAME, DOMAINNAME
+###############################################
+sed -i '/^127./D' /etc/hosts
+echo "127.0.0.1 $NEW_HOSTNAME.$NEW_DOMAINNAME $NEW_HOSTNAME localhost" | sudo tee -a /etc/hosts
+echo "127.0.0.2 $NEW_HOSTNAME.$NEW_DOMAINNAME $NEW_HOSTNAME" | sudo tee -a /etc/hosts
+sed -i "/^.*preserve_hostname:.*$/ s/false/true/" /etc/cloud/cloud.cfg
+hostname $NEW_HOSTNAME
+domainname $NEW_DOMAINNAME
+echo $NEW_HOSTNAME.$NEW_DOMAINNAME | sudo tee /etc/HOSTNAME
+echo $NEW_HOSTNAME.$NEW_DOMAINNAME | sudo tee /etc/hostname
