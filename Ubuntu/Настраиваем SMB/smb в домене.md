@@ -1,3 +1,4 @@
+```bash
 [global]
    workgroup = NIIGB
    realm = NIIGB.LOC
@@ -8,11 +9,11 @@
    client min protocol = SMB2
    client max protocol = SMB3
 #   name resolve order = lmhosts host wins bcast
-# синхронизация samba и unix паролей
+# Г±ГЁГ­ГµГ°Г®Г­ГЁГ§Г Г¶ГЁГї samba ГЁ unix ГЇГ Г°Г®Г«ГҐГ©
    unix password sync = yes
-# по умолчанию все файлы, начинающиеся с точки будут иметь атрибут "скрытый"
+# ГЇГ® ГіГ¬Г®Г«Г·Г Г­ГЁГѕ ГўГ±ГҐ ГґГ Г©Г«Г», Г­Г Г·ГЁГ­Г ГѕГ№ГЁГҐГ±Гї Г± ГІГ®Г·ГЄГЁ ГЎГіГ¤ГіГІ ГЁГ¬ГҐГІГј Г ГІГ°ГЁГЎГіГІ "Г±ГЄГ°Г»ГІГ»Г©"
    hide dot files = yes
-# следовать по симлинкам
+# Г±Г«ГҐГ¤Г®ГўГ ГІГј ГЇГ® Г±ГЁГ¬Г«ГЁГ­ГЄГ Г¬
    unix extensions = no
    wide links = yes
    follow symlinks = yes
@@ -37,18 +38,18 @@
    restrict anonymous = 2
    socket options = TCP_NODELAY
 
-# Отключаем любые попытки тачки стать контроллером домена
+# ГЋГІГЄГ«ГѕГ·Г ГҐГ¬ Г«ГѕГЎГ»ГҐ ГЇГ®ГЇГ»ГІГЄГЁ ГІГ Г·ГЄГЁ Г±ГІГ ГІГј ГЄГ®Г­ГІГ°Г®Г«Г«ГҐГ°Г®Г¬ Г¤Г®Г¬ГҐГ­Г 
    domain master = no
    local master = no
    preferred master = no
    os level = 0
    domain logons = no
-# Отключаем поддержку принтеров
+# ГЋГІГЄГ«ГѕГ·Г ГҐГ¬ ГЇГ®Г¤Г¤ГҐГ°Г¦ГЄГі ГЇГ°ГЁГ­ГІГҐГ°Г®Гў
    load printers = no
    show add printer wizard = no
    printcap name = /dev/null
    disable spoolss = yes
-# Включаем интеграцию с Winbind
+# Г‚ГЄГ«ГѕГ·Г ГҐГ¬ ГЁГ­ГІГҐГЈГ°Г Г¶ГЁГѕ Г± Winbind
    domain logons = yes
    winbind refresh tickets = yes
    winbind enum groups = yes
@@ -82,3 +83,4 @@
    create mask = 0777
    directory mask = 0777
    writable = yes
+```
