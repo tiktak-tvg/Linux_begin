@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Type=Link
+Icon[ru_RU]=gnome-panel-launcher
+URL=smb://192.168.17.13/common.dho/
+Name[ru_RU]=общая папка ДХО
+Name=111
+Icon=/usr/share/icons/Windows 10 Icons/32x32/places/folder-remote.png
