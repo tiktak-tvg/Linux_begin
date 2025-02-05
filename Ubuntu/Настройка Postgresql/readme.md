@@ -1,5 +1,5 @@
 ##### Настройка postgresql
-#sudo dpkg-reconfigure locales
+
 ```bash
 wget https://repo.postgrespro.ru/pg1c-13/keys/pgpro-repo-add.sh
 sh pgpro-repo-add.sh
