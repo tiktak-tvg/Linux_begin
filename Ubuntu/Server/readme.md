@@ -51,9 +51,11 @@ APT::Periodic::Unattended-Upgrade "1";
 systemctl status unattended-upgrades.service
 cd ..
 
-apt install sockpit
+apt install cockpit
 systemctl status cockpit.socket 
 ```
+Cockpit создан с целью облегчения администрирования ОС Linux.<br>
+После установки нам необходимо в браузере перейти на 9090 порт сервера, на котором установлен Cockpit (ip-сервера:9090). Например, 192.168.10.100:9090
 
 Отключить сообщения Ubuntu Pro:
 ```bash
