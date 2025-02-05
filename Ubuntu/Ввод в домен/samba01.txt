@@ -1,0 +1,37 @@
+[global]
+ workgroup = WORKGROUP
+ printing = CUPS
+ wins support = yes
+ netbios name = SAMBA
+ security = SHARE
+ guest account = dostup
+ cups options = raw
+ show add printer wizard = yes
+ printer admin = root, dostup
+[printers]
+ comment = Очередь печати SMB
+ printable = yes
+ path = /var/spool/samba
+ guest only = Yes
+ guest ok = yes
+ read only = No
+[print$]
+ comment = Драйверы принтера
+ path = /var/lib/samba/drivers
+ guest only = Yes
+ guest ok = yes
+ read only = No
+ create mask = 0777
+ directory mask = 0777
+ force user = dostup
+ force group = dostup
+ write list = root, dostup
+[public]
+ path = /share/obmen
+ guest only = Yes
+ guest ok = yes
+ read only = No
+ create mask = 0777
+ directory mask = 0777
+ force user = dostup
+ force group = dostup

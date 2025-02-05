@@ -1,0 +1,7 @@
+domain niigb.loc
+search niigb.loc
+nameserver 192.168.17.18
+nameserver 192.168.17.7
+nameserver 127.0.0.1
+search niigb.loc helios.niigb.loc
+
