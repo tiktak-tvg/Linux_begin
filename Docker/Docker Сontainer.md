@@ -26,7 +26,7 @@ docker container create <options> <image name:tag>
 docker ps <options>
 docker container ls <options>
 ```
-##### Команды Контейнера(Container)
+##### Команды Контейнера(Статистика)
 ```python
 CONTAINER ID — идентификатор контейнера
 IMAGE — образ на основании которого был создан контейнер
