@@ -10,9 +10,10 @@
 - Alt Linux
 - Astra Linux
 - Arch Linux
+- Manjaro
 - OpenSUSE
-- Zorin OS 
 - OpenMandriva
+- РОСА «Хром» и «Кобальт»
 
 #### Знакомство с командами системой помощи и оболочкой UNIX<br>
 - man
