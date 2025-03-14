@@ -26,7 +26,7 @@ docker container create <options> <image name:tag>
 docker ps <options>
 docker container ls <options>
 ```
-##### Container stats
+##### Команды Контейнера(Container)
 ```python
 CONTAINER ID — идентификатор контейнера
 IMAGE — образ на основании которого был создан контейнер
@@ -36,32 +36,32 @@ STATUS — статус контейнера (запащен, на пазуе, �
 PORTS — внутренние порты и мапинг портов
 NAMES — имя контейнера
 ```
-##### Remove Container
+##### Container Remove (rm)
 ```python
 docker rm <options> <container name> or <hash>
 docker container rm <options> <container name> or <hash>
 ```
-##### Stop Container
+##### Container Stop 
 ```python
 docker stop <container name> or <hash>
 docker container stop <container name> or <hash>
 ```
-##### Pause Container
+##### Container Pause
 ```python
 docker pause <container name> or <hash>
 docker container pause <container name> or <hash>
 ```
-##### Start Container
+##### Container Start 
 ```python
 docker start <container name> or <hash>
 docker container start <container name> or <hash>
 ```
-##### Unpause Container
+##### Container Unpause
 ```python
 docker unpause <container name> or <hash>
 docker container unpause <container name> or <hash>
 ```
-##### Inspector Container
+#####  Container Inspector
 ```python
 docker inspect <container name> or <hash>
 docker container inspect <container name> or <hash>
