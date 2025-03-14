@@ -36,3 +36,50 @@ STATUS — статус контейнера (запащен, на пазуе, �
 PORTS — внутренние порты и мапинг портов
 NAMES — имя контейнера
 ```
+##### Remove Container
+```python
+docker rm <options> <container name> or <hash>
+docker container rm <options> <container name> or <hash>
+```
+##### Stop Container
+```python
+docker stop <container name> or <hash>
+docker container stop <container name> or <hash>
+```
+##### Pause Container
+```python
+docker pause <container name> or <hash>
+docker container pause <container name> or <hash>
+```
+##### Start Container
+```python
+docker start <container name> or <hash>
+docker container start <container name> or <hash>
+```
+##### Unpause Container
+```python
+docker unpause <container name> or <hash>
+docker container unpause <container name> or <hash>
+```
+##### Inspector Container
+```python
+docker inspect <container name> or <hash>
+docker container inspect <container name> or <hash>
+```
+##### Container Processes
+```python
+docker top <container name> or <hash>
+docker container top <container name> or <hash>
+```
+##### Container Stats
+```python
+docker stats
+docker container stats>
+```
+
+
+
+
+
+
+
