@@ -92,6 +92,10 @@ sudo usermod -aG ssh userssh
 ```
 ![image](https://github.com/user-attachments/assets/39edc750-d6d7-4e26-b13a-1381a442e8a1)
 
+#### Удалить привилегии Sudo для пользователя системы
+```python
+deluser newuser sudo
+```
 #### Установка ssh на Centos.
 
 Для начала. Cделаем пакеты из дистрибутива Fedora Linux доступными для использования в дистрибутиве RHEL и его производных.<br> 
