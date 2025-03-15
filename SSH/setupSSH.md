@@ -83,6 +83,7 @@ PermitRootLogin no
 ```python
 sudo adduser userssh
 sudo usermod -aG sudo userssh
+sudo usermod -aG ssh userssh
 ```
 ![image](https://github.com/user-attachments/assets/39edc750-d6d7-4e26-b13a-1381a442e8a1)
 
