@@ -84,7 +84,7 @@ PermitRootLogin no
 sudo adduser userssh
 sudo usermod -aG sudo userssh
 ```
-![image](https://github.com/user-attachments/assets/15fda719-4b65-4bf9-8ddd-067562e3f268)
+![image](https://github.com/user-attachments/assets/39edc750-d6d7-4e26-b13a-1381a442e8a1)
 
 #### Установка ssh на Centos.
 
