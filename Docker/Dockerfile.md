@@ -62,7 +62,44 @@ world
 - VOLUME
 - WORKDIR
 
+##### Создать образ
+```python
+docker build . -t <image name:tag>
+docker image build . -t <image name:tag>
+```
+##### Директивы
+```python
+escape
+syntax
+```
+##### Пример: доступ к GitLab
+```python
+# syntax=docker/dockerfile:1
+FROM alpine
+RUN apk add --no-cache openssh-client
+RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan gitlab.com >> ~/.ssh/known_hosts
+RUN --mount=type=ssh \
+  ssh -q -T git@gitlab.com 2>&1 | tee /hello
+# "Welcome to GitLab, @GITLAB_USERNAME_ASSOCIATED_WITH_SSHKEY" should be printed here
+# with the type of build progress is defined as `plain`.
+eval $(ssh-agent)
+ssh-add ~/.ssh/id_rsa
+(Input your passphrase here)
+docker buildx build --ssh default=$SSH_AUTH_SOCK .
+```
+##### RUN --network
+```python
+RUN --network=<TYPE>
+```
+``RUN --network`` позволяет контролировать, в какой сетевой среде выполняется команда.<br>
 
+##### Директивы парсера
+```python
+Поддерживаются следующие директивы парсера:
+syntax
+escape
+check(начиная с Dockerfile v1.8.0)
+```
 
 
 
