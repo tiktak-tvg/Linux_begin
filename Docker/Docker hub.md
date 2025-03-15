@@ -34,3 +34,4 @@ docker push localhost:5000/ubuntu
 
 - Облако(Cloud): AWS, Azure, Google Cloud
 - Собственное размещение(Self-hosted): Docker EE, Quay Enterprise, GitLab
+
