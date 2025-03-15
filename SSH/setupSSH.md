@@ -69,6 +69,22 @@ sudo ufw enable
 ```python
 sudo ufw deny 22
 ```
+##### Безопасный OpenSSH на Ubuntu
+
+Одним из рекомендуемых способов защиты сервера при использовании OpenSSH, это отключить логин Root<br>
+
+```python
+sudo nano /etc/ssh/sshd_config
+#PermitRootLogin yes
+или
+PermitRootLogin no
+```
+И создать другого пользователя
+```python
+sudo adduser userssh
+sudo usermod -aG sudo userssh
+```
+![image](https://github.com/user-attachments/assets/15fda719-4b65-4bf9-8ddd-067562e3f268)
 
 #### Установка ssh на Centos.
 
