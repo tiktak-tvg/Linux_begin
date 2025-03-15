@@ -94,7 +94,7 @@ sudo usermod -aG ssh userssh
 
 #### Удалить привилегии Sudo для пользователя системы
 ```python
-deluser newuser sudo
+deluser userssh sudo
 ```
 #### Установка ssh на Centos.
 
