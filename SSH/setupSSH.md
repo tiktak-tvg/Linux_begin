@@ -10,6 +10,7 @@ sudo systemctl enable ssh
 sudo systemctl stop ssh
 sudo systemctl start ssh
 ```
+![1](https://github.com/user-attachments/assets/74c617ed-ee15-4904-96c8-5bc4cbe3272e)
 
 ##### Меняем порт.
 
