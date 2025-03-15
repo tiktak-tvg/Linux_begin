@@ -1,4 +1,4 @@
-#### Установка ssh на Ubuntu/Debian.
+### Установка ssh на Ubuntu/Debian.
 
 ```
 sudo apt update 
@@ -96,7 +96,12 @@ sudo usermod -aG ssh userssh
 ```python
 deluser userssh sudo
 ```
-#### Установка ssh на Centos.
+#### Дополнительные опции конфигурации вы можете проверить с помощью страницы man:
+```python
+man sshd_config
+```
+
+### Установка ssh на Centos.
 
 Для начала. Cделаем пакеты из дистрибутива Fedora Linux доступными для использования в дистрибутиве RHEL и его производных.<br> 
 И обновим пакеты.
