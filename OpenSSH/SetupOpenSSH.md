@@ -44,6 +44,11 @@ ssh имя пользователя@192.168.133.128 -p 2212
 ```
 ![image](https://github.com/user-attachments/assets/93564464-535c-475a-8a82-9a84ffa71abb)
 
+##### Подключение через MobaXTern
+![image](https://github.com/user-attachments/assets/26fc2b2a-fbe6-462b-b2f3-fb8e7f118499)
+
+![image](https://github.com/user-attachments/assets/19e42307-6e42-4a16-aa11-86aba57df6f3)
+
 ##### Если надо сделать отключение.
 ```python
 sudo systemctl disable ssh --now
