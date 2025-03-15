@@ -38,6 +38,11 @@ sudo systemctl status ssh
 ```python
 ssh имя пользователя@192.168.133.128 -p 2212
 ```
+##### Подключение через cmd
+```python
+ssh имя пользователя@192.168.133.128 -p 2212
+```
+![image](https://github.com/user-attachments/assets/93564464-535c-475a-8a82-9a84ffa71abb)
 
 ##### Если надо сделать отключение.
 ```python
@@ -63,11 +68,6 @@ sudo ufw enable
 ##### Если запретить 22 порт, то так:
 ```python
 sudo ufw deny 22
-```
-
-##### Подключение через powershell
-```python
-ssh имя пользователя@192.168.133.128 -p 2212
 ```
 
 #### Установка ssh на Centos.
