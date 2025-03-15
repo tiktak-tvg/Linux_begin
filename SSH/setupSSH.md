@@ -12,7 +12,17 @@ sudo systemctl start ssh
 ```
 ![1](https://github.com/user-attachments/assets/74c617ed-ee15-4904-96c8-5bc4cbe3272e)
 
+На рисунке видим порт по умолчанию 22 и сервер OpenSSH запущен
+
 ##### Меняем порт.
+
+Редактируем редактором nano, кто хочм редактором по умолчанию vim файл sshd_config по пути /etc/ssh/sshd_config
+
+И меняем порт 22 на 2212 например
+
+![image](https://github.com/user-attachments/assets/3267ffeb-8254-4b54-b005-be73abf39a77)
+
+![image](https://github.com/user-attachments/assets/11b2fcee-60cc-4cf6-bb0d-28fd42d168fb)
 
 ```
 sudo nano /etc/ssh/sshd_config
