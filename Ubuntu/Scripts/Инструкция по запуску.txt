@@ -1,16 +1,29 @@
+##### Запускать скрипты sh из командной строки.
+
 Переходи в папку со скриптами
+```python
 user@ub3-12:cd /home/user/public/Scripts
 user@ub3-12:~/public/Scripts$
-
-Вводим команду
-user@ub3-12:~/public/Scripts$ 
+```
+1. Сделать файл скрипта исполняемым (если он еще таковым не является):
+```python
+chmod +x script.sh
+```
+2. Если вы находитель не корневой папке со скриптами, тогда запускаем скрипт, просто указав путь до него:
+```python
+sudo sh /home/user/public/Scripts/comment.sh
+или так
+sudo bash /home/user/public/Scripts/comment.sh
+или так
+sudo sh 192.168.19.33/home/user/public/Scripts/comment.sh
+```
+3. Если в корневой папке со скриптами, тогда запускаем скрипт командой
+```python
 sudo ./comment.sh  
 или
 sudo ./'comment (name_str).sh'
-или так
-sudo sh /home/user/public/Scripts/comment.sh
-или так
-sudo sh 192.168.19.33/home/user/public/Scripts/comment.sh
+```
+
 
 Смотрим результат
 nano /etc/fstab
