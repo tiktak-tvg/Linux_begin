@@ -10,7 +10,7 @@
 
 ![image](https://github.com/user-attachments/assets/025d4868-c918-42f6-9ca9-65799746d1d9)
 
-> Или с помощью скрипта
+> Или с помощью скрипта ``sudo sh ./get-docker.sh --dry-run``
 
 ![image](https://github.com/user-attachments/assets/4429a604-b42e-4a73-90c9-b2db46f16633)
 
