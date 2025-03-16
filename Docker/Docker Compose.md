@@ -45,4 +45,78 @@ Compose V2 поддерживает почти все флаги и подком
 Обратите внимание, что даже если ``--compatibility`` флаг используется для сохранения стиля именования V1, Compose все равно необходимо заново создать контейнеры служб, изначально запущенные V1, при первом upзапуске V2 для миграции внутреннего состояния.<br>
 > [!WARNING]  
 >  Compose V2 теперь включен в официальный образ Docker на Docker Hub<br>
-> Кроме того, новый образ docker/compose-bin на Docker Hub содержит последнюю версию Compose V2 для использования в многоэтапных сборках
+> Кроме того, новый образ ``docker/compose-bi``n на ``Docker Hub`` содержит последнюю версию Compose V2 для использования в многоэтапных сборках
+
+##### Как запустить Docker Compose
+
+- Создайте каталог для проекта:
+```python
+ mkdir composetest
+ cd composetest
+```
+- Создайте файл с именем ``app.py`` в каталоге вашего проекта и вставьте в него следующий код:
+```python
+import time
+
+import redis
+from flask import Flask
+
+app = Flask(__name__)
+cache = redis.Redis(host='redis', port=6379)
+
+def get_hit_count():
+    retries = 5
+    while True:
+        try:
+            return cache.incr('hits')
+        except redis.exceptions.ConnectionError as exc:
+            if retries == 0:
+                raise exc
+            retries -= 1
+            time.sleep(0.5)
+
+@app.route('/')
+def hello():
+    count = get_hit_count()
+    return f'Hello World! I have been seen {count} times.\n'
+```
+> [!WARNING]  
+> В этом примере ``redis`` — имя хоста контейнера ``Redis`` в сети приложения и порт по умолчанию ``6379``.
+
+- Создайте еще один файл с именем ``requirements.txt`` в каталоге вашего проекта и вставьте в него следующий код:
+```python
+flask
+redis
+```
+- Создайте Dockerfileи вставьте следующий код:
+```python
+# syntax=docker/dockerfile:1
+FROM python:3.10-alpine
+WORKDIR /code
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+RUN apk add --no-cache gcc musl-dev linux-headers
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+EXPOSE 5000
+COPY . .
+CMD ["flask", "run", "--debug"]
+```
+> [!WARNING]  
+> Проверьте, что ``Dockerfileу`` файла нет расширения, например ``.txt``. Некоторые редакторы могут добавлять это расширение файла автоматически, что приводит к ошибке при запуске приложения.
+
+- Создайте файл с именем compose.yamlв каталоге вашего проекта и вставьте следующее:
+```python
+services:
+  web:
+    build: .
+    ports:
+      - "8000:5000"
+  redis:
+    image: "redis:alpine"
+```
+В этом файле Compose определены две службы: ``web`` и ``redis``.
+
+Служба ``web`` использует образ, созданный из ``Dockerfileв`` текущем каталоге. Затем она привязывает контейнер и хост-машину к открытому порту, 8000. Этот пример службы использует порт по умолчанию для веб-сервера Flask, 5000.
+
+Сервис ``redis`` использует общедоступный образ ``Redis``, извлеченный из реестра ``Docker Hub``.
