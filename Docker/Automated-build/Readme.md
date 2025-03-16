@@ -4,7 +4,7 @@
 2. **Необходимо создать репозиторий на Docker hub**
 
 <img width="1161" alt="repo" src="https://github.com/user-attachments/assets/0ceccbb8-2db7-4d55-ae9b-de992f2739dd" />
-
+<br><tr>
 
 3. **Конфигурируем репозиторий на Docker Hub**
 
