@@ -1,0 +1,18 @@
+version: "2.4"
+
+services:
+  webhost:
+    image: nginx:alpine
+    container_name: webhost
+    ports:
+      - 80:80
+    depends_on:
+      - db
+    volumes:
+      - ./html:/usr/share/nginx/html
+
+  db:
+    image: mongo:4
+    container_name: storage
+    volumes:
+      - ./data:/data/db

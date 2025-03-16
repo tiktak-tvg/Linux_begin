@@ -1,0 +1,13 @@
+version: "2.4"
+
+services:
+  webhost:
+    image: nginx:alpine
+    container_name: webhost
+    ports:
+      - 80:80
+    restart: always
+    environment:
+      - MODE=dev
+    volumes:
+      - ./html:/usr/share/nginx/html

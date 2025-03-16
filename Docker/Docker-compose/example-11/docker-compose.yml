@@ -1,0 +1,28 @@
+version: "2.4"
+
+services:
+  webapp:
+    image: nginx:alpine
+    container_name: webapp
+    build: ./webapp
+    ports:
+      - 80:80
+    volumes:
+      - ./html:/usr/share/nginx/html
+    networks:
+      - back
+
+  webhost:
+    image: nginx:alpine
+    container_name: webhost
+    build: ./webhost
+    ports:
+      - 8080:80
+    volumes:
+      - ./html:/usr/share/nginx/html
+    networks:
+      - back
+
+networks:
+  back:
+    driver: bridge
