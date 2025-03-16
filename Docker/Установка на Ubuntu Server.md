@@ -47,3 +47,4 @@ sudo usermod -aG docker ${USER}
 sudo systemctl stop docker
 [user@hostname]$systemctl start docker
 ```
+![image](https://github.com/user-attachments/assets/0f64cb89-f9ab-4b33-98b5-9d29dc469214)
