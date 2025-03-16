@@ -49,3 +49,16 @@ sol@ubuntu:~$systemctl start docker
 sol@ubuntu:~$systemctl status docker
 ```
 ![image](https://github.com/user-attachments/assets/0f64cb89-f9ab-4b33-98b5-9d29dc469214)
+
+Если при выполнения docker появилась такая ошибка
+
+![image](https://github.com/user-attachments/assets/9f6dceab-7d6b-4b9c-b373-4be697b82c17)
+
+Значит забыли выполнить следующую команду, чтобы активировать изменения в группах:
+```python
+newgrp docker
+```
+![image](https://github.com/user-attachments/assets/ac6f9de1-a5e2-40a1-a9c4-7b9ac1515206)
+
+![image](https://github.com/user-attachments/assets/77727ffb-f4bf-4483-bba4-a877b8e5b319)
+
