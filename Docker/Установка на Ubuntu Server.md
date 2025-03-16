@@ -14,6 +14,8 @@
 
 ![image](https://github.com/user-attachments/assets/4429a604-b42e-4a73-90c9-b2db46f16633)
 
+##### В этом варианте опишу, что делает каждая команда.
+
 1. Сначала обновите существующий список пакетов:
 ```python
 sudo apt update
