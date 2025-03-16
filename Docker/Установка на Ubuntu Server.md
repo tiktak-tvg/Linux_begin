@@ -80,6 +80,8 @@ newgrp docker
 ```
 ![image](https://github.com/user-attachments/assets/ac6f9de1-a5e2-40a1-a9c4-7b9ac1515206)
 
+![image](https://github.com/user-attachments/assets/952b31f0-8efe-4ad5-8ec1-2b46de682450)
+
 ![image](https://github.com/user-attachments/assets/77727ffb-f4bf-4483-bba4-a877b8e5b319)
 
 ![image](https://github.com/user-attachments/assets/15e1f792-2350-491a-b2d6-44aff3627d28)
