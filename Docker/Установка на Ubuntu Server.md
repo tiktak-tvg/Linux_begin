@@ -42,9 +42,10 @@ sudo systemctl status docker
 > Добавьте свое имя пользователя в группу Docker
 > 
 ```python
-sudo usermod -aG docker ${USER}
-Проверяем
-sudo systemctl stop docker
-[user@hostname]$systemctl start docker
+sol@ubuntu:~$sudo usermod -aG docker ${USER}
+Проверяем, что docker теперь запускается без sudo
+sol@ubuntu:~$sudo systemctl stop docker
+sol@ubuntu:~$systemctl start docker
+sol@ubuntu:~$systemctl status docker
 ```
 ![image](https://github.com/user-attachments/assets/0f64cb89-f9ab-4b33-98b5-9d29dc469214)
