@@ -66,6 +66,8 @@ sol@ubuntu:~$sudo systemctl stop docker
 sol@ubuntu:~$systemctl start docker
 sol@ubuntu:~$systemctl status docker
 ```
+![image](https://github.com/user-attachments/assets/330cd787-6f90-44c2-a6f1-d1f57b706f7f)
+
 ![image](https://github.com/user-attachments/assets/0f64cb89-f9ab-4b33-98b5-9d29dc469214)
 
 Если при выполнения docker появилась такая ошибка
