@@ -28,6 +28,6 @@ reboot
 ```
 ![5](https://github.com/user-attachments/assets/2af59f28-a0c2-4088-b9ad-1b48c77a0c5c)
 
-И вход в систему с еовым паролем
+И вход в систему с новым паролем
 
 ![6](https://github.com/user-attachments/assets/16f5bb26-aaaa-4047-997a-2661fa7f12f3)
