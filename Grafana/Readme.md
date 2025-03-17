@@ -50,7 +50,6 @@ AGPLv3
 
 Ubuntu и Debian(64-бит)
 ```python
-sudo apt-get install -y adduser libfontconfig1 musl
 wget https://dl.grafana.com/oss/release/grafana_11.5.2_amd64.deb
 устанавливаем пакет
 sudo dpkg -i grafana_11.5.2_amd64.deb
