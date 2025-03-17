@@ -68,8 +68,6 @@ sudo systemctl enable grafana-server
 ```
 ![image](https://github.com/user-attachments/assets/a19eb04d-c130-47ca-b075-80ecfc3da3ee)
 
-curl https://packagecloud.io/gpg.key | sudo apt-key add -
-
 Чтобы установить соединение, создайте правило для порта 3000 для брандмауэра:
 ```python
 sudo ufw allow 3000/tcp
