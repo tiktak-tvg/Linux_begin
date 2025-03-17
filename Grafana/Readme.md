@@ -82,3 +82,8 @@ sudo ufw allow 3000/tcp
 Далее предложит поменять пароль
 
 ![2](https://github.com/user-attachments/assets/8b6f93e3-c236-4bd1-930e-fae1e7268546)
+
+![2](https://github.com/user-attachments/assets/2d1b9efa-1f26-4773-a246-644d478c33ed)
+
+![image](https://github.com/user-attachments/assets/0b60da92-8fe6-46a8-8c3b-6f41749f0b03)
+
