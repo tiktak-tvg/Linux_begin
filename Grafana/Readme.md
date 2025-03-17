@@ -54,20 +54,34 @@ sudo apt-get install -y adduser libfontconfig1 musl
 wget https://dl.grafana.com/oss/release/grafana_11.5.2_amd64.deb
 устанавливаем пакет
 sudo dpkg -i grafana_11.5.2_amd64.deb
+sudo apt-cache policy grafana
+запускаем
+sudo systemctl start grafana-server
+проверяем статус
+sudo systemctl status grafana-server
 ```
+![image](https://github.com/user-attachments/assets/2af9ab46-596a-4bc1-9da9-07d652b87911)
+
+```python
+запустите сервис и добавьте его в автозагрузку
+sudo systemctl enable grafana-server
+```
+![image](https://github.com/user-attachments/assets/a19eb04d-c130-47ca-b075-80ecfc3da3ee)
 
 curl https://packagecloud.io/gpg.key | sudo apt-key add -
 
-wget https://dl.grafana.com/oss/release/grafana_11.5.2_amd64.deb
-sudo dpkg -i grafana_11.5.2_amd64.deb
-sudo apt-cache policy grafana
-sudo apt install grafana
-запустите сервис и добавьте его в автозагрузку
-sudo systemctl start grafana-server
-sudo systemctl enable grafana-server
-проверьте статус
-sudo systemctl status grafana-server
 Чтобы установить соединение, создайте правило для порта 3000 для брандмауэра:
+```python
 sudo ufw allow 3000/tcp
+```
+![image](https://github.com/user-attachments/assets/931d47cb-366f-4e77-848d-6f7cfabb46ef)
+
 Войдите в интерфейс. Для этого введите в адресной строке браузера: http://localhost:3000
+
 Откроется стартовая страница. Введите логин и пароль по умолчанию (admin — admin) и нажмите Log in:
+
+![image](https://github.com/user-attachments/assets/07a39737-cb6b-47da-b07e-48013b2d5d53)
+
+Далее предложит поменять пароль
+
+![2](https://github.com/user-attachments/assets/8b6f93e3-c236-4bd1-930e-fae1e7268546)
