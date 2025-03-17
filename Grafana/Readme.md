@@ -53,6 +53,7 @@ Ubuntu и Debian(64-бит)
 wget https://dl.grafana.com/oss/release/grafana_11.5.2_amd64.deb
 устанавливаем пакет
 sudo dpkg -i grafana_11.5.2_amd64.deb
+проверяем
 sudo apt-cache policy grafana
 запускаем
 sudo systemctl start grafana-server
