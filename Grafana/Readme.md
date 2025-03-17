@@ -86,3 +86,12 @@ sudo ufw allow 3000/tcp
 
 ![image](https://github.com/user-attachments/assets/0b60da92-8fe6-46a8-8c3b-6f41749f0b03)
 
+##### Как сбросить пароль от админ-пользователя Grafana?
+Если вы забыли админ-пароль и не можете восстановить его при помощи стандартной формы, смените пароль через SSH. Для этого:
+
+- Подключитесь по SSH к серверу, на котором установлена Графана.
+- Введите команду:
+```python
+grafana-cli admin reset-admin-password new-password
+Вместо new-password введите новый пароль.
+```
