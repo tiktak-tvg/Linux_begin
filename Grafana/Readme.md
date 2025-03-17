@@ -34,7 +34,7 @@ sudo apt full-upgrade
 ```python
 sudo dnf upgrade --best
 ```
-
+Далее как всё обновили делаем ребут системы ``reboot``<br>
 Скачиваем OSS Edition
 ```python
 Лицензия:
