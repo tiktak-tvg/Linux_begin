@@ -6,10 +6,10 @@ sudo apt-get install winbind
 apt-get install resolvconf
 
 $ sudo nano /etc/resolvconf/resolv.conf.d/base 
-Затем поместите свой список серверов имен так:
+Р—Р°С‚РµРј РїРѕРјРµСЃС‚РёС‚Рµ СЃРІРѕР№ СЃРїРёСЃРѕРє СЃРµСЂРІРµСЂРѕРІ РёРјРµРЅ С‚Р°Рє:
 
  nameserver 192.168.x.x nameserver 192.168.x.x 
-Наконец, обновите resolvconf :
+РќР°РєРѕРЅРµС†, РѕР±РЅРѕРІРёС‚Рµ resolvconf:
 
  $ sudo resolvconf -u 
 
