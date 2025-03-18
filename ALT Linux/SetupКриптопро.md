@@ -81,6 +81,8 @@ https://www.cryptopro.ru/sites/default/files/products/cades/demopage/cades_bes_s
 
 ![image](https://github.com/tvgVita69/Linux_begin/assets/98489171/be8ff6a8-1bc3-47e8-8245-0a6f0dd6545f)
 
+![image](https://github.com/user-attachments/assets/afa6d562-0240-41c6-9612-9aa208d30c93)
+
 Ошибки и исправления.
 
 ```
