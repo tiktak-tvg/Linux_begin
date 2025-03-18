@@ -86,7 +86,7 @@ https://www.cryptopro.ru/sites/default/files/products/cades/demopage/cades_bes_s
 ![image](https://github.com/user-attachments/assets/afa6d562-0240-41c6-9612-9aa208d30c93)
 
 > [!Warning]
-> В OS Windows ключ находит КриптоПро сам, в OS Linux его нужно добавить в ручную, чтобы ЭЦП появился на электронной площадке
+> В OS Windows ключ находит КриптоПро сам, в OS Linux его нужно добавить в КриптоПро вручную, чтобы ЭЦП появился на электронной площадке
 
 ##### Ошибки и исправления.
 
