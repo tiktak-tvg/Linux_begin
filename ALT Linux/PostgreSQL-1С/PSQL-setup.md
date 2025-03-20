@@ -1,4 +1,5 @@
 Вы можете выбрать сервер PostgreSQL определённой версии как обычный, так и предназначенный для работы 1С:Предприятие (содержит в имени 1C):
+```python
 postgresql15-server
 postgresql15-1С-server
 postgresql14-server
@@ -8,7 +9,7 @@ postgresql12-server
 postgresql11-server
 postgresql10-server
 postgresql9.6-server
-
+```
 
 Лучше предназначенный для работы с 1С:Предприятие 
 
