@@ -76,7 +76,115 @@ sudo dnf system-upgrade clean
 sudo dnf distro-sync
 sudo fixfiles -B onboot
 ```
+###### Меняем версию ядра
+Устанавливаем утилиту grubby
+```python
+sudo dnf install grubby
+```
+Смотрим список доступных ядер в системе:
+```python
+sudo grubby --info=ALL | grep -E "^kernel|^index"
+```
+Получаем что-то похожее на это:
+```python
+index=0
+kernel="/boot/vmlinuz-6.0.5-200.fc36.x86_64"
+index=1
+kernel="/boot/vmlinuz-5.19.16-301.fc37.x86_64"
+index=2
+kernel="/boot/vmlinuz-5.19.16-200.fc36.x86_64"
+index=3
+kernel="/boot/vmlinuz-0-rescue-e5e0486de0354ed5adbd9418f209953e"
+```
+Выбираем версию ядря, которую хотим использовать (выбрав нужный index из списка)
+```python
+sudo grubby --set-default-index=0
+```
+В примере выше я выбрал kernel 6.0 у которого index=0
 
+Проверям всё ли применилось:
+
+```python
+sudo grubby --default-title
+Перезагружаем ПК
+```
+###### Установка кодеков
+```python
+sudo dnf install gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
+sudo dnf install lame\* --exclude=lame-devel
+sudo dnf group upgrade --with-optional Multimedia
+```
+###### Дополнительные настройки GNOME
+```python
+sudo dnf install gnome-tweaks
+```
+###### Включаем дробное масштабирование
+```python
+gsettings set org.gnome.mutter experimental-features "[‘scale-monitor-framebuffer’]"
+```
+###### Устанавливаем консольный софт
+```python
+sudo dnf install neofetch cpufetch inxi htop vim
+```
+###### Консольные команды для GNU/Linux
+
+![image](https://github.com/user-attachments/assets/3dc80ec1-e574-426a-877e-f9ce9b5fcbf1)
+
+###### Команды редактора VIM
+```python
+:e /название_файла               - открыть файл
+
+:w                                             - записать изменения
+
+:q                                              - закрыть редактор
+
+:q!                                             - закрыть редактор игнорируя всё
+
+:x                                              - записать измения и закрыть файл
+
+Добавление ! знака к любой командe, значит выполнят её игнорируя все предупреждения. Например :q!
+
+i                                                - вставка перед курсором
+
+o                                               - создать новую строку под курсором
+
+p                                               - вставить после курсора
+
+dd                                             - удалить строку
+
+$                                                - End На конец строки
+
+0 - (ноль)                                 - На начало строки
+
+Copy
+<Ctrl-f> - на страницу (экран) вниз;
+<Ctrl-b> - на страницу (экран) верх;
+<Ctrl-d> - на пол страницы (экрана) вниз;
+<Ctrl-u> - на пол страницы (экрана) верх;
+<Ctrl-y> - на строку вверх, без изменения положения курсора;
+<Ctrl-e> - на строку вних, без изменения положения курсора;
+split /название_файла           - отрыть другой файл с горизонтальным разделением
+
+vsplit /название_файла         - отрыть другой файл с вертикальным разделением
+
+ctrl+w ctrl+w                          - переключение между активными окнами редактора
+
+v                                                - Войти в режим выделения символов
+
+V                                               - Войти в режим выделения строк
+
+Control+Shift+v                      - Войти в режим выделения прямоугольного блока текста
+
+u                                                - Изменить регистр выделенных символов на нижний
+
+U                                               - Изменить регистр выделенных символов на верхний
+
+~                                               - Изменить регистр выделенных символов на противоположный
+
+/                                                 - Войти в режим ввода выражения для поиска.
+
+:noh                                           - Выйти из режима поиска,выключит подсветку найденого.
+```
 
 
 
