@@ -28,8 +28,8 @@ max_parallel_downloads=10
 defaultyes=True
 keepcache=True
 ```
-[!Warning]
-[] ``fastestmirror=True`` - dnf пытается подключаться к серверам Yandex, а какие-то пакеты там могут отсутствовать и поэтому могут сыпаться различные ошибки.
+> [!Warning]
+> ``fastestmirror=True`` - dnf пытается подключаться к серверам Yandex, а какие-то пакеты там могут отсутствовать и поэтому могут сыпаться различные ошибки.
 
 Далее выполняем:
 ```python
