@@ -5,24 +5,39 @@
 
 ##### Предварительная подготовка сервера.
 
+Что надо знать?
+1. ALD Pro не поддерживает ядра hardened. Поддерживаются только generic ядра.<br>
+2. Необходимо использовать редакцию Astra Linux с максимальным уровнем защищенности – Смоленск.<br>
+3. Настоятельно рекомендуется использовать статическую адресацию на серверах.<br>
+4. Для имени домена рекомендуется выбирать такое имя, которые не будет конфликтовать с другими вашими сервисами.
+   - Например, для LAD Pro выделить отдельный домен подуровня(третьего уровня). Например, ald.it.lan.
+
 Проверяем на рекомендуемое соответствие
 ```bash
 cat /etc/astra/build_version
 sudo astra-modeswitch getname
-astra-modeswitch list
+sudo astra-modeswitch list
+если режим другой, то выбирайте нужный
+sudo astra-modeswitch set 2
 ```
+![image](https://github.com/user-attachments/assets/eb82502b-f6de-45e5-8773-6124a034124f)
 
-Настраиваем сеть и установить статический IP
+Настраиваем сеть и установливаем статический IP адрес.
 
-Отключает автоматическую настройку сетевых подключений, блокируя работу служб NetworkManager, network-manager и connman, а также отключает элемент управления сетью в трее графического интерфейса.
+
 ```bash
-sudo systemctl stop NetworkManager
-sudo systemctl disable NetworkManager
-sudo systemctl mask NetworkManager
-sudo systemctl status NetworkManager
-astra-noautonet-control is-enabled
-astra-noautonet-control enable
+sudo systemctl stop NetworkManager //останавливает службу
+sudo systemctl disable NetworkManager //удаляет её из автозагрузки
+sudo systemctl mask NetworkManager //
+astra-noautonet-control is-enabled 
+astra-noautonet-control enable //отключает автоматическую настройку сетевых подключений, блокируя работу служб NetworkManager, network-manager и connman, а также отключает элемент управления сетью в трее графического интерфейса.
 ```
+Если всё правильно сделали, то вводим команду ``sudo systemctl status NetworkManager``
+
+![image](https://github.com/user-attachments/assets/cd97eba1-f772-48eb-b7db-fb13d2785baa)
+
+![image](https://github.com/user-attachments/assets/d7ecd977-c8da-4deb-bee6-3f5a0e3046ec)
+
 
 ```bash
 nano /etc/network/interfaces
