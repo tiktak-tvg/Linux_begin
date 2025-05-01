@@ -62,9 +62,8 @@ astra-noautonet-control enable //отключает автоматическую
 ![image](https://github.com/user-attachments/assets/d7ecd977-c8da-4deb-bee6-3f5a0e3046ec)
 
 
+Настраиваем статический адрес ``nano /etc/network/interfaces``
 ```bash
-nano /etc/network/interfaces
-
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
 
@@ -136,6 +135,17 @@ deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-extended/ 
 deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-base/     1.7_x86-64 main contrib non-free
 deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-extended/ 1.7_x86-64 main contrib non-free
 ```
+Для использования сетевых репозиториев, работающих по протоколу HTTPS необходимо, чтобы в системе был установлен пакет apt-transport-https и пакет ca-certificates. Проверить наличие пакетов можно командой:
+```bash
+apt policy apt-transport-https ca-certificates
+```
+![image](https://github.com/user-attachments/assets/273040a4-1d40-45b8-9368-5f311f69b6ba)
+
+Установить пакеты apt-transport-https и ca-certificates можно командой:
+```bash
+sudo apt install apt-transport-https ca-certificates
+```
+
 в папкe source.list.d добавить файл с записью
 ```bash
 cat > /etc/apt/sources.list.d/aldpro.list
