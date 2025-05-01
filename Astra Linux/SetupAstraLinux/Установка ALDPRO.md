@@ -21,11 +21,9 @@ sudo astra-modeswitch list
 если режим другой, то выбирайте нужный
 sudo astra-modeswitch set 2
 ```
-![image](https://github.com/user-attachments/assets/eb82502b-f6de-45e5-8773-6124a034124f)
+![image](https://github.com/user-attachments/assets/16412750-3ebf-4877-8c58-3962a933da4c)
 
 Настраиваем сеть и установливаем статический IP адрес.
-
-
 ```bash
 sudo systemctl stop NetworkManager //останавливает службу
 sudo systemctl disable NetworkManager //удаляет её из автозагрузки
