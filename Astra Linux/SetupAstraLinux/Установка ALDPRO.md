@@ -25,9 +25,7 @@ cat /etc/astra/build_version
 sudo astra-modeswitch getname
 sudo astra-modeswitch list
 ```
-![image](https://github.com/user-attachments/assets/f186b767-0bf2-47d3-bd6f-a5def7efe1cc)
-
-![image](https://github.com/user-attachments/assets/16412750-3ebf-4877-8c58-3962a933da4c)
+![image](https://github.com/user-attachments/assets/8e2a245b-c851-48d5-a810-c15978a2dcf2)
 
 Если режим другой, то выбирайте нужный
 ```bash
