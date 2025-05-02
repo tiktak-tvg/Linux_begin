@@ -51,7 +51,7 @@ sudo astra-swapwiper-control enable
 sudo systemctl status ntp
 sudo systemctl start ntp
 sudo systemctl enable ntp
-```bash
+```
 Настраиваем сеть и установливаем статический IP адрес.
 узнаём название сетевого интерфейса, IP адресс, шлюз
 ```bash
