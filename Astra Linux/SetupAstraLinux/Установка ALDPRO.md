@@ -179,8 +179,7 @@ deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-extended/ 
 deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-update/ 1.7_x86-64 main contrib non-free
 deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-update/ 1.7_x86-64 main contrib non-free
 ```
-
-![image](https://github.com/user-attachments/assets/02d9ae19-8f51-4604-b25c-9d4c65a946bc)
+![image](https://github.com/user-attachments/assets/39175691-3745-4c96-bad4-943093fdd053)
 
 Для использования сетевых репозиториев, работающих по протоколу HTTPS необходимо, чтобы в системе был установлен пакет ``apt-transport-https`` и пакет ``ca-certificates``.<br> 
 Проверить наличие пакетов можно командой: ``apt policy apt-transport-https ca-certificates``
@@ -189,7 +188,7 @@ deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-updat
 ![image](https://github.com/user-attachments/assets/12b1586b-6ba4-48b7-b9c8-c1d87b23c278)
 
 Втоорой набор
-![image](https://github.com/user-attachments/assets/47701ad8-f582-40eb-a9ec-74da472861bf)
+![image](https://github.com/user-attachments/assets/c23e2076-dcc7-4ba0-a749-c4619add9c02)
 
 >[!Warning]
 >Установить пакеты ``apt-transport-https`` и ``ca-certificates`` можно командой: ``sudo apt install apt-transport-https ca-certificates``
