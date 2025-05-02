@@ -61,6 +61,8 @@ server 127.127.1.0
 fudge 127.127.1.0 stratum 10
 restrict <network> mask <netmask> nomodify notrap
 
+sudo systemctl enable ntp
+sudo systemctl restart ntp
 ntpq -p
 remote           refid      st t when poll reach   delay   offset  jitter
 ==============================================================================
