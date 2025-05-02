@@ -25,6 +25,7 @@ cat /etc/astra/build_version
 sudo astra-modeswitch getname
 sudo astra-modeswitch list
 ```
+![image](https://github.com/user-attachments/assets/f186b767-0bf2-47d3-bd6f-a5def7efe1cc)
 
 ![image](https://github.com/user-attachments/assets/16412750-3ebf-4877-8c58-3962a933da4c)
 
