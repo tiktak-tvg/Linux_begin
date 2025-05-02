@@ -147,6 +147,7 @@ astra-update -a -r
 ```
 ![image](https://github.com/user-attachments/assets/5aa5e8a7-80a6-4fc4-b789-882388b22a08)
 
+Перезагружаем сервер
 ```bash
 reboot
 ```
@@ -163,6 +164,7 @@ deb https://dl.astralinux.ru/aldpro/frozen/01/2.5.0 1.7_x86-64 main base
 apt update
  apt list --upgradable
  apt dist-upgrade -y -o Dpkg::Optoins::=--force-confnew
+reboot
 ```
 
 ##### Установка первого контроллера ALD Pro
