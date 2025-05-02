@@ -170,7 +170,7 @@ deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-exten
 или этот набор
 ```bash
 # Astra Linux repository description https://wiki.astralinux.ru/x/0oLiC Основной репозиторий
-deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-main/ 1.7_x86-64 main contrib non-free
+#deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-main/ 1.7_x86-64 main contrib non-free
 # Оперативные обновления основного репозитория
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-update/ 1.7_x86-64 main contrib non-free
 # Рекомендуемые репозитории для установки сервера
