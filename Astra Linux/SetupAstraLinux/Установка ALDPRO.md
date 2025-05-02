@@ -116,6 +116,8 @@ gateway 192.168.25.10
 ```bash
 nameserver 77.88.8.8
 ```
+Проверяем пинг ``ping dl.astralinux.ru``
+
 > [!Warning]
 > Предложенные зоны ``.lan`` и ``.internal`` не зарегистрированы в глобальном списке ``Top-Level Domains``, но всегда будет оставаться вероятность, что их ведут в эксплуатацию в будущем.
 > Соответственно, следует использовать зоны ``.lan``, ``.internal`` и ``.local`` учитывая эти риски.
@@ -207,7 +209,7 @@ apt update
 ```
 ![image](https://github.com/user-attachments/assets/6b6178cd-08fc-49d7-a737-56012eac8528)
 
-Можно добавить репозитории от astra ``astra-update -a -r``
+Можно добавить репозитории от astra ``astra-update -a -r`` если дальше извращаться
 
 ![image](https://github.com/user-attachments/assets/5aa5e8a7-80a6-4fc4-b789-882388b22a08)
 
@@ -229,7 +231,7 @@ sudo grep error: /var/log/apt/term.log
 3. Теперь повысим сервер до контроллера домена. Дополнительно отключим историю выполнения команд, чтобы пароль не был записан в эту историю:
 ```bash
 set + o history
-sudo aldpro-server-install -d ald.it.lan -n dc1 -p 'gogo23Caru' --ip 192.168.25.112 --no-reboot --setup_syncer --setup_gc
+sudo aldpro-server-install -d it.company.lan -n dc01 -p 'QwertyQAZWSX' --ip 192.168.25.115 --no-reboot --setup_syncer --setup_gc
 ```
 4. Дожидаемся окончания процедуры повышения сервера до контроллера домена.
 5. Включаем обратно историю ведения команд:
