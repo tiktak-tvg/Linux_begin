@@ -46,6 +46,12 @@ sudo astra-digsig-control enable
 sudo astra-secdel-control enable
 sudo astra-swapwiper-control enable
 ```
+Добавим и запустить службу синхронизации времени ntp в автозапуск:
+```bash
+sudo systemctl status ntp
+sudo systemctl start ntp
+sudo systemctl enable ntp
+```bash
 Настраиваем сеть и установливаем статический IP адрес.
 узнаём название сетевого интерфейса, IP адресс, шлюз
 ```bash
@@ -58,7 +64,7 @@ route
 sudo systemctl status NetworkManager //проверяем статус службы NetworkManager
 sudo systemctl stop NetworkManager //останавливает службу
 sudo systemctl disable NetworkManager //удаляет её из автозагрузки
-sudo systemctl mask NetworkManager //
+sudo systemctl mask NetworkManager //останавливает активность службы
 ```
 отключает автоматическую настройку сетевых подключений, блокируя работу служб NetworkManager, network-manager и connman, а также отключает элемент управления сетью в трее графического интерфейса.
 ```bash
@@ -99,12 +105,12 @@ gateway 192.168.25.10
 ```
 ![image](https://github.com/user-attachments/assets/4389923f-e7d5-4443-a7a5-ab44d957bdc7)
 
-- auto eth0 --это чтобы интерфейс автоматически включался
-- allow-hotplug eth0 --
-- iface eth0 inet static --это к какому интерфейсу мы привязываем статический адрес
-- address 192.168.25.112 --это сам статический адрес
-- netmask 255.255.255.0  --это маска
-- gateway 192.168.25.10  --это шлюз
+- auto eth0  --поднимать интерфейс автоматически при старте системы
+- allow-hotplug eth0 --автоматически выполнять перезапуск интерфейса при его падении
+- iface eth0 inet static --к какому интерфейсу мы привязываем статический адрес
+- address 192.168.25.112 --статический адрес
+- netmask 255.255.255.0  --маска
+- gateway 192.168.25.10  --шлюз
 
 Вводим команду ``nano /etc/resolv.conf`` и прописываем DNS, чтобы пока у нас работали репозитории
 ```bash
@@ -143,6 +149,9 @@ hostname -I
 ```bash 
 systemctl restart networking.service
 ```
+После перезагрузки вводим команду ``ifquery`` результат должен быть такой
+![image](https://github.com/user-attachments/assets/bb582400-4d85-4e35-80b5-c318fbd18ddd)
+
 Добавляем репозитории
 ```bash
 cat /etc/apt/sources.list
