@@ -224,6 +224,9 @@ apt update
 ```bash
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q aldpro-mp aldpro-gc aldpro-syncer
 ```
+- aldpro_enable_syncer – установка модуля синхронизации ``aldpro-syncer``. Этот модуль необходим для использования расширенных функций интеграции с доменом Microsoft Active Directory.
+- aldpro_enable_gc – установка модуля глобального каталога ``aldpro-gc``. Этот модуль необходим, если используется топология из контроллера домена и нескольких реплик. Службы, предоставляемые этим модулем, выполняют синхронизацию данных пользователей между контроллером домена и его репликами.
+
 2. После завершения установки проверим журнал на наличие ошибок:
 ```bash
 sudo grep error: /var/log/apt/term.log
