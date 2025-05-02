@@ -99,7 +99,7 @@ hostname -f
 nano /etc/hosts
 
 127.0.0.1 localhost localhost.localdomain
-127.0.1.1
+#127.0.1.1
 192.168.25.112  dc1.ald.it.lan dc1
 ::1     localhost ip6-localhost ip6-loopback
 ff02::1 ip6-allnodes
