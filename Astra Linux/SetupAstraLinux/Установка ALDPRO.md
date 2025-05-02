@@ -66,12 +66,11 @@ astra-noautonet-control enable //отключает автоматическую
 
 ![image](https://github.com/user-attachments/assets/25a62ca3-5814-47af-96a0-37f04065a4f2)
 
-![image](https://github.com/user-attachments/assets/cd97eba1-f772-48eb-b7db-fb13d2785baa)
+и сеть в трее графического интерфейса будет не активна.
 
 ![image](https://github.com/user-attachments/assets/d7ecd977-c8da-4deb-bee6-3f5a0e3046ec)
 
-
-Настраиваем статический адрес ``nano /etc/network/interfaces``
+Настраиваем статический адрес вводим команду: ``nano /etc/network/interfaces``
 ```bash
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
@@ -89,6 +88,15 @@ address 192.168.25.112
 netmask 255.255.255.0
 gateway 192.168.25.10
 ```
+![image](https://github.com/user-attachments/assets/4389923f-e7d5-4443-a7a5-ab44d957bdc7)
+
+- auto eth0 --это чтобы интерфейс автоматически включался
+- allow-hotplug eth0 --
+- iface eth0 inet static --это к какому интерфейсу мы привязываем статический адрес
+- address 192.168.25.112 --это сам статический адрес
+- netmask 255.255.255.0  --это маска
+- gateway 192.168.25.10  --это шлюз
+
 Прописываем DNS ``nano /etc/resolv.conf``
 ```bash
 nameserver 192.168.25.10
