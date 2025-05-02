@@ -153,9 +153,8 @@ systemctl restart networking.service
 ![image](https://github.com/user-attachments/assets/bb582400-4d85-4e35-80b5-c318fbd18ddd)
 
 Добавляем репозитории
+Вводим команду ``nano /etc/apt/sources.list``
 ```bash
-cat /etc/apt/sources.list
-nano /etc/apt/sources.list
 # Astra Linux repository description https://wiki.astralinux.ru/x/0oLiC
 # Основной репозиторий
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-main/     1.7_x86-64 main contrib non-free
@@ -168,11 +167,11 @@ deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-extended/ 
 deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-base/     1.7_x86-64 main contrib non-free
 deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-extended/ 1.7_x86-64 main contrib non-free
 ```
-Для использования сетевых репозиториев, работающих по протоколу HTTPS необходимо, чтобы в системе был установлен пакет apt-transport-https и пакет ca-certificates. Проверить наличие пакетов можно командой:
-```bash
-apt policy apt-transport-https ca-certificates
-```
-![image](https://github.com/user-attachments/assets/273040a4-1d40-45b8-9368-5f311f69b6ba)
+![image](https://github.com/user-attachments/assets/19c767dc-6997-4e88-9207-abf1246ba914)
+
+Для использования сетевых репозиториев, работающих по протоколу HTTPS необходимо, чтобы в системе был установлен пакет apt-transport-https и пакет ca-certificates. 
+Проверить наличие пакетов можно командой: ``apt policy apt-transport-https ca-certificates``
+![image](https://github.com/user-attachments/assets/ff59ecc5-5ddd-4e9d-aefc-a1b6eca82537)
 
 Установить пакеты apt-transport-https и ca-certificates можно командой:
 ```bash
