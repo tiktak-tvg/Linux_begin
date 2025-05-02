@@ -169,15 +169,14 @@ deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-exten
 ```
 ![image](https://github.com/user-attachments/assets/19c767dc-6997-4e88-9207-abf1246ba914)
 
-Для использования сетевых репозиториев, работающих по протоколу HTTPS необходимо, чтобы в системе был установлен пакет apt-transport-https и пакет ca-certificates. 
+Для использования сетевых репозиториев, работающих по протоколу HTTPS необходимо, чтобы в системе был установлен пакет ``apt-transport-https`` и пакет ``ca-certificates``.<br> 
 Проверить наличие пакетов можно командой: ``apt policy apt-transport-https ca-certificates``
+
 ![image](https://github.com/user-attachments/assets/ff59ecc5-5ddd-4e9d-aefc-a1b6eca82537)
 
-Установить пакеты apt-transport-https и ca-certificates можно командой:
-```bash
-sudo apt install apt-transport-https ca-certificates
-```
-Обновим
+Установить пакеты ``apt-transport-https`` и ``ca-certificates`` можно командой: ``sudo apt install apt-transport-https ca-certificates``
+
+Обновляем
 ```bash
 apt update
 apt dist-upgrade
