@@ -106,21 +106,9 @@ hostname -f
 ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 ```
-
+Перезапустим сетевой интерфейс для применения настроек
 ```bash 
 systemctl restart networking.service
-```
-Обновим
-```bash
-apt update
-apt dist-upgrade
-```
-Можно добавить репозитории от astra
-```bash
-astra-update -a -r
-```
-```bash
-reboot
 ```
 Добавляем репозитории
 ```bash
@@ -148,6 +136,21 @@ apt policy apt-transport-https ca-certificates
 ```bash
 sudo apt install apt-transport-https ca-certificates
 ```
+Обновим
+```bash
+apt update
+apt dist-upgrade
+```
+Можно добавить репозитории от astra
+```bash
+astra-update -a -r
+```
+![image](https://github.com/user-attachments/assets/5aa5e8a7-80a6-4fc4-b789-882388b22a08)
+
+```bash
+reboot
+```
+
 Определения репозиториев также могут быть указаны файлах, расположенных в каталоге /etc/apt/sources.list.d/. Файлы могут иметь произвольное имя c обязательным расширением ".list".
 Для ALD PRO в папкe source.list.d добавим файл с записью
 ```bash
