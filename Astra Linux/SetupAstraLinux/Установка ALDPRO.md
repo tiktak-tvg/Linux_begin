@@ -154,6 +154,7 @@ systemctl restart networking.service
 
 Добавляем репозитории
 Вводим команду ``nano /etc/apt/sources.list``
+Этот набор рабочий
 ```bash
 # Astra Linux repository description https://wiki.astralinux.ru/x/0oLiC
 # Основной репозиторий
@@ -163,11 +164,23 @@ deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-update/   1.7_x8
 
 deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-base/          1.7_x86-64 main contrib non-free
 deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-extended/      1.7_x86-64 main contrib non-free
-#или
 deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-base/     1.7_x86-64 main contrib non-free
 deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-extended/ 1.7_x86-64 main contrib non-free
 ```
-![image](https://github.com/user-attachments/assets/19c767dc-6997-4e88-9207-abf1246ba914)
+или этот набор
+```bash
+# Astra Linux repository description https://wiki.astralinux.ru/x/0oLiC Основной репозиторий
+deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-main/ 1.7_x86-64 main contrib non-free
+# Оперативные обновления основного репозитория
+deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-update/ 1.7_x86-64 main contrib non-free
+# Рекомендуемые репозитории для установки сервера
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-base/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-extended/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-update/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-update/ 1.7_x86-64 main contrib non-free
+```
+
+![image](https://github.com/user-attachments/assets/02d9ae19-8f51-4604-b25c-9d4c65a946bc)
 
 Для использования сетевых репозиториев, работающих по протоколу HTTPS необходимо, чтобы в системе был установлен пакет ``apt-transport-https`` и пакет ``ca-certificates``.<br> 
 Проверить наличие пакетов можно командой: ``apt policy apt-transport-https ca-certificates``
