@@ -187,7 +187,18 @@ deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-updat
 
 ![image](https://github.com/user-attachments/assets/ff59ecc5-5ddd-4e9d-aefc-a1b6eca82537)
 
-Установить пакеты ``apt-transport-https`` и ``ca-certificates`` можно командой: ``sudo apt install apt-transport-https ca-certificates``
+![image](https://github.com/user-attachments/assets/47701ad8-f582-40eb-a9ec-74da472861bf)
+
+>[!Warning]
+>Установить пакеты ``apt-transport-https`` и ``ca-certificates`` можно командой: ``sudo apt install apt-transport-https ca-certificates``
+
+Определения репозиториев также могут быть указаны файлах, расположенных в каталоге /etc/apt/sources.list.d/. Файлы могут иметь произвольное имя c обязательным расширением ".list".
+Для ALD PRO в папкe source.list.d добавим файл с записью
+```bash
+cat > /etc/apt/sources.list.d/aldpro.list
+#deb https://dl.astralinux.ru/aldpro/frozen/01/2.3.0 1.7_x86-64 main base
+deb https://dl.astralinux.ru/aldpro/frozen/01/2.5.0 1.7_x86-64 main base
+```
 
 Обновляем
 ```bash
@@ -205,13 +216,7 @@ astra-update -a -r
 reboot
 ```
 
-Определения репозиториев также могут быть указаны файлах, расположенных в каталоге /etc/apt/sources.list.d/. Файлы могут иметь произвольное имя c обязательным расширением ".list".
-Для ALD PRO в папкe source.list.d добавим файл с записью
-```bash
-cat > /etc/apt/sources.list.d/aldpro.list
-#deb https://dl.astralinux.ru/aldpro/frozen/01/2.3.0 1.7_x86-64 main base
-deb https://dl.astralinux.ru/aldpro/frozen/01/2.5.0 1.7_x86-64 main base
-```
+
 Далее обновляем
 ```bash
 apt update
