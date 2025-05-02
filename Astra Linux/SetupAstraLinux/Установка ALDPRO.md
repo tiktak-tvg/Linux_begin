@@ -198,34 +198,22 @@ deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-updat
 Для ALD PRO в папкe source.list.d добавим файл с записью
 ```bash
 cat > /etc/apt/sources.list.d/aldpro.list
-#deb https://dl.astralinux.ru/aldpro/frozen/01/2.3.0 1.7_x86-64 main base
 deb https://dl.astralinux.ru/aldpro/frozen/01/2.5.0 1.7_x86-64 main base
 ```
-
 Обновляем
-```bash
-apt update
-apt dist-upgrade
-```
-Можно добавить репозитории от astra
-```bash
-astra-update -a -r
-```
-![image](https://github.com/user-attachments/assets/5aa5e8a7-80a6-4fc4-b789-882388b22a08)
-
-Перезагружаем сервер
-```bash
-reboot
-```
-
-
-Далее обновляем
 ```bash
 apt update
  apt list --upgradable
  apt dist-upgrade -y -o Dpkg::Optoins::=--force-confnew
-reboot
 ```
+![image](https://github.com/user-attachments/assets/6b6178cd-08fc-49d7-a737-56012eac8528)
+
+Можно добавить репозитории от astra ``astra-update -a -r``
+
+![image](https://github.com/user-attachments/assets/5aa5e8a7-80a6-4fc4-b789-882388b22a08)
+
+Перезагружаем сервер ``reboot``
+
 
 ##### Установка первого контроллера ALD Pro
 
