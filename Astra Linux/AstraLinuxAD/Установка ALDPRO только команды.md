@@ -109,7 +109,7 @@ nameserver 77.88.8.8
 ```
 Также в файл hosts добавим строки с именем сервера ``nano /etc/hosts``.
 ```bash
-127.0.0.1       localhost
+127.0.0.1       localhost.localdomain localhost
 # 127.0.1.1     dc01.it.company.lan dc01   --обязательно закоментировать
 192.168.25.100  dc01.it.company.lan dc01
 
@@ -311,7 +311,7 @@ nameserver 77.88.8.8
 ```
 Также в файл hosts добавим строки с именем сервера ``nano /etc/hosts``.
 ```bash
-127.0.0.1       localhost
+127.0.0.1       localhost.localdomain localhost
 # 127.0.1.1     dc02.it.company.lan dc02   --обязательно закоментировать
 192.168.25.101  dc02.it.company.lan dc02
 
