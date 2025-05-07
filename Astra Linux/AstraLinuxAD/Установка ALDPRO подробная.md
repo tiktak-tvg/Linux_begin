@@ -258,6 +258,8 @@ sudo cat /etc/resolv.conf
 
 Входим в домен
 
+![51](https://github.com/user-attachments/assets/1a04154c-2e42-4ece-8241-09851541684f)
+
 ##### Отключение DNSSEC
 ```bash
 sudo sed -i 's/dnssec-validation yes/dnssec-validation no/g' /etc/bind/ipa-options-ext.conf
