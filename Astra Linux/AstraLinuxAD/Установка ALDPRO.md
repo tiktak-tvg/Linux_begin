@@ -283,8 +283,16 @@ allow-query-cache { any; };
 
 Роли и службы сайта → Служба разрешения имён → Глобальная конфигурация DNS
 Указать IP-адрес внешнего резолвера
+![image](https://github.com/user-attachments/assets/d6f86c4b-62fe-4df8-a5e7-c2c62aef3beb)
+
+Например: 77.88.8.8 или 8.8.8.8 или 1.1.1.1
+
+![image](https://github.com/user-attachments/assets/0f05b948-9552-45ca-ad05-31553afdff1e)
+
 Добавить права для УЗ admin
 ```bash
 kinit
 ipa group-add-member 'ald trust admin' --user admin
 ```
+![image](https://github.com/user-attachments/assets/c970e41b-c68c-4979-b141-02a3eba21d8a)
+
