@@ -1,4 +1,4 @@
-#### Установка контролера домена ALD PRO.
+#### Установка контролеров домена ALD PRO.
 ##### Предварительная подготовка сервера.
 Проверяем на рекомендуемое соответствие.
 ```bash
@@ -215,8 +215,6 @@ allow-query-cache { any; };
 
 Например: 77.88.8.8 или 8.8.8.8 или 1.1.1.1
 
-![image](https://github.com/user-attachments/assets/0f05b948-9552-45ca-ad05-31553afdff1e)
-
 Добавить права для УЗ admin
 ```bash
 kinit
@@ -224,7 +222,6 @@ kinit
 ```bash
 ipa group-add-member 'ald trust admin' --user admin
 ```
-
 ##### Установка второго контроллера ALD Pro.
 
 ##### Предварительная подготовка сервера.
@@ -402,3 +399,45 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q aldpro-mp aldpro-gc al
 ```bash
 sudo grep error: /var/log/apt/term.log
 ```
+3. Теперь повысим сервер до контроллера домена как клиента. Перед этим отключим историю выполнения команд, чтобы пароль не был записан в эту историю:
+```bash
+set +o history
+/opt/rbta/aldpro/client/bin/aldpro-client-installer --domain ald.it.lan --account admin --password 'gogo23Caru' --host dc2 --gui --force
+```
+4. Дожидаемся окончания процедуры повышения сервера до контроллера домена и проверяем:
+
+Проверка статуса поднятия домена
+```bash
+sudo aldpro-client-installer
+sudo freeipal-client-installer
+```
+5. Включаем обратно историю ведения команд:
+```bash
+set -o history
+```
+6. Проверим настройки разрешения имен:
+```bash
+sudo cat /etc/resolv.conf
+```
+В файле должен быть указан ваш домен и адрес сервера – 127.0.0.1, т.к. этот файл настраивается на службу bind9.
+
+7. Перезагружаем сервер.
+
+Входим в домен.
+
+Отключение DNSSEC
+```bash
+sudo sed -i 's/dnssec-validation yes/dnssec-validation no/g' /etc/bind/ipa-options-ext.conf
+sudo systemctl restart bind9-pkcs11.service
+```
+
+
+
+
+
+
+
+
+
+
+
