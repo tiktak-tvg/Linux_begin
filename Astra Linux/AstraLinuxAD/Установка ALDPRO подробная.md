@@ -136,6 +136,10 @@ nameserver 77.88.8.8
 ```bash 
 systemctl restart networking.service
 ```
+После перезагрузки вводим команду ``ifquery`` результат должен быть такой
+
+![image](https://github.com/user-attachments/assets/bb582400-4d85-4e35-80b5-c318fbd18ddd)
+
 Проверяем пинг ``ping dl.astralinux.ru``
 
 > [!Warning]
@@ -167,9 +171,6 @@ hostname -f // если не работает проверяем запись в
 hostname -I
 ```
 ![image](https://github.com/user-attachments/assets/acf5aa2f-4a59-4ab8-9189-a919562c34d5)
-
-После перезагрузки вводим команду ``ifquery`` результат должен быть такой
-![image](https://github.com/user-attachments/assets/bb582400-4d85-4e35-80b5-c318fbd18ddd)
 
 Добавляем репозитории
 Вводим команду ``nano /etc/apt/sources.list``
