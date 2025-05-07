@@ -157,4 +157,64 @@ deb https://dl.astralinux.ru/aldpro/frozen/01/2.5.0 1.7_x86-64 main base
 apt update && sudo apt list --upgradable && sudo apt dist-upgrade -y -o Dpkg::Options::=--force-confnew
 ```
 
-Установка ALD Pro.
+##### Установка первого контроллера ALD Pro.
+
+После предварительной настройки продолжаем установку.
+
+Устанавливаем необходимые пакеты:
+```bash
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q aldpro-mp aldpro-gc aldpro-syncer
+```
+- aldpro_enable_syncer – установка модуля синхронизации ``aldpro-syncer``. Этот модуль необходим для использования расширенных функций интеграции с доменом Microsoft Active Directory.
+- aldpro_enable_gc – установка модуля глобального каталога ``aldpro-gc``. Этот модуль необходим, если используется топология из контроллера домена и нескольких реплик. Службы, предоставляемые этим модулем, выполняют синхронизацию данных пользователей между контроллером домена и его репликами.
+
+2. После завершения установки проверим журнал на наличие ошибок:
+```bash
+sudo grep error: /var/log/apt/term.log
+```
+3. Теперь повысим сервер до контроллера домена. Дополнительно отключим историю выполнения команд, чтобы пароль не был записан в эту историю:
+```bash
+set + o history
+sudo aldpro-server-install -d it.company.lan -n dc01 -p 'QwertyQAZWSX' --ip 192.168.25.115 --no-reboot --setup_syncer --setup_gc
+```
+4. Дожидаемся окончания процедуры повышения сервера до контроллера домена.
+5. Включаем обратно историю ведения команд:
+```bash
+set -o history
+```
+6. Проверим настройки разрешения имен:
+```bash
+sudo cat /etc/resolv.conf
+```
+В файле должен быть указан ваш домен и адрес сервера – 127.0.0.1, т.к. этот файл настраивается на службу bind9.
+
+7. Перезагружаем сервер.
+
+Входим в домен.
+
+##### Отключение DNSSEC
+```bash
+sudo sed -i 's/dnssec-validation yes/dnssec-validation no/g' /etc/bind/ipa-options-ext.conf
+sudo systemctl restart bind9-pkcs11.service
+
+sudo cat > /etc/bind/ipa-options-ext.conf
+allow-recursion { any; };
+allow-query-cache { any; };
+```
+Настройка глобального перенаправления DNS
+
+Роли и службы сайта → Служба разрешения имён → Глобальная конфигурация DNS
+Указать IP-адрес внешнего резолвера
+![image](https://github.com/user-attachments/assets/d6f86c4b-62fe-4df8-a5e7-c2c62aef3beb)
+
+Например: 77.88.8.8 или 8.8.8.8 или 1.1.1.1
+
+![image](https://github.com/user-attachments/assets/0f05b948-9552-45ca-ad05-31553afdff1e)
+
+Добавить права для УЗ admin
+```bash
+kinit
+ipa group-add-member 'ald trust admin' --user admin
+```
+![image](https://github.com/user-attachments/assets/c970e41b-c68c-4979-b141-02a3eba21d8a)
+
