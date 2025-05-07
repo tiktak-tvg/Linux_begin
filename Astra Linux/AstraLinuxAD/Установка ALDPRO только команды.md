@@ -182,6 +182,8 @@ sudo aldpro-server-install -d it.company.lan -n dc01 -p 'QwertyQAZWSX' --ip 192.
 sudo aldproctl status
 sudo ipactl status
 ```
+![14](https://github.com/user-attachments/assets/00cc5caa-639d-4927-a205-cf1cd7ea3183)
+
 5. Включаем обратно историю ведения команд:
 ```bash
 set -o history
