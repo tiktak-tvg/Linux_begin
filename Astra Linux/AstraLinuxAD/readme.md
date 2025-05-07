@@ -46,13 +46,13 @@ sudo astra-swapwiper-control enable
 
 ``nano /etc/apt/sources.list``
 
-Добавляем репозитории
+Добавляем репозитории ``base + aldpro``
 ```bash
 cat /etc/apt/sources.list
 nano /etc/apt/sources.list
 # Astra Linux repository description https://wiki.astralinux.ru/x/0oLiC
 # Основной репозиторий
-deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-main/     1.7_x86-64 main contrib non-free
+# deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-main/     1.7_x86-64 main contrib non-free
 # Оперативные обновления основного репозитория
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-update/   1.7_x86-64 main contrib non-free
 
@@ -61,11 +61,14 @@ deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-extended/ 
 deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-base/     1.7_x86-64 main contrib non-free
 deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-extended/ 1.7_x86-64 main contrib non-free
 ```
+Посмотрим на версии репозиториев
+```bash
+apt policy apt-transport-https ca-certificates 
+```
+![image](https://github.com/user-attachments/assets/1e243c26-a050-400d-a168-748549607a79)
+
 Далее обновляем
 ```bash
-apt update
-apt dist-upgrade
+apt update && sudo apt list --upgradable && sudo apt dist-upgrade -y -o Dpkg::Options::=--force-confnew
 ```
-
-
 Далее, настройка.
