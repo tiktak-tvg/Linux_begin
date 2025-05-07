@@ -132,10 +132,15 @@ gateway 192.168.25.10
 ```bash
 nameserver 77.88.8.8
 ```
+Перезапустим сетевой интерфейс для применения настроек
+```bash 
+systemctl restart networking.service
+```
 Проверяем пинг ``ping dl.astralinux.ru``
 
 > [!Warning]
 > Предложенные зоны ``.lan`` и ``.internal`` не зарегистрированы в глобальном списке ``Top-Level Domains``, но всегда будет оставаться вероятность, что их ведут в эксплуатацию в будущем.
+
 > Соответственно, следует использовать зоны ``.lan``, ``.internal`` и ``.local`` учитывая эти риски.
 
 Также в файл hosts добавим строки с именем сервера ``nano /etc/hosts``.
@@ -163,10 +168,6 @@ hostname -I
 ```
 ![image](https://github.com/user-attachments/assets/acf5aa2f-4a59-4ab8-9189-a919562c34d5)
 
-Перезапустим сетевой интерфейс для применения настроек
-```bash 
-systemctl restart networking.service
-```
 После перезагрузки вводим команду ``ifquery`` результат должен быть такой
 ![image](https://github.com/user-attachments/assets/bb582400-4d85-4e35-80b5-c318fbd18ddd)
 
