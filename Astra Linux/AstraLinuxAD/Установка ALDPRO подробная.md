@@ -236,11 +236,17 @@ sudo grep error: /var/log/apt/term.log
 set + o history
 sudo aldpro-server-install -d it.company.lan -n dc01 -p 'QwertyQAZWSX' --ip 192.168.25.115 --no-reboot --setup_syncer --setup_gc
 ```
-4. Дожидаемся окончания процедуры повышения сервера до контроллера домена.
-
+4. Дожидаемся окончания процедуры повышения сервера до контроллера домена и проверяем:
+   
    ![14](https://github.com/user-attachments/assets/53eccd23-d2bb-450b-a94f-5696a4dc9e8b)
+   
+```bash
+sudo aldproctl status
+sudo ipactl status
+```
+![14](https://github.com/user-attachments/assets/00cc5caa-639d-4927-a205-cf1cd7ea3183)
 
-6. Включаем обратно историю ведения команд:
+5. Включаем обратно историю ведения команд:
 ```bash
 set -o history
 ```
