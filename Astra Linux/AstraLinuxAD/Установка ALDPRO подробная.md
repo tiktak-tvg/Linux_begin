@@ -172,7 +172,6 @@ systemctl restart networking.service
 
 Добавляем репозитории
 Вводим команду ``nano /etc/apt/sources.list``
-Этот набор рабочий
 ```bash
 # Astra Linux repository description https://wiki.astralinux.ru/x/0oLiC
 # Основной репозиторий
