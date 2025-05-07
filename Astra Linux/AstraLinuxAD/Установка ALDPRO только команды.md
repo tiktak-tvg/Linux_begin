@@ -402,7 +402,7 @@ sudo grep error: /var/log/apt/term.log
 3. Теперь повысим сервер до контроллера домена как клиента. Перед этим отключим историю выполнения команд, чтобы пароль не был записан в эту историю:
 ```bash
 set +o history
-/opt/rbta/aldpro/client/bin/aldpro-client-installer --domain ald.it.lan --account admin --password 'gogo23Caru' --host dc2 --gui --force
+/opt/rbta/aldpro/client/bin/aldpro-client-installer --domain ald.it.lan --account admin --password 'QwertyQAZWSX' --host dc2 --gui --force
 ```
 4. Дожидаемся окончания процедуры повышения сервера до контроллера домена и проверяем:
 
@@ -411,11 +411,14 @@ set +o history
 sudo aldpro-client-installer
 sudo freeipal-client-installer
 ```
-5. Включаем обратно историю ведения команд:
+5. Включаем обратно историю ведения команд и снимаем изменение файла:
 ```bash
 set -o history
+
+sudo chattr -i /etc/resolv.conf
 ```
-6. Проверим настройки разрешения имен:
+
+6. Редактируем настройки разрешения имен:
 ```bash
 sudo cat /etc/resolv.conf
 ```
