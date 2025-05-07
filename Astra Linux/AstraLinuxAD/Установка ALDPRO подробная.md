@@ -145,8 +145,8 @@ systemctl restart networking.service
 
 Также в файл hosts добавим строки с именем сервера ``nano /etc/hosts``.
 ```bash
-127.0.0.1       localhost
-#127.0.1.1      dc01.it.company.lan dc01   --обязательно закоментировать
+127.0.0.1       localhost.localdomain localhost
+# 127.0.1.1      dc01.it.company.lan dc01   --обязательно закоментировать
 192.168.25.115  dc01.it.company.lan dc01
 
 # The following lines are desirable for IPv6 capable hosts
@@ -163,7 +163,7 @@ hostnamectl set-hostname dc01.it.company.lan
 Проверяем
 ```bash
 hostname -s
-hostname -f
+hostname -f // если не работает проверяем запись в файле etc/hosts
 hostname -I
 ```
 ![image](https://github.com/user-attachments/assets/acf5aa2f-4a59-4ab8-9189-a919562c34d5)
