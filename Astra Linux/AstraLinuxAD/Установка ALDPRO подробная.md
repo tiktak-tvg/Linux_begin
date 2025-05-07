@@ -259,6 +259,8 @@ sudo cat /etc/resolv.conf
 Входим в домен
 
 ![51](https://github.com/user-attachments/assets/1a04154c-2e42-4ece-8241-09851541684f)
+![52](https://github.com/user-attachments/assets/5eebdbbe-5339-4b38-a058-829882b16448)
+![53](https://github.com/user-attachments/assets/54026fd5-b72d-4311-bc52-f80e4f6ce050)
 
 ##### Отключение DNSSEC
 ```bash
