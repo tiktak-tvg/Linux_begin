@@ -133,6 +133,9 @@ hostname -I
 systemctl restart networking.service
 ```
 Добавляем репозитории
+>[!Warning]
+>Репозиторий base включает репозитории main и update, а репозиторий extended содержит большое количество дополнительного программного обеспечения.
+
 Вводим команду ``nano /etc/apt/sources.list``
 ```bash
 # Astra Linux repository description https://wiki.astralinux.ru/x/0oLiC Основной репозиторий
