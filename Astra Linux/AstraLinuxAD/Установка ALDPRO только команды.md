@@ -186,7 +186,7 @@ sudo grep error: /var/log/apt/term.log
 
 1. Теперь повысим сервер до контроллера домена. Дополнительно отключим историю выполнения команд, чтобы пароль не был записан в эту историю:
 ```bash
-set + o history
+set +o history
 sudo aldpro-server-install -d it.company.lan -n dc01 -p 'QwertyQAZWSX' --ip 192.168.25.100 --no-reboot --setup_syncer --setup_gc
 ```
 2. Дожидаемся окончания процедуры повышения сервера до контроллера домена и проверяем:
