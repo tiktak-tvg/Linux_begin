@@ -61,6 +61,17 @@ deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-extended/ 
 deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-base/     1.7_x86-64 main contrib non-free
 deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-extended/ 1.7_x86-64 main contrib non-free
 ```
+>[!Warning]
+>Некоторые пояснения по репозиториям репозиториям
+```bash
+Astra Linux main contrib non-free — это группа пакетов, объединённая по условиям использования:
+
+non-free — группа содержит пакеты, которые не соответствуют принципам свободного ПО, имеют патенты или другие юридические ограничения; 
+aldpro.ru
+contrib — группа содержит пакеты, которые сами по себе соответствуют принципам свободного ПО, но зависят от пакетов из группы «non-free» (то есть не могут без них работать); 
+aldpro.ru
+main — группа содержит пакеты свободного ПО, которые не зависят от пакетов из групп «contrib» и «non-free». 
+```
 Посмотрим на версии репозиториев
 ```bash
 apt policy apt-transport-https ca-certificates 
