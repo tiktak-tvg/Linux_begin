@@ -113,7 +113,7 @@ nameserver 77.88.8.8
 Также в файл hosts добавим строки с именем сервера ``nano /etc/hosts``.
 ```bash
 127.0.0.1       localhost.localdomain localhost
-# 127.0.1.1     dc01.it.company.lan dc01   --обязательно закоментировать
+# 127.0.1.1     dc01.it.company.lan dc01   --обязательно закомментировать
 192.168.25.100  dc01.it.company.lan dc01
 
 # The following lines are desirable for IPv6 capable hosts
