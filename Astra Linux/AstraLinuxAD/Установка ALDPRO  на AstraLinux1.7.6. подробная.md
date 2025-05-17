@@ -344,10 +344,26 @@ allow-query-cache { any; };
 
 ![image](https://github.com/user-attachments/assets/0f05b948-9552-45ca-ad05-31553afdff1e)
 
-Добавить права для УЗ admin
+Если всё правильно сделали, то при проверке настроек должно быть так
 ```bash
-kinit
-ipa group-add-member 'ald trust admin' --user admin
+klist
 ```
-![image](https://github.com/user-attachments/assets/c970e41b-c68c-4979-b141-02a3eba21d8a)
+
+![image](https://github.com/user-attachments/assets/18290db8-8697-492f-9a48-0a41361318f4)
+
+![image](https://github.com/user-attachments/assets/6e0a5657-b62e-451e-846b-5d6468aed357)
+
+![image](https://github.com/user-attachments/assets/6323c873-2a95-405e-9cfa-1d6ac3ae94c4)
+
+```bash
+root@dc01:~# systemctl status bind9
+● bind9.service
+   Loaded: masked (Reason: Unit bind9.service is masked.)
+   Active: inactive (dead)
+root@dc01:~#
+
+systemctl status bind9-pkcs11.service
+```
+![image](https://github.com/user-attachments/assets/de9490ec-dda9-4044-b1e5-da45befda99b)
+
 
