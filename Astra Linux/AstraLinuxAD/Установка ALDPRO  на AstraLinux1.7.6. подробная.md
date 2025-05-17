@@ -393,3 +393,7 @@ ipa dnsconfig-show
 ```bash
 /opt/rbta/aldpro/client/bin/aldpro-client-installer --domain it.company.lan --account admin --password 'ваш пароль' --host dc03 --gui --force
 ```
+
+Далее после перезагрузки входим в домен
+
+
