@@ -5,8 +5,6 @@
 cat /etc/astra/build_version
 sudo astra-modeswitch getname
 sudo astra-modeswitch list
-Если режим другой, то выбирайте нужный
-sudo astra-modeswitch set 2 
 ```
 Добавим и запустить службу синхронизации времени chrony в автозапуск.
 >[!Warning]
@@ -45,31 +43,37 @@ allow 192.168.25.0/24
 [Time]
 NTP=192.168.25.100
 ```
-
-При необходимости увеличить таймайт запроса проля sudo.(не обязательно) 
+При необходимости увеличить таймайт запроса проля sudo.(не обязательно!) 
 Допишите в конце строки через запятую следующую опцию timestamp_timeout=x. Должно получиться так:
 ```bash
 Defaults env_reset, timestamp_timeout=30
 ```
-##### Настраиваем сеть.
-Узнаём название сетевого интерфейса, IP адресс, шлюз
+#### Настраиваем сеть и установливаем статический IP адрес.
+Узнаем название сетевого интерфейса, IP адресс, шлюз
 ```bash
 ip a | grep inet 
 route 
 ```
-Отключаем ipv6 на всех интерфейсах кроме lo
->[!Warning]
->Отключение IPv6 настройкой параметров ядра сделано в ОС Astra Linux по умолчанию (см. выше файл /etc/sysctl.d/999-astra.conf), однако при наличии загруженного модуля ядра IPv6 служба NetworkManager по умолчанию сама назначает сетевым интерфейсам адреса IPv6. 
->Независимо от используемой аппаратной платформы для успешной работы серверов (реплик) FreeIPA сетевой интерфейс обратной петли (loopback, lo) должен иметь адрес IPv6.
+или так
+```bash
+nmcli dev sh
+```
+Для начала сделаем статический адрес на будущем контроллере домена.
 
-Поэтому делаем так:
+>[!Warning]
+>На рабочих станциях этого делать не обязательно, да и не нужно.
+
 ```bash
 sudo systemctl status NetworkManager //проверяем статус службы NetworkManager
 sudo systemctl stop NetworkManager //останавливает службу
 sudo systemctl disable NetworkManager //удаляет её из автозагрузки
 sudo systemctl mask NetworkManager //останавливает активность службы
-astra-noautonet-control disable // выключаем оснастку NetworkManager
 ```
+Отключаем ipv6 на всех интерфейсах кроме lo.(не обязательно!) 
+>[!Warning]
+>Отключение IPv6 настройкой параметров ядра сделано в ОС Astra Linux по умолчанию (см. выше файл /etc/sysctl.d/999-astra.conf), однако при наличии загруженного модуля ядра IPv6 служба NetworkManager по умолчанию сама назначает сетевым интерфейсам адреса IPv6. 
+>Независимо от используемой аппаратной платформы для успешной работы серверов (реплик) FreeIPA сетевой интерфейс обратной петли (loopback, lo) должен иметь адрес IPv6.
+
 ```bash
 nano  /etc/sysctl.d/999-astra.conf
 # Astra sysctl config
@@ -84,10 +88,20 @@ net.ipv6.conf.lo.disable_ipv6 = 0
 Применяем настройки
 ```bash
 sysctl --system
+или можно так
+sysctl -p
 ```
-Установливаем статический IP адрес.
+Далее отключает автоматическую настройку сетевых подключений, блокируя работу служб ``NetworkManager``, ``network-manager и connman``, а также отключает элемент управления сетью в трее графического интерфейса.:
+```bash
+sudo systemctl status NetworkManager //проверяем статус службы NetworkManager
+sudo systemctl stop NetworkManager //останавливает службу
+sudo systemctl disable NetworkManager //удаляет её из автозагрузки
+sudo systemctl mask NetworkManager //останавливает активность службы
+astra-noautonet-control disable // выключаем оснастку NetworkManager
+```
+Настраиваем статический IP адрес.
 
-Настраиваем статический адрес вводим команду: ``nano /etc/network/interfaces``
+Настраиваем статический адрес службы ``networking.service`` вводим команду: ``nano /etc/network/interfaces``
 ```bash
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
@@ -101,20 +115,20 @@ iface lo inet loopback
 auto eth0
 allow-hotplug eth0
 iface eth0 inet static
-address 192.168.25.100
+address 192.168.25.115
 netmask 255.255.255.0
 gateway 192.168.25.10
 ```
-Вводим команду ``nano /etc/resolv.conf`` и прописываем DNS, чтобы пока у нас работали репозитории
+Проверим верны ли настройки и перезапустим сервер для применения всех изменений настроек
 ```bash
-search it.company.lan
-nameserver 77.88.8.8
+systemctl restart networking.service // если ошибки не выдало делаем ребут
+reboot
 ```
-Также в файл hosts добавим строки с именем сервера ``nano /etc/hosts``.
+Теперь после перезагрузки в файл hosts добавим строки с именем сервера, вводим ``nano /etc/hosts``.
 ```bash
-127.0.0.1       localhost.localdomain localhost
-# 127.0.1.1     dc01.it.company.lan dc01   --обязательно закомментировать
-192.168.25.100  dc01.it.company.lan dc01
+127.0.0.1        localhost.localdomain localhost
+# 127.0.1.1      dc01.it.company.lan dc01   --обязательно закомментировать
+192.168.25.115   dc01.it.company.lan dc01
 
 # The following lines are desirable for IPv6 capable hosts
 ::1     localhost ip6-localhost ip6-loopback
@@ -125,53 +139,80 @@ ff02::2 ip6-allrouters
 ```bash
 hostnamectl set-hostname dc01.it.company.lan
 ```
+Перезапустим сетевой интерфейс для применения настроек
+```bash 
+systemctl restart networking.service
+```
 Проверяем
 ```bash
 hostname -s
-hostname -f
-hostname -I
+hostname -f // если не работает проверяем запись в файле etc/hosts
+```
+![image](https://github.com/user-attachments/assets/acf5aa2f-4a59-4ab8-9189-a919562c34d5)
+
+Перезапустим виртуальную машину для проверки применения настроек
+```bash 
+reboot
+```
+Вводим команду ``nano /etc/resolv.conf`` и смотрим какие данные показывает, если всё настроили правильно должно быть так
+```bash
+search it.company.lan
+nameserver 192.168.25.10
+```
+Вводим команду ``nano /etc/resolv.conf`` и прописываем DNS, чтобы пока у нас работали репозитории
+```bash
+search it.company.lan
+#nameserver 192.168.25.10
+nameserver 77.88.8.8
 ```
 Перезапустим сетевой интерфейс для применения настроек
 ```bash 
 systemctl restart networking.service
 ```
-Добавляем репозитории
+
+После перезагрузки сетевого интерфейса вводим команду ``ifquery eth0`` результат должен быть такой
+
+![image](https://github.com/user-attachments/assets/bb582400-4d85-4e35-80b5-c318fbd18ddd)
+
+Проверяем пинг ``ping al.astralinux.ru``
+Проверяем
+```bash
+hostname -s
+hostname -f 
+```
+Если всё верно идём дальше.
+
+Для проверки работы DNS установим пакет утилит ``nslookup, dig`` командой ``apt instal dnsutils``
+
+Добавляем репозитории.
 >[!Warning]
 >Репозиторий base включает репозитории main и update, а репозиторий extended содержит большое количество дополнительного программного обеспечения.
 
 Вводим команду ``nano /etc/apt/sources.list``
 ```bash
 # Astra Linux repository description https://wiki.astralinux.ru/x/0oLiC Основной репозиторий
-
+#deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-main/ 1.7_x86-64 main contrib non-free
 # Оперативные обновления основного репозитория
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-update/ 1.7_x86-64 main contrib non-free
 # Рекомендуемые репозитории для установки сервера
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-base/ 1.7_x86-64 main contrib non-free
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-extended/ 1.7_x86-64 main contrib non-free
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-update/ 1.7_x86-64 main contrib non-free
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-update/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.6/repository-base/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.6/repository-extended/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.6/repository-update/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.6/uu/2/repository-update/ 1.7_x86-64 main contrib non-free
 ```
-или можно так, все варианты репозиторий рабочие
-
-```bash
-deb http://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.4/repository-main 1.7_x86-64 main non-free contrib
-deb http://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.4/repository-update 1.7_x86-64 main contrib non-free
-или эти
-deb http://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.4/repository-base 1.7_x86-64 main non-free contrib
-deb http://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.4/repository-extended 1.7_x86-64 main contrib non-free
-```
-Проверить наличие пакетов можно командой: ``apt policy apt-transport-https ca-certificates``
-
+Определения репозиториев также могут быть указаны файлах, расположенных в каталоге /etc/apt/sources.list.d/. Файлы могут иметь произвольное имя c обязательным расширением ".list".
 Для ALD PRO в папкe source.list.d добавим файл с записью
 ```bash
 cat > /etc/apt/sources.list.d/aldpro.list
 deb https://dl.astralinux.ru/aldpro/frozen/01/2.5.0 1.7_x86-64 main base
 ```
-Обнавляем
+Обновляем
 ```bash
-apt update && sudo apt list --upgradable && sudo apt dist-upgrade -y -o Dpkg::Options::=--force-confnew
+ apt update
+ apt list --upgradable
+ apt dist-upgrade -y -o Dpkg::Optoins::=--force-confnew
 ```
-Устанавливаем необходимые пакеты:
+Можем сразу устанавливить необходимые пакеты для контроллера ALDPRO:
 ```bash
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q aldpro-mp aldpro-gc aldpro-syncer
 ```
@@ -181,6 +222,19 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q aldpro-mp aldpro-gc al
 После завершения установки проверим журнал на наличие ошибок:
 ```bash
 sudo grep error: /var/log/apt/term.log
+```
+Перезапустим сервер для применения всех изменений настроек
+```bash
+reboot
+```
+Перед установкой контроллера  домена проверим верны ли все настройки
+```bash
+hostname
+hostname -s
+hostname -f
+ifquery eth0
+nslookup it.company.lan
+ping al.astralinux.ru 
 ```
 
 ##### Установка первого контроллера ALD Pro.
