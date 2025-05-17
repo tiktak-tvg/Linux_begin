@@ -355,15 +355,22 @@ klist
 
 ![image](https://github.com/user-attachments/assets/6323c873-2a95-405e-9cfa-1d6ac3ae94c4)
 
+Проверяем работу DNS
 ```bash
 root@dc01:~# systemctl status bind9
 ● bind9.service
-   Loaded: masked (Reason: Unit bind9.service is masked.)
+   Loaded: masked (Reason: Unit bind9.service is masked.) //служба должа быть отключена по маске
    Active: inactive (dead)
 root@dc01:~#
 
 systemctl status bind9-pkcs11.service
 ```
 ![image](https://github.com/user-attachments/assets/de9490ec-dda9-4044-b1e5-da45befda99b)
+
+```bash
+ipa dnsconfig-show
+```
+![image](https://github.com/user-attachments/assets/e6ddbcc5-6ca1-4701-8707-6be13929c2aa)
+
 
 
