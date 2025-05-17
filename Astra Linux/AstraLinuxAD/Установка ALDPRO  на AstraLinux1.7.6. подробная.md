@@ -379,5 +379,17 @@ ipa dnsconfig-show
 ```
 ![image](https://github.com/user-attachments/assets/e6ddbcc5-6ca1-4701-8707-6be13929c2aa)
 
+Далее, если всё норм подключаем ещё один контроллер домена.
 
+Проверяем, что мы его видим
 
+![64](https://github.com/user-attachments/assets/b1b3f1a2-5f3d-4b2c-8f9e-b279e06c4aff)
+
+На другом контроллере домена наш первый контроллер домена должен пинговаться, проверяем (по короткому и длинному имени)
+
+![image](https://github.com/user-attachments/assets/e61bd337-e67f-4cbf-b9f4-7b29f3f36de0)
+
+Если всё ок, вводим в домен
+```bash
+/opt/rbta/aldpro/client/bin/aldpro-client-installer --domain it.company.lan --account admin --password 'ваш пароль' --host dc03 --gui --force
+```
