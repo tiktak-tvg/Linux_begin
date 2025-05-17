@@ -351,6 +351,13 @@ klist
 
 ![image](https://github.com/user-attachments/assets/18290db8-8697-492f-9a48-0a41361318f4)
 
+Если вдруг там нет билет HHTP добляем его вручную и заодно проверим пользователя 
+```bash
+ipa user-show
+```
+
+![image](https://github.com/user-attachments/assets/2e1e5461-e93b-4660-89ae-f0204d32a3d0)
+
 ![image](https://github.com/user-attachments/assets/6e0a5657-b62e-451e-846b-5d6468aed357)
 
 ![image](https://github.com/user-attachments/assets/6323c873-2a95-405e-9cfa-1d6ac3ae94c4)
