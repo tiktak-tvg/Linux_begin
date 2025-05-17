@@ -68,8 +68,8 @@ server 3.ru.pool.ntp.org iburst
 allow 192.168.25.0/24
 ```
 >[!Warning]
->Серверная служба chronyd (пакет chrony) Может обеспечивать работу ОС в режиме как сервера точного времени, так и клиента. Является штатной службой времени для использования с контроллерами домена FreeIPA.
->Если хотите при начальной настройке испотльзовать службу синхронизации времени ntp, то делается это следующим образом (после установки контроллера домана, будет всё равно использоваться служба chrony).
+>Серверная служба chronyd (пакет chrony) Может обеспечивать работу ОС в режиме как сервера точного времени, так и клиента. Является штатной службой времени для использования с контроллерами домена FreeIPA.<br>
+>Если при начальной настройке будущего контроллера домена желаете использовать службу синхронизации времени ntp, то делается это следующим образом (но!!! после установки контроллера домана, будет всё равно использоваться служба chrony).
 
 Добавим и запустить службу синхронизации времени ntp в автозапуск:
 ```bash
@@ -93,15 +93,21 @@ remote           refid      st t when poll reach   delay   offset  jitter
 ==============================================================================
  LOCAL(0)        .LOCL.          10 l    7   64    1    0.000   +0.000   0.000
 ```
-Настраиваем сеть и установливаем статический IP адрес.
-узнаём название сетевого интерфейса, IP адресс, шлюз
+#### Настраиваем сеть и установливаем статический IP адрес.
+Узнаем название сетевого интерфейса, IP адресс, шлюз
 ```bash
 ip a | grep inet 
 route 
 ```
 ![image](https://github.com/user-attachments/assets/bb002450-e8a9-4fc5-8025-3973534e0813)
 
+или так
+```bash
+nmcli dev sh
+```
+
 Для начала сделаем статический адрес на будущем контроллере домена.
+
 >[!Warning]
 >На рабочих станциях этого делать не обязательно, да и не нужно.
 
@@ -130,7 +136,7 @@ astra-noautonet-control status
 
 ![image](https://github.com/user-attachments/assets/d7ecd977-c8da-4deb-bee6-3f5a0e3046ec)
 
-Настраиваем статический адрес вводим команду: ``nano /etc/network/interfaces``
+Настраиваем статический адрес службы ``networking.service`` вводим команду: ``nano /etc/network/interfaces``
 ```bash
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
@@ -157,8 +163,52 @@ gateway 192.168.25.10
 - netmask 255.255.255.0  --маска
 - gateway 192.168.25.10  --шлюз
 
+> [!Warning]
+> Предложенные зоны ``.lan`` и ``.internal`` не зарегистрированы в глобальном списке ``Top-Level Domains``, но всегда будет оставаться вероятность, что их ведут в эксплуатацию в будущем.
+
+> Соответственно, следует использовать зоны ``.lan``, ``.internal`` и ``.local`` учитывая эти риски.
+
+Также в файл hosts добавим строки с именем сервера ``nano /etc/hosts``.
+```bash
+127.0.0.1        localhost.localdomain localhost
+# 127.0.1.1      dc01.it.company.lan dc01   --обязательно закомментировать
+192.168.25.115   dc01.it.company.lan dc01
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+```
+
+![image](https://github.com/user-attachments/assets/74308d59-9e2d-45f6-94a4-9e4bb0b1dd6b)
+Перезапустим сетевой интерфейс для применения настроек
+```bash 
+systemctl restart networking.service
+```
+Настраиваем ``FQDN`` имя первого контроллера домена:
+```bash
+hostnamectl set-hostname dc01.it.company.lan
+```
+Проверяем
+```bash
+hostname -s
+hostname -f // если не работает проверяем запись в файле etc/hosts
+```
+![image](https://github.com/user-attachments/assets/acf5aa2f-4a59-4ab8-9189-a919562c34d5)
+
+Перезапустим виртуальную машину для применения настроек
+```bash 
+reboot
+```
+Вводим команду ``nano /etc/resolv.conf`` и смотрим какие данные показывает, если всё настроили правильно должно быть так
+```bash
+search it.company.lan
+nameserver 192.168.25.10
+```
 Вводим команду ``nano /etc/resolv.conf`` и прописываем DNS, чтобы пока у нас работали репозитории
 ```bash
+search it.company.lan
+#nameserver 192.168.25.10
 nameserver 77.88.8.8
 ```
 Перезапустим сетевой интерфейс для применения настроек
@@ -169,37 +219,7 @@ systemctl restart networking.service
 
 ![image](https://github.com/user-attachments/assets/bb582400-4d85-4e35-80b5-c318fbd18ddd)
 
-Проверяем пинг ``ping dl.astralinux.ru``
-
-> [!Warning]
-> Предложенные зоны ``.lan`` и ``.internal`` не зарегистрированы в глобальном списке ``Top-Level Domains``, но всегда будет оставаться вероятность, что их ведут в эксплуатацию в будущем.
-
-> Соответственно, следует использовать зоны ``.lan``, ``.internal`` и ``.local`` учитывая эти риски.
-
-Также в файл hosts добавим строки с именем сервера ``nano /etc/hosts``.
-```bash
-127.0.0.1       localhost.localdomain localhost
-# 127.0.1.1      dc01.it.company.lan dc01   --обязательно закомментировать
-192.168.25.115  dc01.it.company.lan dc01
-
-# The following lines are desirable for IPv6 capable hosts
-::1     localhost ip6-localhost ip6-loopback
-ff02::1 ip6-allnodes
-ff02::2 ip6-allrouters
-```
-![image](https://github.com/user-attachments/assets/74308d59-9e2d-45f6-94a4-9e4bb0b1dd6b)
-
-Настраиваем ``FQDN`` имя первого контроллера домена:
-```bash
-hostnamectl set-hostname dc01.it.company.lan
-```
-Проверяем
-```bash
-hostname -s
-hostname -f // если не работает проверяем запись в файле etc/hosts
-hostname -I
-```
-![image](https://github.com/user-attachments/assets/acf5aa2f-4a59-4ab8-9189-a919562c34d5)
+Проверяем пинг ``ping al.astralinux.ru``
 
 Добавляем репозитории
 >[!Warning]
@@ -223,9 +243,27 @@ deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-updat
 ```bash
 deb http://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.4/repository-main 1.7_x86-64 main non-free contrib
 deb http://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.4/repository-update 1.7_x86-64 main contrib non-free
+# Рекомендуемые репозитории для установки сервера
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-base/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-extended/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-update/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-update/ 1.7_x86-64 main contrib non-free
+
 или эти
+
 deb http://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.4/repository-base 1.7_x86-64 main non-free contrib
 deb http://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.4/repository-extended 1.7_x86-64 main contrib non-free
+# Рекомендуемые репозитории для установки сервера
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-base/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-extended/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-update/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-update/ 1.7_x86-64 main contrib non-free
+```
+Определения репозиториев также могут быть указаны файлах, расположенных в каталоге /etc/apt/sources.list.d/. Файлы могут иметь произвольное имя c обязательным расширением ".list".
+Для ALD PRO в папкe source.list.d добавим файл с записью
+```bash
+cat > /etc/apt/sources.list.d/aldpro.list
+deb https://dl.astralinux.ru/aldpro/frozen/01/2.5.0 1.7_x86-64 main base
 ```
 Для использования сетевых репозиториев, работающих по протоколу HTTPS необходимо, чтобы в системе был установлен пакет ``apt-transport-https`` и пакет ``ca-certificates``.<br> 
 Проверить наличие пакетов можно командой: ``apt policy apt-transport-https ca-certificates``
@@ -233,14 +271,8 @@ deb http://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.4/repository-extended 1.
 ![image](https://github.com/user-attachments/assets/c23e2076-dcc7-4ba0-a749-c4619add9c02)
 
 >[!Warning]
->Установить пакеты ``apt-transport-https`` и ``ca-certificates`` можно командой: ``sudo apt install apt-transport-https ca-certificates``
+>Установить пакеты, если вдруг утеряны ``apt-transport-https`` и ``ca-certificates`` можно командой: ``sudo apt install apt-transport-https ca-certificates``
 
-Определения репозиториев также могут быть указаны файлах, расположенных в каталоге /etc/apt/sources.list.d/. Файлы могут иметь произвольное имя c обязательным расширением ".list".
-Для ALD PRO в папкe source.list.d добавим файл с записью
-```bash
-cat > /etc/apt/sources.list.d/aldpro.list
-deb https://dl.astralinux.ru/aldpro/frozen/01/2.5.0 1.7_x86-64 main base
-```
 Обновляем
 ```bash
 apt update
@@ -248,10 +280,6 @@ apt update
  apt dist-upgrade -y -o Dpkg::Optoins::=--force-confnew
 ```
 ![image](https://github.com/user-attachments/assets/6b6178cd-08fc-49d7-a737-56012eac8528)
-
-Можно добавить репозитории от astra ``astra-update -a -r`` если дальше извращаться
-
-![image](https://github.com/user-attachments/assets/5aa5e8a7-80a6-4fc4-b789-882388b22a08)
 
 Перезагружаем сервер ``reboot``
 
@@ -266,14 +294,14 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q aldpro-mp aldpro-gc al
 - aldpro_enable_syncer – установка модуля синхронизации ``aldpro-syncer``. Этот модуль необходим для использования расширенных функций интеграции с доменом Microsoft Active Directory.
 - aldpro_enable_gc – установка модуля глобального каталога ``aldpro-gc``. Этот модуль необходим, если используется топология из контроллера домена и нескольких реплик. Службы, предоставляемые этим модулем, выполняют синхронизацию данных пользователей между контроллером домена и его репликами.
 
-2. После завершения установки проверим журнал на наличие ошибок:
-```bash
-sudo grep error: /var/log/apt/term.log
-```
-3. Теперь повысим сервер до контроллера домена. Дополнительно отключим историю выполнения команд, чтобы пароль не был записан в эту историю:
+2. Теперь повысим сервер до контроллера домена. Дополнительно отключим историю выполнения команд, чтобы пароль не был записан в эту историю:
 ```bash
 set + o history
 sudo aldpro-server-install -d it.company.lan -n dc01 -p 'QwertyQAZWSX' --ip 192.168.25.115 --no-reboot --setup_syncer --setup_gc
+```
+3. После завершения установки проверим журнал на наличие ошибок:
+```bash
+sudo grep error: /var/log/apt/term.log
 ```
 4. Дожидаемся окончания процедуры повышения сервера до контроллера домена и проверяем:   
 ```bash
