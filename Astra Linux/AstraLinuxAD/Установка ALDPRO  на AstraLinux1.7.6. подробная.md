@@ -28,7 +28,7 @@ sudo astra-modeswitch list
 ```
 ![image](https://github.com/user-attachments/assets/8e2a245b-c851-48d5-a810-c15978a2dcf2)
 
-Если режим другой, то выбирайте нужный
+Если при установке выбрали режим другой, то переходим на требуемый (выбирайте при установке сразу нужный, чтобы было меньше лишних манипуляций)
 ```bash
 sudo astra-modeswitch set 2
 ```
@@ -47,6 +47,30 @@ sudo astra-digsig-control enable
 sudo astra-secdel-control enable
 sudo astra-swapwiper-control enable
 ```
+Добавим и запустить службу синхронизации времени chrony в автозапуск.
+>[!Warning]
+>Серверная служба chronyd (пакет chrony) Может обеспечивать работу ОС в режиме как сервера точного времени, так и клиента. Является штатной службой времени для использования с контроллерами домена FreeIPA.
+
+```bash
+sudo systemctl status chrony
+если не установлена, установить можно так
+sudo apt install chrony
+sudo systemctl start chrony
+sudo systemctl enable chrony
+```
+Добавим Российские NTP сервера и можно указать разрешённую сеть для клиентов.
+Вводим ``nano /etc/chrony/chrony.conf`` и добавляем эти строки
+```bash
+server 0.ru.pool.ntp.org iburst
+server 1.ru.pool.ntp.org iburst
+server 2.ru.pool.ntp.org iburst
+server 3.ru.pool.ntp.org iburst
+allow 192.168.25.0/24
+```
+>[!Warning]
+>Серверная служба chronyd (пакет chrony) Может обеспечивать работу ОС в режиме как сервера точного времени, так и клиента. Является штатной службой времени для использования с контроллерами домена FreeIPA.
+>Если хотите при начальной настройке испотльзовать службу синхронизации времени ntp, то делается это следующим образом (после установки контроллера домана, будет всё равно использоваться служба chrony).
+
 Добавим и запустить службу синхронизации времени ntp в автозапуск:
 ```bash
 sudo systemctl status ntp
@@ -76,6 +100,10 @@ ip a | grep inet
 route 
 ```
 ![image](https://github.com/user-attachments/assets/bb002450-e8a9-4fc5-8025-3973534e0813)
+
+Для начала сделаем статический адрес на будущем контроллере домена.
+>[!Warning]
+>На рабочих станциях этого делать не обязательно, да и не нужно.
 
 ```bash
 sudo systemctl status NetworkManager //проверяем статус службы NetworkManager
