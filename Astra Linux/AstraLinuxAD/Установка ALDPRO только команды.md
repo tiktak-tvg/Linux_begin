@@ -115,7 +115,7 @@ iface lo inet loopback
 auto eth0
 allow-hotplug eth0
 iface eth0 inet static
-address 192.168.25.115
+address 192.168.25.100
 netmask 255.255.255.0
 gateway 192.168.25.10
 ```
@@ -128,7 +128,7 @@ reboot
 ```bash
 127.0.0.1        localhost.localdomain localhost
 # 127.0.1.1      dc01.it.company.lan dc01   --обязательно закомментировать
-192.168.25.115   dc01.it.company.lan dc01
+192.168.25.100   dc01.it.company.lan dc01
 
 # The following lines are desirable for IPv6 capable hosts
 ::1     localhost ip6-localhost ip6-loopback
@@ -246,8 +246,12 @@ ping -c 4 dl.astralinux.ru
 set +o history
 sudo aldpro-server-install -d it.company.lan -n dc01 -p 'QwertyQAZWSX' --ip 192.168.25.100 --no-reboot --setup_syncer --setup_gc
 ```
-2. Дожидаемся окончания процедуры повышения сервера до контроллера домена и проверяем:
+2. Дожидаемся окончания процедуры повышения сервера до контроллера домена и проверяем.
 
+После завершения установки проверим журнал на наличие ошибок:
+```bash
+sudo grep error: /var/log/apt/term.log
+```
 Проверка статуса поднятия домена
 ```bash
 sudo aldproctl status
@@ -280,14 +284,10 @@ allow-query-cache { any; };
 
 Роли и службы сайта → Служба разрешения имён → Глобальная конфигурация DNS
 Указать IP-адрес внешнего резолвера
-![image](https://github.com/user-attachments/assets/d6f86c4b-62fe-4df8-a5e7-c2c62aef3beb)
 
-Например: 77.88.8.8 или 8.8.8.8 или 1.1.1.1
+Добавляем, например: 77.88.8.8
 
-Добавить права для УЗ admin
-```bash
-kinit
-```
+Добавить права для admin
 ```bash
 ipa group-add-member 'ald trust admin' --user admin
 ```
@@ -299,8 +299,6 @@ ipa group-add-member 'ald trust admin' --user admin
 cat /etc/astra/build_version
 sudo astra-modeswitch getname
 sudo astra-modeswitch list
-Если режим другой, то выбирайте нужный
-sudo astra-modeswitch set 2 
 ```
 Добавим и запустить службу синхронизации времени chrony в автозапуск.
 ```bash
@@ -409,7 +407,14 @@ hostname -I
 ```bash 
 systemctl restart networking.service
 ```
-Добавляем репозитории
+Проверяем пинг ``ping -c 4 dl.astralinux.ru``
+Проверяем
+```bash
+hostname -s
+hostname -f 
+```
+Добавляем репозитории.
+
 Вводим команду ``nano /etc/apt/sources.list``
 ```bash
 # Astra Linux repository description https://wiki.astralinux.ru/x/0oLiC Основной репозиторий
@@ -417,10 +422,10 @@ systemctl restart networking.service
 # Оперативные обновления основного репозитория
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-update/ 1.7_x86-64 main contrib non-free
 # Рекомендуемые репозитории для установки сервера
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-base/ 1.7_x86-64 main contrib non-free
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-extended/ 1.7_x86-64 main contrib non-free
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-update/ 1.7_x86-64 main contrib non-free
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-update/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.6/repository-base/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.6/repository-extended/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.6/repository-update/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.6/uu/2/repository-update/ 1.7_x86-64 main contrib non-free
 ```
 Проверить наличие пакетов можно командой: ``apt policy apt-transport-https ca-certificates``
 
@@ -437,9 +442,6 @@ apt update && sudo apt list --upgradable && sudo apt dist-upgrade -y -o Dpkg::Op
 ```bash
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q aldpro-mp aldpro-gc aldpro-syncer
 ```
-- aldpro_enable_syncer – установка модуля синхронизации ``aldpro-syncer``. Этот модуль необходим для использования расширенных функций интеграции с доменом Microsoft Active Directory.
-- aldpro_enable_gc – установка модуля глобального каталога ``aldpro-gc``. Этот модуль необходим, если используется топология из контроллера домена и нескольких реплик. Службы, предоставляемые этим модулем, выполняют синхронизацию данных пользователей между контроллером домена и его репликами.
-
 После завершения установки проверим журнал на наличие ошибок:
 ```bash
 sudo grep error: /var/log/apt/term.log
@@ -468,6 +470,8 @@ nameserver 192.168.25.100
 ```bash 
 systemctl restart networking.service
 ```
+Проверяем пинг ``ping -c 4 dc01.it.company.lan``
+
 На этапе ввода в домен **Заблокировать изменение файла**
 ```bash 
 sudo chattr +i /etc/resolv.conf
@@ -479,7 +483,7 @@ sudo chattr -i /etc/resolv.conf
 1. Теперь повысим сервер до контроллера домена как клиента. Перед этим отключим историю выполнения команд, чтобы пароль не был записан в эту историю:
 ```bash
 set +o history
-/opt/rbta/aldpro/client/bin/aldpro-client-installer --domain ald.it.lan --account admin --password 'QwertyQAZWSX' --host dc2 --gui --force
+/opt/rbta/aldpro/client/bin/aldpro-client-installer --domain it.company.lan --account admin --password 'Ваш пароль от домена' --host dc2 --gui --force
 ```
 2. Дожидаемся окончания процедуры повышения сервера до контроллера домена и проверяем:
 
@@ -498,16 +502,13 @@ sudo chattr -i /etc/resolv.conf
 ```bash
 sudo cat /etc/resolv.conf
 ```
-В файле должен быть указан ваш домен и адрес сервера – 127.0.0.1, т.к. этот файл настраивается на службу bind9.
+В файле должен быть указан ваш домен и адрес сервера – 192.168.25.100, т.к. этот файл настраивается на службу bind9.
+
 5. Перезагружаем сервер.
 
 Входим в домен.
 
-Отключение DNSSEC
-```bash
-sudo sed -i 's/dnssec-validation yes/dnssec-validation no/g' /etc/bind/ipa-options-ext.conf
-sudo systemctl restart bind9-pkcs11.service
-```
+
 
 
 
