@@ -351,9 +351,9 @@ klist
 
 ![image](https://github.com/user-attachments/assets/18290db8-8697-492f-9a48-0a41361318f4)
 
-Если вдруг там нет билет HHTP добляем его вручную и заодно проверим пользователя 
+Если вдруг там нет билета HTTP добляем его вручную и заодно проверим права пользователя admin 
 ```bash
-ipa user-show
+ipa user-show admin
 ```
 
 ![image](https://github.com/user-attachments/assets/2e1e5461-e93b-4660-89ae-f0204d32a3d0)
