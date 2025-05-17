@@ -174,7 +174,7 @@ systemctl restart networking.service
 
 ![image](https://github.com/user-attachments/assets/bb582400-4d85-4e35-80b5-c318fbd18ddd)
 
-Проверяем пинг ``ping al.astralinux.ru``
+Проверяем пинг ``ping -c 4 dl.astralinux.ru``
 Проверяем
 ```bash
 hostname -s
@@ -234,7 +234,7 @@ hostname -s
 hostname -f
 ifquery eth0
 nslookup it.company.lan
-ping al.astralinux.ru 
+ping -c 4 dl.astralinux.ru
 ```
 
 ##### Установка первого контроллера ALD Pro.
