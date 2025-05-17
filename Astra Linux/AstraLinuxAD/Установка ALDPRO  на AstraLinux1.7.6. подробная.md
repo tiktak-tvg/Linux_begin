@@ -166,9 +166,9 @@ gateway 192.168.25.10
 Проверим верны ли настройки и перезапустим сервер для применения всех изменений настроек
 ```bash
 systemctl restart networking.service // если ошибки не выдало делаем ребут
+
 reboot
 ```
-
 > [!Warning]
 > Предложенные зоны ``.lan`` и ``.internal`` не зарегистрированы в глобальном списке ``Top-Level Domains``, но всегда будет оставаться вероятность, что их ведут в эксплуатацию в будущем.
 
@@ -187,13 +187,14 @@ ff02::2 ip6-allrouters
 ```
 
 ![image](https://github.com/user-attachments/assets/74308d59-9e2d-45f6-94a4-9e4bb0b1dd6b)
-Перезапустим сетевой интерфейс для применения настроек
-```bash 
-systemctl restart networking.service
-```
+
 Настраиваем ``FQDN`` имя первого контроллера домена:
 ```bash
 hostnamectl set-hostname dc01.it.company.lan
+```
+Перезапустим сетевой интерфейс для применения настроек
+```bash 
+systemctl restart networking.service
 ```
 Проверяем
 ```bash
@@ -202,7 +203,7 @@ hostname -f // если не работает проверяем запись в
 ```
 ![image](https://github.com/user-attachments/assets/acf5aa2f-4a59-4ab8-9189-a919562c34d5)
 
-Перезапустим виртуальную машину для применения настроек
+Перезапустим виртуальную машину для проверки применения настроек
 ```bash 
 reboot
 ```
@@ -226,8 +227,16 @@ systemctl restart networking.service
 ![image](https://github.com/user-attachments/assets/bb582400-4d85-4e35-80b5-c318fbd18ddd)
 
 Проверяем пинг ``ping al.astralinux.ru``
+Проверяем
+```bash
+hostname -s
+hostname -f 
+```
+Если всё верно идём дальше.
 
-Добавляем репозитории
+Для проверки работы DNS установим пакет утилит ``nslookup, dig`` командой ``apt instal dnsutils``
+
+Добавляем репозитории.
 >[!Warning]
 >Репозиторий base включает репозитории main и update, а репозиторий extended содержит большое количество дополнительного программного обеспечения.
 
@@ -238,33 +247,13 @@ systemctl restart networking.service
 # Оперативные обновления основного репозитория
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-update/ 1.7_x86-64 main contrib non-free
 # Рекомендуемые репозитории для установки сервера
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-base/ 1.7_x86-64 main contrib non-free
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-extended/ 1.7_x86-64 main contrib non-free
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-update/ 1.7_x86-64 main contrib non-free
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-update/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.6/repository-base/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.6/repository-extended/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.6/repository-update/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.6/uu/2/repository-update/ 1.7_x86-64 main contrib non-free
 ```
 ![image](https://github.com/user-attachments/assets/39175691-3745-4c96-bad4-943093fdd053)
 
-или можно так
-```bash
-deb http://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.4/repository-main 1.7_x86-64 main non-free contrib
-deb http://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.4/repository-update 1.7_x86-64 main contrib non-free
-# Рекомендуемые репозитории для установки сервера
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-base/ 1.7_x86-64 main contrib non-free
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-extended/ 1.7_x86-64 main contrib non-free
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-update/ 1.7_x86-64 main contrib non-free
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-update/ 1.7_x86-64 main contrib non-free
-
-или эти
-
-deb http://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.4/repository-base 1.7_x86-64 main non-free contrib
-deb http://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.4/repository-extended 1.7_x86-64 main contrib non-free
-# Рекомендуемые репозитории для установки сервера
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-base/ 1.7_x86-64 main contrib non-free
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-extended/ 1.7_x86-64 main contrib non-free
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/repository-update/ 1.7_x86-64 main contrib non-free
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.3/uu/2/repository-update/ 1.7_x86-64 main contrib non-free
-```
 Определения репозиториев также могут быть указаны файлах, расположенных в каталоге /etc/apt/sources.list.d/. Файлы могут иметь произвольное имя c обязательным расширением ".list".
 Для ALD PRO в папкe source.list.d добавим файл с записью
 ```bash
