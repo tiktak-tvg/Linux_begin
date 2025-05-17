@@ -226,7 +226,7 @@ systemctl restart networking.service
 
 ![image](https://github.com/user-attachments/assets/bb582400-4d85-4e35-80b5-c318fbd18ddd)
 
-Проверяем пинг ``ping dl.astralinux.ru``
+Проверяем пинг ``ping -c 4 dl.astralinux.ru``
 Проверяем
 ```bash
 hostname -s
