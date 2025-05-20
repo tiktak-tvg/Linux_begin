@@ -258,7 +258,7 @@ deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.6/uu/2/repository-updat
 Для ALD PRO в папкe source.list.d добавим файл с записью
 ```bash
 cat > /etc/apt/sources.list.d/aldpro.list
-deb https://dl.astralinux.ru/aldpro/frozen/01/2.5.0 1.7_x86-64 main base
+deb https://dl.astralinux.ru/aldpro/frozen/01/2.4.1 1.7_x86-64 main base
 ```
 Для использования сетевых репозиториев, работающих по протоколу HTTPS необходимо, чтобы в системе был установлен пакет ``apt-transport-https`` и пакет ``ca-certificates``.<br> 
 Проверить наличие пакетов можно командой: ``apt policy apt-transport-https ca-certificates``
