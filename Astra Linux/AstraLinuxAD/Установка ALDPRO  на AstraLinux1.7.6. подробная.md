@@ -96,8 +96,8 @@ remote           refid      st t when poll reach   delay   offset  jitter
 #### Настраиваем сеть и установливаем статический IP адрес.
 Узнаем название сетевого интерфейса, IP адресс, шлюз
 ```bash
-ip a | grep inet 
-route 
+ip a | grep 'inet '
+route
 ```
 ![image](https://github.com/user-attachments/assets/bb002450-e8a9-4fc5-8025-3973534e0813)
 
@@ -105,7 +105,10 @@ route
 ```bash
 nmcli dev sh
 ```
-
+или так
+```bash
+ip a show dev eth0
+```
 Для начала сделаем статический адрес на будущем контроллере домена.
 
 >[!Warning]
@@ -163,10 +166,14 @@ gateway 192.168.25.10
 - netmask 255.255.255.0  --маска
 - gateway 192.168.25.10  --шлюз
 
-Проверим верны ли настройки и перезапустим сервер для применения всех изменений настроек
+Чтобы применить новые настройки, достаточно перезапустить службу ``networking`` командой ``systemctl restart networking``. Может потребоваться также очистить старое соединение командой ``ip addr flush dev <имя устройства>``:
 ```bash
-reboot
+sudo ip addr flush dev eth0
+sudo systemctl restart networking
+Проверяем
+ping 77.88.8.8 -c 4
 ```
+
 > [!Warning]
 > Предложенные зоны ``.lan`` и ``.internal`` не зарегистрированы в глобальном списке ``Top-Level Domains``, но всегда будет оставаться вероятность, что их ведут в эксплуатацию в будущем.
 
@@ -203,7 +210,7 @@ hostname -f // если не работает проверяем запись в
 ```
 ![image](https://github.com/user-attachments/assets/acf5aa2f-4a59-4ab8-9189-a919562c34d5)
 
-Перезапустим виртуальную машину для проверки применения настроек
+Перезапустим виртуальную машину для применения всех настроек
 ```bash 
 reboot
 ```
@@ -218,6 +225,16 @@ search it.company.lan
 #nameserver 192.168.25.10
 nameserver 77.88.8.8
 ```
+>[!Warning]
+>Если имеется ссылки на другие DNS сервера, то прописывайте их (узнать предваритоельно можно было до отключения ``NetworkManager`` командой ``nmcli dev sh``)
+
+Например
+```bash
+search it.company.lan
+nameserver 192.168.25.1
+nameserver 192.168.25.12
+```
+
 Перезапустим сетевой интерфейс для применения настроек
 ```bash 
 systemctl restart networking.service
@@ -233,8 +250,8 @@ hostname -s
 hostname -f 
 ```
 Если всё верно идём дальше.
-
-Для проверки работы DNS установим пакет утилит ``nslookup, dig`` командой ``apt instal dnsutils``
+>[!Warning]
+>Для проверки работы DNS обязательно установим пакет утилит ``nslookup, dig`` командой ``apt instal dnsutils`` перед повышением сервера до контроллера домена.
 
 Добавляем репозитории.
 >[!Warning]
@@ -247,10 +264,10 @@ hostname -f
 # Оперативные обновления основного репозитория
 deb https://dl.astralinux.ru/astra/stable/1.7_x86-64/repository-update/ 1.7_x86-64 main contrib non-free
 # Рекомендуемые репозитории для установки сервера
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.6/repository-base/ 1.7_x86-64 main contrib non-free
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.6/repository-extended/ 1.7_x86-64 main contrib non-free
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.6/repository-update/ 1.7_x86-64 main contrib non-free
-deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.6/uu/2/repository-update/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.5/repository-base/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.5/repository-extended/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.5/repository-update/ 1.7_x86-64 main contrib non-free
+deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.5/uu/2/repository-update/ 1.7_x86-64 main contrib non-free
 ```
 ![image](https://github.com/user-attachments/assets/39175691-3745-4c96-bad4-943093fdd053)
 
@@ -289,27 +306,36 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q aldpro-mp aldpro-gc al
 - aldpro_enable_syncer – установка модуля синхронизации ``aldpro-syncer``. Этот модуль необходим для использования расширенных функций интеграции с доменом Microsoft Active Directory.
 - aldpro_enable_gc – установка модуля глобального каталога ``aldpro-gc``. Этот модуль необходим, если используется топология из контроллера домена и нескольких реплик. Службы, предоставляемые этим модулем, выполняют синхронизацию данных пользователей между контроллером домена и его репликами.
 
-2. Теперь повысим сервер до контроллера домена. Дополнительно отключим историю выполнения команд, чтобы пароль не был записан в эту историю:
+2. Прежде чем продолжить, ознакомьтесь с журналом пакетного менеджера в файле /var/log/apt/term.log на наличие ошибок:
+```bash
+sudo grep 'error:' /var/log/apt/term.log
+```
+3. Теперь повысим сервер до контроллера домена. Дополнительно отключим историю выполнения команд, чтобы пароль не был записан в эту историю:
 ```bash
 set + o history
 sudo aldpro-server-install -d it.company.lan -n dc01 -p 'QwertyQAZWSX' --ip 192.168.25.115 --no-reboot --setup_syncer --setup_gc
 ```
-3. После завершения установки проверим журнал на наличие ошибок:
+4. После завершения установки проверим журнал на наличие ошибок:
 ```bash
 sudo grep error: /var/log/apt/term.log
 ```
-4. Дожидаемся окончания процедуры повышения сервера до контроллера домена и проверяем:   
+5. Дожидаемся окончания процедуры повышения сервера до контроллера домена и проверяем:   
 ```bash
 sudo aldproctl status
 sudo ipactl status
 ```
 ![14](https://github.com/user-attachments/assets/00cc5caa-639d-4927-a205-cf1cd7ea3183)
 
-5. Включаем обратно историю ведения команд:
+6. Включаем обратно историю ведения команд:
 ```bash
 set -o history
 ```
-6. Проверим настройки разрешения имен:
+По завершению установки вы увидите сообщение об успешном выполнении операции.
+------------
+Succeeded: 5 (changed=5)
+Failed:    0
+------------
+7. Проверим настройки разрешения имен:
 ```bash
 sudo cat /etc/resolv.conf
 ```
