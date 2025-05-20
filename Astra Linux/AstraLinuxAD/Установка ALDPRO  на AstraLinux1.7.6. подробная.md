@@ -446,6 +446,10 @@ cat /usr/lib/firefox/distribution/policies.json
 ```bash
 klist
 ```
+![image](https://github.com/user-attachments/assets/18290db8-8697-492f-9a48-0a41361318f4)
+
+Пробуем зайти по Kerberos.
+
 Проверяем работу DNS
 ```bash
 root@dc01:~# systemctl status bind9
