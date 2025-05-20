@@ -394,6 +394,57 @@ ipa user-show admin
 
 ![image](https://github.com/user-attachments/assets/6323c873-2a95-405e-9cfa-1d6ac3ae94c4)
 
+>[!Warning]
+>Если не входит по Kerberos удаляем выданные билеты и заводим заново
+Для уничтожения билетов используется команда kdestroy, после выполнения которой мы увидим, что в связке ключей кэш больше не найден:
+```bash
+kdestroy
+klist
+```
+Для запроса нового TGT-билета на доменного пользователя admin воспользуемся утилитой kinit. Как мы видим, после прохождения успешной Kerberos-аутентификации нам был выдан новый TGT-билет:
+```bash
+kinit admin
+klist
+```
+Выполните аутентификацию через алиас root, используя пароль пользователя admin:
+```bash
+kdestroy
+sudo kinit
+Password for root@ALD.COMPANY.LAN:
+
+klist
+```
+Проверьте портал управления.
+
+Установите правильный адрес домашней страницы для браузера FireFox следующей командой:
+```bash
+sudo sed -i 's/dc-1\|dc-1.ald.company.lan/dc-1.ald.company.lan/g' \
+     /usr/lib/firefox/distribution/policies.json
+```
+Содержимое файла после коррекции должно быть следующим:
+```bash
+cat /usr/lib/firefox/distribution/policies.json
+{
+         "policies": {
+               "BlockAboutAddons": true,
+               "BlockAboutConfig": true,
+               "Certificates": {
+                        "ImportEnterpriseRoots": true,
+                        "Install": ["/etc/ipa/ca.crt"]
+               },
+
+               "Homepage": {
+                        "URL": "https://dc-1.ald.company.lan/",
+                        "Locked": true,
+                        "StartPage": "homepage-locked"
+               }
+         }
+}
+```
+Проверьте, что в связке ключей текущего пользователя появится сервисный билет на доступ к службе HTTP/dc-1.ald.company.lan.
+```bash
+klist
+```
 Проверяем работу DNS
 ```bash
 root@dc01:~# systemctl status bind9
