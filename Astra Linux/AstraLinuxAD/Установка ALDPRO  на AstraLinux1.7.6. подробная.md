@@ -331,10 +331,12 @@ sudo ipactl status
 set -o history
 ```
 По завершению установки вы увидите сообщение об успешном выполнении операции.
+```bash
 ------------
 Succeeded: 5 (changed=5)
 Failed:    0
 ------------
+```
 7. Проверим настройки разрешения имен:
 ```bash
 sudo cat /etc/resolv.conf
