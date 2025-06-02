@@ -27,7 +27,8 @@ tmpfs                 504M     0  504M   0% /dev/shm
 ```bash
 # fdisk /dev/sda
 ```
->[!WARNING:] DOS-compatible mode is deprecated. It's strongly recommended to
+>[!WARNING:]
+>DOS-compatible mode is deprecated. It's strongly recommended to
          switch off the mode (command 'c') and change display units to
          sectors (command 'u').
 
