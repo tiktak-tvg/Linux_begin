@@ -76,11 +76,11 @@ iface lo inet loopback
 auto eth0
 allow-hotplug eth0
 iface eth0 inet static
-address 192.168.25.100
+address 192.168.25.91
 netmask 255.255.255.0
 gateway 192.168.25.10
 ```
-![image](https://github.com/user-attachments/assets/b0a9000c-6466-477b-9e61-1952c9560ccb)
+![image](https://github.com/user-attachments/assets/00d2ccda-055e-444a-8853-c4aebd40b6dc)
 
 Чтобы применить новые настройки, перезагружаем машину:
 ```bash
@@ -101,19 +101,20 @@ ping 77.88.8.8 -c 4
 Теперь в файл hosts добавим строки с именем сервера ``nano /etc/hosts``.
 ```bash
 127.0.0.1        localhost.localdomain   localhost
-# 127.0.1.1      lamba.it.company.lan    lamba   --обязательно закомментировать
-x.x.x.x          lamba.it.company.lan    lamba
+# 127.0.1.1      r7mx1.it.company.lan    r7mx1   --обязательно закомментировать
+192.168.25.91    r7mx1.it.company.lan    r7mx1
+192.168.25.201   dc01.it.company.lan     dc01 
 
 # The following lines are desirable for IPv6 capable hosts
 ::1     localhost ip6-localhost ip6-loopback
 ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 ```
-![image](https://github.com/user-attachments/assets/4fdc6c41-d6fe-400b-be70-cc632ba90b8c)
+![image](https://github.com/user-attachments/assets/27ed8d1f-1a38-48f6-af36-1c3fe0e211a2)
 
 Настраиваем ``FQDN`` имя первого контроллера домена:
 ```bash
-hostnamectl set-hostname lamba.it.company.lan
+hostnamectl set-hostname r7mx1.it.company.lan
 ```
 Перезапустим сетевой интерфейс для применения настроек
 ```bash 
@@ -124,7 +125,14 @@ systemctl restart networking.service
 hostname -s
 hostname -f // если не работает проверяем запись в файле etc/hosts
 ```
-![image](https://github.com/user-attachments/assets/9c6760a3-3d31-404f-b0d8-50536fdac863)
+Проверяем resolv.conf
+```bash
+cat /etc/resolv.conf
+search it.company.lan
+nameserver 77.88.8.8
+nameserver 192.168.25.201
+```
+![image](https://github.com/user-attachments/assets/4ffaca52-b682-4ac0-bab1-75a39456d7c5)
 
 #### Установка Корпоративного сервера 2024 offline-версии. 
 
