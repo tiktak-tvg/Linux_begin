@@ -169,7 +169,7 @@ Organization Name (eg, company) [Название вашей организац�
 
 Organizational Unit Name (eg, section) []:**IT**
 
-Common Name (e.g. server FQDN or YOUR name) [полное имя домена]:** *.it.company.lan **
+Common Name (e.g. server FQDN or YOUR name) [полное имя домена]:**'*.it.company.lan'**
 
 Email Address []:**info@it.company.lan**
 
