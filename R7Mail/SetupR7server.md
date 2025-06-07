@@ -160,11 +160,17 @@ openssl genrsa -out it.company.lan.key 2048
 openssl req -new -key it.company.lan.key -out it.company.lan.csr
 ```
 Country Name (2 letter code) [AU]:**RU**
+
 State or Province Name (full name) [Some-State]:**Moscow**
+
 Locality Name (eg, city) [Город]:**Moscow**
+
 Organization Name (eg, company) [Название вашей организации]:**Rosreestr**
+
 Organizational Unit Name (eg, section) []:**IT**
+
 Common Name (e.g. server FQDN or YOUR name) [полное имя домена]:** *.it.company.lan **
+
 Email Address []:**info@it.company.lan**
 
 
