@@ -426,19 +426,10 @@ Running hooks in /etc/ca-certificates/update.d
 
 Чтобы проверить, что ваш хост доверяет ли SSL сертификату на определенном сайте, выполните команду:
 ```bash
- curl –I https://admin.it.company.lan
-
-HTTP/2 200 
-server: nginx
-date: Fri, 30 May 2025 07:51:44 GMT
-content-type: text/html
-content-length: 1736
-last-modified: Wed, 05 Mar 2025 15:14:57 GMT
-etag: "67c86a71-6c8"
-accept-ranges: bytes
-
-
+ curl -I https://admin.it.company.lan
 ```
+![image](https://github.com/user-attachments/assets/6c4a6409-7a51-406b-8bd0-7fe8a7d23bba)
+
 Если сервер не доверяет сертификату, появится ошибка:
 ```bash
 error 20 at 0 depth lookup: unable to get local issuer certificate
