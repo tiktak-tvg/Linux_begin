@@ -199,11 +199,8 @@ openssl dhparam -out dhparam.pem 2048
 ![image](https://github.com/user-attachments/assets/25c29913-9e2a-454a-b6be-e4d42922a724)
 
 #### Теперь тоже самое, только сертификат на домен
-- Шаг 1: Создайте закрытый ключ сервера
-```bash
-openssl genrsa -out mydomain.key 2048
-```
-- Шаг 2: Создайте запрос подписи сертификата (CSR)
+
+- Шаг 1: Создайте запрос подписи сертификата (CSR) в тойже папке ``/mnt/CDDiskPack/CDinstall_Astra_1.7.4/sslcert#``:
 ```bash
 openssl req -newkey rsa:2048 -nodes -keyout mydomain.key -x509 -days 365 -out mydomain.crt
 ```
@@ -217,17 +214,54 @@ openssl req -newkey rsa:2048 -nodes -keyout mydomain.key -x509 -days 365 -out my
          Email Address []: admin@it.company.lan
 
 
-- Шаг 3: Подпишите сертификат с помощью закрытого ключа и CSR
+- Шаг 2: Подпишите сертификат с помощью закрытого ключа и CSR
 ```bash
 openssl x509 -in mydomain.crt -signkey mydomain.key -x509toreq -out mydomain.csr
 ```
-Проверяем
+##### Добавляем корневые доверенный сертификаты.
+
+Из этой папки ``/mnt/CDDiskPack/CDinstall_Astra_1.7.4/sslcert#``
+
+Скопируйте файлы ваших сертификатов в хранилище сертификатов в каталог usr/local/share/ca-certificates/:
+```bash
+cp ald.vit.lan.crt /usr/local/share/ca-certificates/
+cp mydomain.crt /usr/local/share/ca-certificates/
+```
+Обновите хранилище сертификатов командой:
+```bash
+update-ca-certificates -v
+```
+Проверяем работу сертификатов.
 ```bash
 openssl req -in it.company.lan.csr -noout -text
 ```
 ![image](https://github.com/user-attachments/assets/3dc3494d-1189-4df5-bdf2-1e88b5b24914)
 
-Далее переходим к скрипту запуска
+**CSR**
+
+Эта команда проверит CSR и отобразит данные, указанные в запросе:
+
+openssl req -text -noout -verify -in ald.vit.lan.csr
+
+**Ключ**
+
+Следующая команда проверит ключ и его действительность:
+
+openssl rsa -in ald.vit.lan.key -check
+
+**SSL сертификат**
+
+Когда вам нужно проверить сертификат, дату его истечения и кто его подписал, используйте следующую команду OpenSSL:
+
+openssl x509 -in ald.vit.lan.crt -text –noout
+
+И обновите хранилище:
+
+$ sudo update-ca-certificates --fresh
+
+
+
+#### Далее переходим к скрипту запуска.
 ```bash
 из папки в которой создали сертификаты /mnt/CDDiskPack/CDinstall_Astra_1.7.4/sslcert/#
 переходим 
