@@ -148,16 +148,27 @@ cd /mnt/CDDiskPack/CDinstall_Astra_1.7.4/sslcert
 ##### Генерируем самоподписанные сертификаты.
 Генерация самоподписанных SSL-сертификатов включает в себя три простых шага:
 
-- Шаг 1: Создайте закрытый ключ сервера
+- Шаг 1:  Команда создаст 2048-битный закрытый ключ (it.company.lan.key)
+  
+  в этой папке /mnt/CDDiskPack/CDinstall_Astra_1.7.4/sslcert#
 ```bash
-в этой папке /mnt/CDDiskPack/CDinstall_Astra_1.7.4/sslcert#
 openssl genrsa -out it.company.lan.key 2048
 ```
+![image](https://github.com/user-attachments/assets/a95b40f3-3a74-4338-ba8e-c630293ff713)
+
 ![image](https://github.com/user-attachments/assets/e85db849-8f10-4fd0-a6ca-439c41394a2d)
 
-- Шаг 2: Создайте запрос подписи сертификата (CSR)
+- Шаг 2: Следующая команда создаст сертификат (it.company.lan.csr) для существующего ключа (it.company.lan.key):
 ```bash
-openssl req -new -key it.company.lan.key -out it.company.lan.csr
+openssl req -newkey rsa:2048 -nodes -keyout it.company.lan.key -x509 -days 365 -out it.company.lan.crt
+```
+![image](https://github.com/user-attachments/assets/2243e650-0e9a-4da7-8e26-117a42fe054f)
+
+Вы только что сгенерировали SSL-сертификат со сроком действия 365 дней.
+
+- Шаг 3: Следующая команда создаст запрос (it.company.lan.csr) на основе существующего сертификата (it.company.lan.crt) и закрытого ключа (it.company.lan.key):
+```bash
+openssl x509 -in it.company.lan.crt -signkey it.company.lan.key -x509toreq -out it.company.lan.csr
 ```
                   Country Name (2 letter code) [AU]: RU
                   State or Province Name (full name) [Some-State]: Moscow
@@ -176,17 +187,9 @@ Organization Name (e.g., company)|	Полное юридическое назв�
 Organizational Unit Name|	Отдел в вашей организации, который занимается этим сертификатом	|IT
 Locality Name|	Город, в котором находится ваша организация	|Moscow
 State/Region/Province (full name)|	Штат или регион, в котором находится ваша организация	|Moscow
-Common Name или FQDN|	FQDN (fully qualified domain name) - это полное доменное имя вашего сайта. Он должен совпадать с тем, что пользователи вводят в веб-браузере	|it.company.lan
+Common Name или FQDN|	FQDN (fully qualified domain name) - это полное доменное имя вашего сайта. Он должен совпадать с тем, что пользователи вводят в веб-браузере	|it.company.lan или *.it.company.lan
 Email Address|	Адрес электронной почты, используемый для связи с веб-мастером сайта	|info@it.company.lan
 Public Key|	втоматически созданный ключ, который создается с помощью CSR и входит в сертификат. |Закодированный текстовый блок похож на закрытый ключ.
-
-- Шаг 3: Подпишите сертификат с помощью закрытого ключа и CSR
-```bash
-openssl x509 -req -days 365 -in it.company.lan.csr -signkey it.company.lan.key -out it.company.lan.crt
-```
-![image](https://github.com/user-attachments/assets/2243e650-0e9a-4da7-8e26-117a42fe054f)
-
-Вы только что сгенерировали SSL-сертификат со сроком действия 365 дней.
 
 
 ##### Усиление безопасности сервера(можно пока не делать).
@@ -200,24 +203,33 @@ openssl dhparam -out dhparam.pem 2048
 
 #### Теперь тоже самое, только сертификат на домен
 
-- Шаг 1: Создайте запрос подписи сертификата (CSR) в тойже папке ``/mnt/CDDiskPack/CDinstall_Astra_1.7.4/sslcert#``:
+- Шаг 1:  Команда создаст 2048-битный закрытый ключ (itcompany.key)
+  
+  в этой папке /mnt/CDDiskPack/CDinstall_Astra_1.7.4/sslcert#
 ```bash
-openssl req -newkey rsa:2048 -nodes -keyout mydomain.key -x509 -days 365 -out mydomain.crt
+openssl genrsa -out it.company.lan.key 2048
 ```
+![image](https://github.com/user-attachments/assets/e85db849-8f10-4fd0-a6ca-439c41394a2d)
 
-         Country Name (2 letter code) [AU]: RU
-         State or Province Name (full name) [Some-State]: Moscow
-         Locality Name (eg, city) [Город]: Moscow
-         Organization Name (eg, company) [Название вашей организации]: Rosreestr
-         Organizational Unit Name (eg, section) []: IT
-         Common Name (e.g. server FQDN or YOUR name) [полное имя домена]: it.company.lan
-         Email Address []: admin@it.company.lan
-
-
-- Шаг 2: Подпишите сертификат с помощью закрытого ключа и CSR
+- Шаг 2: Следующая команда создаст сертификат (it.company.lan.csr) для существующего ключа (it.company.lan.key):
 ```bash
-openssl x509 -in mydomain.crt -signkey mydomain.key -x509toreq -out mydomain.csr
+openssl req -newkey rsa:2048 -nodes -keyout it.company.lan.key -x509 -days 365 -out it.company.lan.crt
 ```
+![image](https://github.com/user-attachments/assets/2243e650-0e9a-4da7-8e26-117a42fe054f)
+
+Вы только что сгенерировали SSL-сертификат со сроком действия 365 дней.
+
+- Шаг 3: Следующая команда создаст запрос (it.company.lan.csr) на основе существующего сертификата (it.company.lan.crt) и закрытого ключа (it.company.lan.key):
+```bash
+openssl x509 -in it.company.lan.crt -signkey it.company.lan.key -x509toreq -out it.company.lan.csr
+```
+                  Country Name (2 letter code) [AU]: RU
+                  State or Province Name (full name) [Some-State]: Moscow
+                  Locality Name (eg, city) [Город]: Moscow
+                  Organization Name (eg, company) [Название вашей организации]: Rosreestr
+                  Organizational Unit Name (eg, section) []: IT
+                  Common Name (e.g. server FQDN or YOUR name) [полное имя домена]:  *.it.company.lan
+                  Email Address []: info@it.company.lan
 ##### Добавляем корневые доверенный сертификаты.
 
 Из этой папки ``/mnt/CDDiskPack/CDinstall_Astra_1.7.4/sslcert#``
