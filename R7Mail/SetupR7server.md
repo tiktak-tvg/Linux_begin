@@ -430,5 +430,69 @@ selector._domainkey.it.company.lan.  TXT  "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQE
 ```
 После инсталляции в консоли будет предложено сделать TXT запись.
 
+##### Далее доустановим модуль Графика.
 
+Для Astra Linux 1.7.4 Orel, Astra Linux 2.12
+1. Добавляем ключ
+```bash
+sudo curl -s https://download.r7-office.ru/repos/RPM-GPG-KEY-R7-OFFICE.public | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/r7.gpg --import && sudo chmod 644 /etc/apt/trusted.gpg.d/r7.gpg
+```
+2. Добавляем репозиторий
+```bash
+sudo echo "deb https://downloads.r7-office.ru/repository/r7-desktop-astra/ astralinux main" | sudo tee /etc/apt/sources.list.d/r7.list
+```
+3. Добавляем файл для авторизации в репозитории
+```bash
+nano /etc/apt/auth.conf.d/r7.conf
+```
+Если данной директории нет
+```bash
+/etc/apt/auth.conf.d
+Необходимо добавить данный файл:
+touch /etc/apt/auth.conf
+```
+3.1. Добавить данные
+```bash
+machine downloads.r7-office.ru
+login desktop
+password gyxiLab84FByn7sCTd5JY
+```
+3.2. Изменить доступ на файл
+```bash
+sudo chmod 600 /etc/apt/auth.conf.d/r7.conf
+```
+Если директории /etc/apt/auth.conf.d нет, то выполнит эту команду:
+```bash
+sudo chmod 600 /etc/apt/auth.conf
+```
+4. Обновляем информацию о пакетах
+```bash
+sudo apt update
+```
+5. Устанавливаем приложения
+```bash
+apt install r7grafika
+```
+Теперь в файл hosts добавим строку ``127.0.0.1  draw.it.company.lan``.
+```bash
+127.0.0.1        localhost.localdomain   localhost
+# 127.0.1.1      r7mx1.it.company.lan    r7mx1   --обязательно закомментировать
+192.168.25.91    r7mx1.it.company.lan    r7mx1
+192.168.25.201   dc01.it.company.lan     dc01 
 
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+127.0.0.1 it.company.lan
+127.0.0.1 admin.it.company.lan
+127.0.0.1 contacts.it.company.lan
+127.0.0.1 projects.it.company.lan
+127.0.0.1 cdisk.it.company.lan
+127.0.0.1 ds.it.company.lan
+127.0.0.1 cmail.it.company.lan
+127.0.0.1 calendar.it.company.lan
+127.0.0.1  draw.it.company.lan
+```
+![image](https://github.com/user-attachments/assets/0265616f-9962-4b69-be48-b28842ca36c8)
