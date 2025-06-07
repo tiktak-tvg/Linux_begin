@@ -203,6 +203,12 @@ update-ca-certificates -v
 ```
 ![image](https://github.com/user-attachments/assets/733724e8-53fa-4f38-be70-879a6c4a7ce7)
 
+Если сертификаты успешно добавлены, появится сообщение о том, что сертфикат скопирован в /etc/ssl/certs/:
+```bash
+Updating certificates in /etc/ssl/certs…
+1 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d
+```
 
 #### Теперь тоже самое, только сертификат на домен
 
@@ -242,6 +248,12 @@ cp mydomain.crt /usr/local/share/ca-certificates/
 ```bash
 update-ca-certificates -v
 ```
+Если сертификаты успешно добавлены, появится сообщение о том, что сертфикат скопирован в /etc/ssl/certs/:
+```bash
+Updating certificates in /etc/ssl/certs…
+1 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d
+```
 ##### Проверяем работу сертификатов.
 
 **CSR**
@@ -272,7 +284,23 @@ openssl x509 -in it.company.lan.crt -text
 ```bash
 $ sudo update-ca-certificates --fresh
 ```
+Теперь Вы можете убедиться, что ваша ОС доверяет сертификату с помощью команду:
+```bash
+#openssl verify it.company.lan.crt
+```
+![image](https://github.com/user-attachments/assets/9d33ea5b-6500-42c0-9f81-555bf97aadd1)
 
+Чтобы проверить, что ваш хост доверяет ли SSL сертификату на определенном сайте, выполните команду:
+```bash
+ curl -I https://admin.it.company.lan
+```
+![image](https://github.com/user-attachments/assets/6c4a6409-7a51-406b-8bd0-7fe8a7d23bba)
+
+Если сервер не доверяет сертификату, появится ошибка:
+```bash
+error 20 at 0 depth lookup: unable to get local issuer certificate
+error it.company.lan.crt: verification failed
+```
 
 #### Далее переходим к скрипту запуска установки КС.
 ```bash
@@ -394,46 +422,5 @@ selector._domainkey.it.company.lan.  TXT  "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQE
 ```
 После инсталляции в консоли будет предложено сделать TXT запись.
 
-Установка завершена, теперь, чтобы всё заработало нужно добавить сертификат в доверенные.
-```bash
-переходим в папку
-
-#cd /mnt/CDDiskPack/CDinstall_Astra_1.7.4/sslcert
-
-/mnt/CDDiskPack/CDinstall_Astra_1.7.4/sslcert# ls
-it.company.lan.crt  it.company.lan.csr  it.company.lan.key
-
-Копируем наш сертификат
-#cp it.company.lan.crt /usr/local/share/ca-certificates/
-```
-![image](https://github.com/user-attachments/assets/3ad2fdc2-1178-4d1a-b10d-d46a9eb9f30e)
-
-Обновите хранилище сертификатов командой:
-```bash
-update-ca-certificates -v
-```bash
-Если сертификаты успешно добавлены, появится сообщение о том, что сертфикат скопирован в /etc/ssl/certs/:
-```bash
-Updating certificates in /etc/ssl/certs…
-2 added, 9 removed; done.
-Running hooks in /etc/ca-certificates/update.d
-```
-Вы можете убедиться, что ваша ОС доверяет сертификату с помощью команду:
-```bash
-#openssl verify it.company.lan.crt
-```
-![image](https://github.com/user-attachments/assets/9d33ea5b-6500-42c0-9f81-555bf97aadd1)
-
-Чтобы проверить, что ваш хост доверяет ли SSL сертификату на определенном сайте, выполните команду:
-```bash
- curl -I https://admin.it.company.lan
-```
-![image](https://github.com/user-attachments/assets/6c4a6409-7a51-406b-8bd0-7fe8a7d23bba)
-
-Если сервер не доверяет сертификату, появится ошибка:
-```bash
-error 20 at 0 depth lookup: unable to get local issuer certificate
-error it.company.lan.crt: verification failed
-```
 
 
