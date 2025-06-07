@@ -242,40 +242,39 @@ cp mydomain.crt /usr/local/share/ca-certificates/
 ```bash
 update-ca-certificates -v
 ```
-
-
-
-Проверяем работу сертификатов.
-```bash
-openssl req -in it.company.lan.csr -noout -text
-```
-![image](https://github.com/user-attachments/assets/3dc3494d-1189-4df5-bdf2-1e88b5b24914)
+##### Проверяем работу сертификатов.
 
 **CSR**
 
 Эта команда проверит CSR и отобразит данные, указанные в запросе:
-
-openssl req -text -noout -verify -in ald.vit.lan.csr
+```bash
+openssl req -text -noout -verify -in it.company.lan.csr
+```
+![image](https://github.com/user-attachments/assets/e76907d3-0359-46a3-8070-de203b449168)
 
 **Ключ**
 
 Следующая команда проверит ключ и его действительность:
-
-openssl rsa -in ald.vit.lan.key -check
+```bash
+openssl rsa -in it.company.lan.key -check
+```
+![image](https://github.com/user-attachments/assets/5072b407-68e4-4a16-b087-f459c944d069)
 
 **SSL сертификат**
 
 Когда вам нужно проверить сертификат, дату его истечения и кто его подписал, используйте следующую команду OpenSSL:
-
-openssl x509 -in ald.vit.lan.crt -text –noout
+```bash
+openssl x509 -in it.company.lan.crt -text 
+```
+![image](https://github.com/user-attachments/assets/bb0f84f5-0fcc-4b33-8828-00b9e474226f)
 
 И обновите хранилище:
-
+```bash
 $ sudo update-ca-certificates --fresh
+```
 
 
-
-#### Далее переходим к скрипту запуска.
+#### Далее переходим к скрипту запуска установки КС.
 ```bash
 из папки в которой создали сертификаты /mnt/CDDiskPack/CDinstall_Astra_1.7.4/sslcert/#
 переходим 
