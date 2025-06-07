@@ -154,8 +154,6 @@ cd /mnt/CDDiskPack/CDinstall_Astra_1.7.4/sslcert
 ```bash
 openssl genrsa -out it.company.lan.key 2048
 ```
-![image](https://github.com/user-attachments/assets/a95b40f3-3a74-4338-ba8e-c630293ff713)
-
 ![image](https://github.com/user-attachments/assets/e85db849-8f10-4fd0-a6ca-439c41394a2d)
 
 - Шаг 2: Следующая команда создаст сертификат (it.company.lan.csr) для существующего ключа (it.company.lan.key):
@@ -191,58 +189,62 @@ Common Name или FQDN|	FQDN (fully qualified domain name) - это полно�
 Email Address|	Адрес электронной почты, используемый для связи с веб-мастером сайта	|info@it.company.lan
 Public Key|	втоматически созданный ключ, который создается с помощью CSR и входит в сертификат. |Закодированный текстовый блок похож на закрытый ключ.
 
+##### Добавляем корневой сертификат в доверенные сертификаты.
 
-##### Усиление безопасности сервера(можно пока не делать).
-Инструкциия по усилению безопасности вашего сервера.
+Переходим в папку ``/mnt/CDDiskPack/CDinstall_Astra_1.7.4/sslcert#``
 
-Для этого необходимо сгенерировать параметры Диффи-Хеллмана (DHE), обеспечивающие более высокую стойкость.
+Скопируйте файл вашего сертификата (it.company.lan.crt) в хранилище сертификатов в каталог usr/local/share/ca-certificates/:
 ```bash
-openssl dhparam -out dhparam.pem 2048
+cp it.company.lan.crt /usr/local/share/ca-certificates/
 ```
-![image](https://github.com/user-attachments/assets/25c29913-9e2a-454a-b6be-e4d42922a724)
+Обновите хранилище сертификатов командой:
+```bash
+update-ca-certificates -v
+```
+![image](https://github.com/user-attachments/assets/733724e8-53fa-4f38-be70-879a6c4a7ce7)
+
 
 #### Теперь тоже самое, только сертификат на домен
 
-- Шаг 1:  Команда создаст 2048-битный закрытый ключ (itcompany.key)
+- Шаг 1:  Команда создаст 2048-битный закрытый ключ (mydomain.key)
   
-  в этой папке /mnt/CDDiskPack/CDinstall_Astra_1.7.4/sslcert#
+  в этой папке /mnt/ssl#
 ```bash
-openssl genrsa -out it.company.lan.key 2048
+openssl genrsa -out mydomain.key 2048
 ```
-![image](https://github.com/user-attachments/assets/e85db849-8f10-4fd0-a6ca-439c41394a2d)
-
-- Шаг 2: Следующая команда создаст сертификат (it.company.lan.csr) для существующего ключа (it.company.lan.key):
+- Шаг 2: Следующая команда создаст сертификат (mydomain.csr) для существующего ключа (mydomain.key):
 ```bash
-openssl req -newkey rsa:2048 -nodes -keyout it.company.lan.key -x509 -days 365 -out it.company.lan.crt
+openssl req -newkey rsa:2048 -nodes -keyout mydomain.key -x509 -days 365 -out mydomain.crt
 ```
-![image](https://github.com/user-attachments/assets/2243e650-0e9a-4da7-8e26-117a42fe054f)
-
 Вы только что сгенерировали SSL-сертификат со сроком действия 365 дней.
 
-- Шаг 3: Следующая команда создаст запрос (it.company.lan.csr) на основе существующего сертификата (it.company.lan.crt) и закрытого ключа (it.company.lan.key):
+- Шаг 3: Следующая команда создаст запрос (mydomain.csr) на основе существующего сертификата (mydomain.crt) и закрытого ключа (mydomain.key):
 ```bash
-openssl x509 -in it.company.lan.crt -signkey it.company.lan.key -x509toreq -out it.company.lan.csr
+openssl x509 -in mydomain.crt -signkey mydomain.key -x509toreq -out mydomain.csr
 ```
                   Country Name (2 letter code) [AU]: RU
                   State or Province Name (full name) [Some-State]: Moscow
                   Locality Name (eg, city) [Город]: Moscow
                   Organization Name (eg, company) [Название вашей организации]: Rosreestr
                   Organizational Unit Name (eg, section) []: IT
-                  Common Name (e.g. server FQDN or YOUR name) [полное имя домена]:  *.it.company.lan
+                  Common Name (e.g. server FQDN or YOUR name) [полное имя домена]:  it.company.lan
                   Email Address []: info@it.company.lan
-##### Добавляем корневые доверенный сертификаты.
 
-Из этой папки ``/mnt/CDDiskPack/CDinstall_Astra_1.7.4/sslcert#``
+##### Добавляем корневой сертификат в доверенные сертификаты.
 
-Скопируйте файлы ваших сертификатов в хранилище сертификатов в каталог usr/local/share/ca-certificates/:
+Переходим в папку ``/mnt/ssl#``
+
+Скопируйте файл вашего сертификата (mydomain.crt) в хранилище сертификатов в каталог usr/local/share/ca-certificates/:
 ```bash
-cp ald.vit.lan.crt /usr/local/share/ca-certificates/
 cp mydomain.crt /usr/local/share/ca-certificates/
 ```
 Обновите хранилище сертификатов командой:
 ```bash
 update-ca-certificates -v
 ```
+
+
+
 Проверяем работу сертификатов.
 ```bash
 openssl req -in it.company.lan.csr -noout -text
