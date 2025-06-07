@@ -159,19 +159,13 @@ openssl genrsa -out it.company.lan.key 2048
 ```bash
 openssl req -new -key it.company.lan.key -out it.company.lan.csr
 ```
-Country Name (2 letter code) [AU]:**RU**
-
-State or Province Name (full name) [Some-State]:**Moscow**
-
-Locality Name (eg, city) [Город]:**Moscow**
-
-Organization Name (eg, company) [Название вашей организации]:**Rosreestr**
-
-Organizational Unit Name (eg, section) []:**IT**
-
-<p>Common Name (e.g. server FQDN or YOUR name) [полное имя домена]: <h4>*.it.company.lan</h4></p>
-
-Email Address []:**info@it.company.lan**
+                  Country Name (2 letter code) [AU]: RU
+                  State or Province Name (full name) [Some-State]: Moscow
+                  Locality Name (eg, city) [Город]: Moscow
+                  Organization Name (eg, company) [Название вашей организации]: Rosreestr
+                  Organizational Unit Name (eg, section) []: IT
+                  Common Name (e.g. server FQDN or YOUR name) [полное имя домена]:  *.it.company.lan
+                  Email Address []: info@it.company.lan
 
 
 CSR обычно содержит следующую информацию:
@@ -214,13 +208,13 @@ openssl genrsa -out mydomain.key 2048
 openssl req -newkey rsa:2048 -nodes -keyout mydomain.key -x509 -days 365 -out mydomain.crt
 ```
 
-         Country Name (2 letter code) [AU]:RU
-         State or Province Name (full name) [Some-State]:Moscow
-         Locality Name (eg, city) [Город]:Moscow
-         Organization Name (eg, company) [Название вашей организации]:Rosreestr
-         Organizational Unit Name (eg, section) []:IT
-         Common Name (e.g. server FQDN or YOUR name) [полное имя домена]:it.company.lan
-         Email Address []:admin@it.company.lan
+         Country Name (2 letter code) [AU]: RU
+         State or Province Name (full name) [Some-State]: Moscow
+         Locality Name (eg, city) [Город]: Moscow
+         Organization Name (eg, company) [Название вашей организации]: Rosreestr
+         Organizational Unit Name (eg, section) []: IT
+         Common Name (e.g. server FQDN or YOUR name) [полное имя домена]: it.company.lan
+         Email Address []: admin@it.company.lan
 
 
 - Шаг 3: Подпишите сертификат с помощью закрытого ключа и CSR
