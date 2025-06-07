@@ -164,7 +164,7 @@ State or Province Name (full name) [Some-State]:Moscow
 Locality Name (eg, city) [Город]:Moscow
 Organization Name (eg, company) [Название вашей организации]:Rosreestr
 Organizational Unit Name (eg, section) []:IT
-Common Name (e.g. server FQDN or YOUR name) [полное имя домена]:it.company.lan
+Common Name (e.g. server FQDN or YOUR name) [полное имя домена]:*.it.company.lan
 Email Address []:info@admin.it.company.lan
 ```
 
@@ -198,6 +198,28 @@ openssl dhparam -out dhparam.pem 2048
 ```
 ![image](https://github.com/user-attachments/assets/25c29913-9e2a-454a-b6be-e4d42922a724)
 
+#### Теперь тоже самое, только сертификат на домен
+- Шаг 1: Создайте закрытый ключ сервера
+```bash
+openssl genrsa -out mydomain.key 2048
+```
+- Шаг 2: Создайте запрос подписи сертификата (CSR)
+```bash
+openssl req -newkey rsa:2048 -nodes -keyout mydomain.key -x509 -days 365 -out mydomain.crt
+```
+
+- Country Name (2 letter code) [AU]:RU
+- State or Province Name (full name) [Some-State]:Moscow
+- Locality Name (eg, city) [Город]:Moscow
+- Organization Name (eg, company) [Название вашей организации]:Rosreestr
+- Organizational Unit Name (eg, section) []:IT
+- Common Name (e.g. server FQDN or YOUR name) [полное имя домена]:it.company.lan
+- Email Address []:info@admin.it.company.lan
+
+- Шаг 3: Подпишите сертификат с помощью закрытого ключа и CSR
+```bash
+openssl x509 -in mydomain.crt -signkey mydomain.key -x509toreq -out mydomain.csr
+```
 Проверяем
 ```bash
 openssl req -in it.company.lan.csr -noout -text
