@@ -496,3 +496,8 @@ ff02::2 ip6-allrouters
 127.0.0.1  draw.it.company.lan
 ```
 ![image](https://github.com/user-attachments/assets/0265616f-9962-4b69-be48-b28842ca36c8)
+
+В итоге должно получиться так
+
+![image](https://github.com/user-attachments/assets/a9bfba9a-fe3a-4a95-b021-fd410003e48e)
+
