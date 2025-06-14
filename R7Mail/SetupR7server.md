@@ -139,7 +139,7 @@ hostname -f // если не работает проверяем запись в
 cat /etc/resolv.conf
 search it.company.lan
 nameserver 77.88.8.8
-nameserver 192.168.25.201
+nameserver 192.168.25.201 //наш контроллер домена, где настроен DNS
 ```
 ![image](https://github.com/user-attachments/assets/4ffaca52-b682-4ac0-bab1-75a39456d7c5)
 
