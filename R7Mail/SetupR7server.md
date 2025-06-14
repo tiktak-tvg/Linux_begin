@@ -44,6 +44,15 @@ sudo apt install chrony
 sudo systemctl start chrony
 sudo systemctl enable chrony
 ```
+>[!Warning]
+>Так как порт закрыт, если слушает порт udp 123: ``sudo ss -ulpn | grep chronyd`` - тогда не надо.
+>Нужно, прописать наш доменный сервер в качестве источника синхронизации времени.  
+>Для этого укажем его адрес в ``/etc/systemd/timesyncd.conf`` на остальных серверах. 
+```bash
+[Time]
+NTP=192.168.25.100
+А затем перезапустим службу синхронизации времени ``systemctl restart chrony``
+```
 Делаем статический адрес. Отключаем NetworkManager.
 
 Переписываем свой IP дарес, шлюз, маску, не ошибиться при настройке статического IP-адреса.
