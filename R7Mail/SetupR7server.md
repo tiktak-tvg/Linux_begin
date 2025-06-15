@@ -275,9 +275,29 @@ chmod +x offline_installer.sh
 ```
 ![image](https://github.com/user-attachments/assets/caa684ee-d0b8-4618-bad7-ab36eda8d02b)
 
+Чистая установка
+
+Если требуется выполнить чистую установку (удалит имеющуюся инсталляцию Корпоративный сервер 2024 и зависимости):
+
+Выберите Да
+
 ![image](https://github.com/user-attachments/assets/986d1e7b-d33f-4234-8fd7-aed5e9451eda)
+ 
+Установка СУБД на локальную ВМ
+
+Для установки PostgreSQL (при инсталляции всё в одном) на локальный компьютер:
+
+Выберите Да
 
 ![image](https://github.com/user-attachments/assets/9637b5a5-3114-486a-9dba-18c67441ba18)
+
+Установка Сервера Документов
+
+Установка Р7-Диск на ОС Astra Linux и Debian-2
+
+Для его установки:
+
+Выберите Да
 
 ![image](https://github.com/user-attachments/assets/878632c3-5ad9-445a-a670-3599e0723062)
 
