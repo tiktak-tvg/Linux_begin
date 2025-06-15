@@ -283,6 +283,8 @@ chmod +x offline_installer.sh
 
 Выберите Да
 
+<tr>
+
 ![image](https://github.com/user-attachments/assets/9637b5a5-3114-486a-9dba-18c67441ba18)
  
 Установка СУБД на локальную ВМ
