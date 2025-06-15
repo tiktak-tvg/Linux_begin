@@ -6,19 +6,23 @@
 
 #### 1. Подготовка DNS-записей
 Добавьте в DNS вашего домена:# Основная запись
+```bash
            autodiscover.IN.CNAME mail.ваша-компания.ru.
-
+```
 ##### Альтернативно (если не поддерживается CNAME)
-           autodiscover.IN.A 192.0.2.1
+```bash
+autodiscover.IN.A 192.0.2.1
+```
 
 ##### SRV-запись для улучшения совместимости
+```bash
            _autodiscover._tcp.IN.SRV 10 0 443 mail.ваша-компания.ru.
-
+```
 ---
 
 #### 2. Создание XML-файла Autodiscover
 Создайте файл /var/www/autodiscover/autodiscover.xml с содержимым:
-
+```bash
 <?xml version="1.0" encoding="UTF-8"?>
 <Autodiscover xmlns="http://schemas.microsoft.com/exchange/autodiscover/responseschema/2006">
   <Response>
@@ -42,12 +46,12 @@
     </Account>
   </Response>
 </Autodiscover>
-
+```
 ---
 
 #### 3. Настройка веб-сервера (Nginx)
 Добавьте конфигурацию в /etc/nginx/conf.d/autodiscover.conf:
-
+```bash
 server {
     listen 443 ssl;
     server_name autodiscover.ваша-компания.ru;
@@ -74,15 +78,16 @@ server {
         default_type application/xml;
     }
 }
-
-Перезагрузите Nginx:  
+```
+Перезагрузите Nginx: 
+```bash
               sudo nginx -t && sudo systemctl reload nginx
-
+```
 ---
 
 #### 4. Дополнительно: Файл для Thunderbird
 Создайте /var/www/autodiscover/thunderbird.xml:<?xml version="1.0"?>
-
+```bash
 <clientConfig version="1.1">
   <emailProvider id="ваша-компания.ru">
     <domain>ваша-компания.ru</domain>
@@ -101,7 +106,7 @@ server {
     </outgoingServer>
   </emailProvider>
 </clientConfig>
-
+```
 ---
 
 #### 5. Настройка в панели Р7 (если доступно)
@@ -119,9 +124,10 @@ server {
    Откройте https://autodiscover.ваша-компания.ru/autodiscover/autodiscover.xml → Должен отобразиться XML.
 
 2. Тест через Outlook:
+   ```bash
      Test-EmailAutoConfiguration -Identity user@ваша-компания.ru -Protocol Autodiscover
-   
-3. Онлайн-валидация:  
+   ```
+4. Онлайн-валидация:  
    Используйте [Microsoft Connectivity Analyzer](https://testconnectivity.microsoft.com).
 
 ---
