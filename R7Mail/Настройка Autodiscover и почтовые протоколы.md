@@ -1,5 +1,7 @@
 ### Настройка Autodiscover для корпоративного почтового сервера Р7
 
+![image](https://github.com/user-attachments/assets/4a62988c-49fe-42b5-a39e-3c9a7f58c507)
+
 Для настройки Autodiscover в Р7-Офис или Почта Р7 выполните следующие шаги:
 
 ---
