@@ -194,13 +194,11 @@ DNS.2 = it.company.lan
 ```bash
 openssl genrsa -out it.company.lan.key 2048
 ```
-![image](https://github.com/user-attachments/assets/e85db849-8f10-4fd0-a6ca-439c41394a2d)
 
 - Шаг 3: Следующая команда создаст сертификат CSR-Certificate Signing Request **it.company.lan.csr** для существующего ключа (it.company.lan.key):
 ```bash
 openssl req -new -key it.company.lan.key -out it.company.lan.csr -config openssl.cnf
 ```
-![image](https://github.com/user-attachments/assets/2243e650-0e9a-4da7-8e26-117a42fe054f)
 
 - Шаг 4: Следующая команда сгенерирует самоподписанный сертификатс **it.company.lan.crt** на основе существующего сертификата (it.company.lan.csr) и закрытого ключа (it.company.lan.key):
 ```bash
