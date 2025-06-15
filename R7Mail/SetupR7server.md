@@ -350,11 +350,15 @@ chmod +x offline_installer.sh
 
 По умолчанию 5432 используется. Если настроен другой, указать его. Оставляем как есть.
 
+<hr>
+
 ![image](https://github.com/user-attachments/assets/b8b03d01-4e58-46ef-ac1d-cb19e0719d60)
 
 Пользователь с правами создания БД и пользователей
 
 По умолчанию postgres
+
+<hr>
 
 ![image](https://github.com/user-attachments/assets/10eff70d-b8db-421e-ad40-69772b77fa5d)
 
@@ -362,11 +366,15 @@ chmod +x offline_installer.sh
 
 По умолчанию postgres
 
+<hr>
+
 ![image](https://github.com/user-attachments/assets/5afb9ace-7c43-48b1-83ce-22cd7e17e2ed)
 
 Пароль для пользователя БД Корпоративный сервер 2024
 
 Укажите пароль для пользователя cddisk
+
+<hr>
 
 ![image](https://github.com/user-attachments/assets/2f2e3341-85de-458d-8aac-40ca5e562733)
 
@@ -376,26 +384,46 @@ coremachinkey от CS
 
 нажмите Ок
 
+<hr>
+
 ![image](https://github.com/user-attachments/assets/79e5b956-5dbf-4db6-8240-77bacc7ed8df)
 
 >[!Warning]
 >Если Вы выбрали установки без HTTPS, то, после инсталляции, почтовый сервер работать не будет. Он не запустится.
 
+<hr>
+
 ![image](https://github.com/user-attachments/assets/ae23bfe7-4777-4147-ae3a-4776c64e94a2)
+
+<hr>
 
 ![image](https://github.com/user-attachments/assets/6aba3925-df9e-4c4b-ba06-c5dd15954b0d)
 
+<hr>
+
 ![image](https://github.com/user-attachments/assets/64ec3ab8-8845-4765-bdf5-59e5af56220d)
+
+<hr>
 
 ![image](https://github.com/user-attachments/assets/b7bfadab-6d3f-4f86-aa85-b9e1306ff9cf)
 
+<hr>
+
 ![image](https://github.com/user-attachments/assets/8135dcfa-eaae-46f7-bb11-27517b0ea0a3)
+
+<hr>
 
 ![image](https://github.com/user-attachments/assets/02f3207b-6504-493e-a376-f533b36afa0f)
 
+<hr>
+
 ![image](https://github.com/user-attachments/assets/8a648089-4a26-41d2-ba66-47a275ab64cc)
 
+<hr>
+
 ![image](https://github.com/user-attachments/assets/a3bc029d-20b3-4918-860b-77c4556ccbef)
+
+<hr>
 
 #### Установка почтового сервера R7.
 
