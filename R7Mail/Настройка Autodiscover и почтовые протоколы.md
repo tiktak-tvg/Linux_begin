@@ -6,18 +6,19 @@
 
 #### 1. Подготовка DNS-записей
 Добавьте в DNS вашего домена:# Основная запись
-autodiscover.IN.CNAME mail.ваша-компания.ru.
+           autodiscover.IN.CNAME mail.ваша-компания.ru.
 
-# Альтернативно (если не поддерживается CNAME)
-autodiscover.IN.A 192.0.2.1
+##### Альтернативно (если не поддерживается CNAME)
+           autodiscover.IN.A 192.0.2.1
 
-# SRV-запись для улучшения совместимости
-_autodiscover._tcp.IN.SRV 10 0 443 mail.ваша-компания.ru.
+##### SRV-запись для улучшения совместимости
+           _autodiscover._tcp.IN.SRV 10 0 443 mail.ваша-компания.ru.
 
 ---
 
 #### 2. Создание XML-файла Autodiscover
 Создайте файл /var/www/autodiscover/autodiscover.xml с содержимым:
+
 <?xml version="1.0" encoding="UTF-8"?>
 <Autodiscover xmlns="http://schemas.microsoft.com/exchange/autodiscover/responseschema/2006">
   <Response>
@@ -46,6 +47,7 @@ _autodiscover._tcp.IN.SRV 10 0 443 mail.ваша-компания.ru.
 
 #### 3. Настройка веб-сервера (Nginx)
 Добавьте конфигурацию в /etc/nginx/conf.d/autodiscover.conf:
+
 server {
     listen 443 ssl;
     server_name autodiscover.ваша-компания.ru;
@@ -72,12 +74,15 @@ server {
         default_type application/xml;
     }
 }
-Перезагрузите Nginx:  sudo nginx -t && sudo systemctl reload nginx
+
+Перезагрузите Nginx:  
+              sudo nginx -t && sudo systemctl reload nginx
 
 ---
 
 #### 4. Дополнительно: Файл для Thunderbird
 Создайте /var/www/autodiscover/thunderbird.xml:<?xml version="1.0"?>
+
 <clientConfig version="1.1">
   <emailProvider id="ваша-компания.ru">
     <domain>ваша-компания.ru</domain>
