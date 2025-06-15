@@ -275,13 +275,15 @@ chmod +x offline_installer.sh
 ```
 ![image](https://github.com/user-attachments/assets/caa684ee-d0b8-4618-bad7-ab36eda8d02b)
 
+![image](https://github.com/user-attachments/assets/986d1e7b-d33f-4234-8fd7-aed5e9451eda)
+
 Чистая установка
 
 Если требуется выполнить чистую установку (удалит имеющуюся инсталляцию Корпоративный сервер 2024 и зависимости):
 
 Выберите Да
 
-![image](https://github.com/user-attachments/assets/986d1e7b-d33f-4234-8fd7-aed5e9451eda)
+![image](https://github.com/user-attachments/assets/9637b5a5-3114-486a-9dba-18c67441ba18)
  
 Установка СУБД на локальную ВМ
 
@@ -289,39 +291,82 @@ chmod +x offline_installer.sh
 
 Выберите Да
 
-![image](https://github.com/user-attachments/assets/9637b5a5-3114-486a-9dba-18c67441ba18)
+![image](https://github.com/user-attachments/assets/878632c3-5ad9-445a-a670-3599e0723062)
 
 Установка Сервера Документов
-
-Установка Р7-Диск на ОС Astra Linux и Debian-2
 
 Для его установки:
 
 Выберите Да
 
-![image](https://github.com/user-attachments/assets/878632c3-5ad9-445a-a670-3599e0723062)
-
 ![image](https://github.com/user-attachments/assets/42f7d7f0-3b6a-494b-a527-a15b7246c2b6)
+
+Необходимо ввести пароль-секрет для защищённого доступа между Корпоративный сервер 2024 и Сервером Документов.
 
 ![image](https://github.com/user-attachments/assets/2237c1d7-2c86-4491-ae5f-bea349f658cd)
 
+Пароль для Базы Данных DS
+
 ![image](https://github.com/user-attachments/assets/7cce156d-c595-45fe-b81f-47d202d8555b)
+
+Установка api и web диска
+
+Для его установки:
+
+Выберите Да
 
 ![image](https://github.com/user-attachments/assets/0135cee8-32f3-446d-91df-b1ca94db8e9a)
 
+Тип СУБД Корпоративный сервер 2024
+
+Выберите PostgreSQL
+
 ![image](https://github.com/user-attachments/assets/3f5778a3-0834-4aa3-a11d-a182a9bb3aa8)
+
+Создание БД
+
+Выберите Да
 
 ![image](https://github.com/user-attachments/assets/83f23eaf-2540-4dca-a145-1d2c7066b182)
 
+Хост СУБД
+
+При локальной установки
+
+Выберите Ок
+
+>[!Warning]
+>Если СУБД установлена отдельно, укажите ip или имя хоста
+
 ![image](https://github.com/user-attachments/assets/84e27862-4db4-4d62-a272-eaa53aa900d3)
+
+По умолчанию 5432 используется. Если настроен другой, указать его. Оставляем как есть.
 
 ![image](https://github.com/user-attachments/assets/b8b03d01-4e58-46ef-ac1d-cb19e0719d60)
 
+Пользователь с правами создания БД и пользователей
+
+По умолчанию postgres
+
 ![image](https://github.com/user-attachments/assets/10eff70d-b8db-421e-ad40-69772b77fa5d)
+
+Пароль пользователя с правами создания БД и пользователя
+
+По умолчанию postgres
 
 ![image](https://github.com/user-attachments/assets/5afb9ace-7c43-48b1-83ce-22cd7e17e2ed)
 
+Пароль для пользователя БД Корпоративный сервер 2024
+
+Укажите пароль для пользователя cddisk
+
 ![image](https://github.com/user-attachments/assets/2f2e3341-85de-458d-8aac-40ca5e562733)
+
+coremachinkey от CS
+
+Изменить на актуальный, если есть Р7-Офис Корпоративный сервер и нажмите ОК, если нет, нажмите Ок без редактирования
+
+нажмите Ок
 
 ![image](https://github.com/user-attachments/assets/79e5b956-5dbf-4db6-8240-77bacc7ed8df)
 
