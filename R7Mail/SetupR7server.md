@@ -283,7 +283,7 @@ chmod +x offline_installer.sh
 
 Выберите Да
 
-<tr>
+<hr>
 
 ![image](https://github.com/user-attachments/assets/9637b5a5-3114-486a-9dba-18c67441ba18)
  
@@ -293,13 +293,15 @@ chmod +x offline_installer.sh
 
 Выберите Да
 
+<hr>
+
 ![image](https://github.com/user-attachments/assets/878632c3-5ad9-445a-a670-3599e0723062)
 
 Установка Сервера Документов
 
-Для его установки:
+Для его установки: Выберите Да
 
-Выберите Да
+<hr>
 
 ![image](https://github.com/user-attachments/assets/42f7d7f0-3b6a-494b-a527-a15b7246c2b6)
 
@@ -309,13 +311,15 @@ chmod +x offline_installer.sh
 
 Пароль для Базы Данных DS
 
+<hr>
+
 ![image](https://github.com/user-attachments/assets/7cce156d-c595-45fe-b81f-47d202d8555b)
 
 Установка api и web диска
 
-Для его установки:
+Для его установки: Выберите Да
 
-Выберите Да
+<hr>
 
 ![image](https://github.com/user-attachments/assets/0135cee8-32f3-446d-91df-b1ca94db8e9a)
 
@@ -323,19 +327,21 @@ chmod +x offline_installer.sh
 
 Выберите PostgreSQL
 
+<hr>
+
 ![image](https://github.com/user-attachments/assets/3f5778a3-0834-4aa3-a11d-a182a9bb3aa8)
 
-Создание БД
+Создание БД. Выберите Да
 
-Выберите Да
+<hr>
 
 ![image](https://github.com/user-attachments/assets/83f23eaf-2540-4dca-a145-1d2c7066b182)
 
 Хост СУБД
 
-При локальной установки
+При локальной установки. Выберите Ок
 
-Выберите Ок
+<hr>
 
 >[!Warning]
 >Если СУБД установлена отдельно, укажите ip или имя хоста
