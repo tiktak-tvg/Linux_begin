@@ -232,7 +232,7 @@ Running hooks in /etc/ca-certificates/update.d
 ```bash
 openssl req -text -noout -verify -in it.company.lan.csr
 ```
-![image](https://github.com/user-attachments/assets/e76907d3-0359-46a3-8070-de203b449168)
+
 
 **Ключ**
 
@@ -240,7 +240,7 @@ openssl req -text -noout -verify -in it.company.lan.csr
 ```bash
 openssl rsa -in it.company.lan.key -check
 ```
-![image](https://github.com/user-attachments/assets/5072b407-68e4-4a16-b087-f459c944d069)
+
 
 **SSL сертификат**
 
@@ -248,7 +248,7 @@ openssl rsa -in it.company.lan.key -check
 ```bash
 openssl x509 -in it.company.lan.crt -text 
 ```
-![image](https://github.com/user-attachments/assets/bb0f84f5-0fcc-4b33-8828-00b9e474226f)
+
 
 Обновите хранилище:
 ```bash
