@@ -76,3 +76,6 @@ nslookup -type=SRV _submission._tcp.example.com
 Настройка SRV упрощает автоматическую конфигурацию почтовых программ, но проверяйте поддержку вашими клиентами.
 
 ![image](https://github.com/user-attachments/assets/3d6c0ae4-5442-434c-a7fd-8c3afbc9fc0b)
+
+![image](https://github.com/user-attachments/assets/445bb0a3-0eea-4386-9f37-f614a46ebe55)
+
