@@ -181,7 +181,6 @@ systemctl reload nginx
    allow 203.0.113.5;
    deny all;
    ```
-
 ---
 
 ### Важные особенности Р7:
@@ -202,3 +201,35 @@ systemctl reload nginx
    - `%USERNAME%` → логин без домена
 
 
+### 8.Альтернатива: Autoconfig
+Для совместимости с Thunderbird создайте дополнительно файл:  
+`https://mail.ваша-компания.ru/.well-known/autoconfig/mail/config-v1.1.xml`
+
+Пример:
+```xml
+<?xml version="1.0"?>
+<clientConfig version="1.1">
+  <emailProvider id="ваша-компания.ru">
+    <domain>ваша-компания.ru</domain>
+    <incomingServer type="imap">
+      <hostname>mail.ваша-компания.ru</hostname>
+      <port>993</port>
+      <socketType>SSL</socketType>
+      <authentication>password-cleartext</authentication>
+    </incomingServer>
+    <outgoingServer type="smtp">
+      <hostname>mail.ваша-компания.ru</hostname>
+      <port>587</port>
+      <socketType>STARTTLS</socketType>
+      <authentication>password-cleartext</authentication>
+    </outgoingServer>
+  </emailProvider>
+</clientConfig>
+```
+---
+
+>[!WARNING] Важно!
+
+1. Для **корпоративной безопасности** ограничьте доступ к Autodiscover по IP или используйте HTTP-аутентификацию.
+2. В **Р7-Офис** Autodiscover может настраиваться через административную панель — проверьте раздел **«Почта» → «Автонастройка клиентов»**.
+3. Для MDM-систем (Mobile Device Management) используйте **AppConfig**-параметры.
