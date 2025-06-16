@@ -1,6 +1,6 @@
 ### Настройка Autodiscover для корпоративного почтового сервера Р7
 
-Для настройки Autodiscover в **Р7-Офис** или **Почта Р7** выполните следующие шаги:
+Для настройки Autodiscover в **Корпоративном почтовом сервере Р7** выполните следующие шаги:
 
 ---
 
@@ -8,13 +8,13 @@
 Добавьте в DNS вашего домена:
 ```bash
 # Основная запись
-autodiscover.IN.CNAME mail.ваша-компания.ru.
+autodiscover.IN.CNAME r7mx1.it.company.lan
 
 # Альтернативно (если не поддерживается CNAME)
-autodiscover.IN.A 192.0.2.1
+autodiscover.IN.A 192.168.25.91
 
 # SRV-запись для улучшения совместимости
-_autodiscover._tcp.IN.SRV 10 0 443 mail.ваша-компания.ru.
+_autodiscover._tcp.IN.SRV 10 0 443 r7mx1.it.company.lan
 ```
 
 ---
