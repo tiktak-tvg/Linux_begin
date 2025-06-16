@@ -25,6 +25,9 @@ _autodiscover._tcp.IN.SRV 10 0 443 r7mx1.it.company.lan
 ---
 
 #### 2.Создание XML-файла Autodiscover
+
+Autodiscover в Р7 реализуется через **XML/JSON-файл** на веб-сервере.
+
 Создайте папку `mkdir /var/www/autodiscover`
 
 Создайте файл `touch /var/www/autodiscover/autodiscover.xml` 
