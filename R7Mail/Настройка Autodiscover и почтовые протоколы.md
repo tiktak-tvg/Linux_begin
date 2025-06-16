@@ -49,8 +49,37 @@ autodiscover.IN.A 192.0.2.1
   </Response>
 </Autodiscover>
 ```
----
 
+erver {
+    listen 443 ssl;
+    server_name autodiscover.it.vit.lan;
+
+    # SSL-сертификат (должен включать autodiscover.ваша-компания.ru)
+    ssl_certificate /etc/ssl/certs/it.vit.lan.crt;
+    ssl_certificate_key /etc/ssl/private/it.vit.lan.key;
+
+    # Основной endpoint
+    location = /autodiscover/autodiscover.xml {
+        alias /var/www/autodiscover/autodiscover.xml;
+        default_type application/xml;
+    }
+
+    # Для совместимости с Outlook
+    location = /Autodiscover/Autodiscover.xml {
+        alias /var/www/autodiscover/autodiscover.xml;
+        default_type application/xml;
+    }
+
+    # Thunderbird autoconfig
+    location = /.well-known/autoconfig/mail/config-v1.1.xml {
+        alias /var/www/autodiscover/thunderbird.xml;
+        default_type application/xml;
+    }
+}
+
+```
+---
+```bash
 #### 3. Настройка веб-сервера (Nginx)
 Добавьте конфигурацию в /etc/nginx/conf.d/autodiscover.conf:
 ```bash
