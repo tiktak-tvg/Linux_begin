@@ -133,7 +133,14 @@ systemctl reload nginx
 2. **Тест через Outlook**:
    ```powershell
    Test-EmailAutoConfiguration -Identity info@it.company.lan -Protocol Autodiscover
+
+3. **Тест через telnet/openssl**:
+   ```bash
+   openssl s_client -connect autodiscover.it.company.lan:443
+   GET /autodiscover/autodiscover.xml HTTP/1.1
+   Host: autodiscover.it.company.lan
    ```
+   → Убедитесь, что возвращается XML.```
 ---
 
 #### 6.Решение проблем
