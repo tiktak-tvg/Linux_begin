@@ -17,7 +17,11 @@ _autodiscover._tcp.IN.SRV 10 0 443 r7mx1.it.company.lan
 ---
 
 #### 2.Создание XML-файла Autodiscover
-Создайте файл `/var/www/autodiscover/autodiscover.xml` с содержимым:
+Создайте папку `mkdir /var/www/autodiscover`
+
+Создайте файл `touch /var/www/autodiscover/autodiscover.xml` 
+
+Создайте файл `nano /var/www/autodiscover/autodiscover.xml` заполните содержимым:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -27,7 +31,7 @@ _autodiscover._tcp.IN.SRV 10 0 443 r7mx1.it.company.lan
       <AccountType>email</AccountType>
       <Protocol>
         <Type>IMAP</Type>
-        <Server>mail.ваша-компания.ru</Server>
+        <Server>r7mx1.it.company.lan</Server>
         <Port>993</Port>
         <LoginName>%EMAILADDRESS%</LoginName>
         <SSL>on</SSL>
@@ -35,7 +39,7 @@ _autodiscover._tcp.IN.SRV 10 0 443 r7mx1.it.company.lan
       </Protocol>
       <Protocol>
         <Type>SMTP</Type>
-        <Server>mail.ваша-компания.ru</Server>
+        <Server>r7mx1.it.company.lan</Server>
         <Port>587</Port>
         <SSL>starttls</SSL>
         <AuthRequired>on</AuthRequired>
@@ -46,17 +50,17 @@ _autodiscover._tcp.IN.SRV 10 0 443 r7mx1.it.company.lan
 ```
 ---
 
-#### 3. **Настройка веб-сервера (Nginx)**
-Добавьте конфигурацию в `/etc/nginx/conf.d/autodiscover.conf`:
+#### 3.Настройка веб-сервера (Nginx)
+Добавьте конфигурацию в файл `nano /etc/nginx/conf.d/autodiscover.conf`:
 
 ```nginx
 server {
     listen 443 ssl;
-    server_name autodiscover.ваша-компания.ru;
+    server_name autodiscover.it.company.lan;
 
     # SSL-сертификат (должен включать autodiscover.ваша-компания.ru)
-    ssl_certificate /etc/ssl/certs/your_domain.crt;
-    ssl_certificate_key /etc/ssl/private/your_domain.key;
+    ssl_certificate /etc/nginx/ssl/it.company.lan.crt;
+    ssl_certificate_key /etc/nginx/ssl/it.company.lan.key;
 
     # Основной endpoint
     location = /autodiscover/autodiscover.xml {
@@ -86,22 +90,22 @@ systemctl reload nginx
 ```
 ---
 
-#### 4. **Дополнительно: Файл для Thunderbird**
-Создайте `/var/www/autodiscover/thunderbird.xml`:
+#### 4.Дополнительно: Файл для Thunderbird
+Создайте файл `nano /var/www/autodiscover/thunderbird.xml`:
 ```xml
 <?xml version="1.0"?>
 <clientConfig version="1.1">
-  <emailProvider id="ваша-компания.ru">
-    <domain>ваша-компания.ru</domain>
+  <emailProvider id="it.company.lan">
+    <domain>it.company.lan</domain>
     <displayName>Почта Вашей Компании</displayName>
     <incomingServer type="imap">
-      <hostname>mail.ваша-компания.ru</hostname>
+      <hostname>r7mx1.it.company.lan</hostname>
       <port>993</port>
       <socketType>SSL</socketType>
       <authentication>password-encrypted</authentication>
     </incomingServer>
     <outgoingServer type="smtp">
-      <hostname>mail.ваша-компания.ru</hostname>
+      <hostname>r7mx1.it.company.lan</hostname>
       <port>587</port>
       <socketType>STARTTLS</socketType>
       <authentication>password-encrypted</authentication>
@@ -109,48 +113,32 @@ systemctl reload nginx
   </emailProvider>
 </clientConfig>
 ```
-
 ---
 
-#### 5. **Настройка в панели Р7 (если доступно)**
-1. Войдите в админ-панель `https://mail.ваша-компания.ru/admin`
-2. Перейдите: **Почта → Настройки автообнаружения**
-3. Укажите:
-   - URL Autodiscover: `https://autodiscover.ваша-компания.ru/autodiscover/autodiscover.xml`
-   - Домены: `ваша-компания.ru`
-4. Сохраните изменения
-
----
-
-#### 6. **Проверка работы**
+#### 5.Проверка работы
 1. **Тест в браузере**:  
-   Откройте `https://autodiscover.ваша-компания.ru/autodiscover/autodiscover.xml` → Должен отобразиться XML.
+   Откройте `https://autodiscover.it.company.lan/autodiscover/autodiscover.xml` → Должен отобразиться XML.
 
 2. **Тест через Outlook**:
    ```powershell
-   Test-EmailAutoConfiguration -Identity user@ваша-компания.ru -Protocol Autodiscover
+   Test-EmailAutoConfiguration -Identity info@it.company.lan -Protocol Autodiscover
    ```
-
-3. **Онлайн-валидация**:  
-   Используйте [Microsoft Connectivity Analyzer](https://testconnectivity.microsoft.com).
-
 ---
 
-#### 7. **Решение проблем**
+#### 6.Решение проблем
 | Ошибка | Решение |
 |-------|---------|
 | **404 Not Found** | Проверьте пути в Nginx и права доступа к файлам (`chmod 644`) |
-| **SSL-ошибки** | Убедитесь, что сертификат включает `autodiscover.ваша-компания.ru` |
+| **SSL-ошибки** | Убедитесь, что сертификат включает `autodiscover.it.company.lan` |
 | **Outlook не подхватывает настройки** | Добавьте SRV-запись в DNS |
-| **Не применяются настройки из панели Р7** | Проверьте синтаксис XML-файла через [XML Validator](https://www.xmlvalidation.com) |
 
 ---
 
-#### 8. **Оптимизация для Р7**
+#### 7.Оптимизация для Р7
 1. **Интеграция с LDAP/AD**:  
    В файле `autodiscover.xml` укажите:
    ```xml
-   <LoginName>%USERNAME%@ваша-компания.ru</LoginName>
+   <LoginName>%USERNAME%@it.company.lan</LoginName>
    ```
 
 2. **Поддержка ActiveSync**:  
@@ -158,7 +146,7 @@ systemctl reload nginx
    ```xml
    <Protocol>
      <Type>ActiveSync</Type>
-     <Server>mail.ваша-компания.ru</Server>
+     <Server>r7mx1.it.company.lan</Server>
      <Port>443</Port>
      <SSL>on</SSL>
    </Protocol>
@@ -191,6 +179,4 @@ systemctl reload nginx
    - `%EMAILADDRESS%` → user@domain.ru
    - `%USERNAME%` → логин без домена
 
-Документация:  
-[Официальный мануал Р7-Офис](https://docs.r7-office.ru/mail-server/autodiscover)  
-[Гайд по Autodiscover для кастомных решений](https://developer.mozilla.org/ru/docs/Thunderbird/Autoconfiguration)
+
