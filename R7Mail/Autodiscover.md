@@ -2,9 +2,7 @@
 
 Для настройки Autodiscover в **Корпоративном почтовом сервере Р7** выполните следующие шаги:
 
----
-
-#### 1. **Подготовка DNS-записей**
+#### 1.Подготовка DNS-записей
 Добавьте в DNS вашего домена:
 ```bash
 # Основная запись
@@ -16,10 +14,9 @@ autodiscover.IN.A 192.168.25.91
 # SRV-запись для улучшения совместимости
 _autodiscover._tcp.IN.SRV 10 0 443 r7mx1.it.company.lan
 ```
-
 ---
 
-#### 2. **Создание XML-файла Autodiscover**
+#### 2.Создание XML-файла Autodiscover
 Создайте файл `/var/www/autodiscover/autodiscover.xml` с содержимым:
 
 ```xml
@@ -47,7 +44,6 @@ _autodiscover._tcp.IN.SRV 10 0 443 r7mx1.it.company.lan
   </Response>
 </Autodiscover>
 ```
-
 ---
 
 #### 3. **Настройка веб-сервера (Nginx)**
@@ -83,9 +79,11 @@ server {
 ```
 Перезагрузите Nginx:  
 ```bash
-sudo nginx -t && sudo systemctl reload nginx
-```
+проверить запись на ошибки
+nginx -t
 
+systemctl reload nginx
+```
 ---
 
 #### 4. **Дополнительно: Файл для Thunderbird**
