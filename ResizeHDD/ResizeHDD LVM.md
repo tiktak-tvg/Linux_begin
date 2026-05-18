@@ -1,0 +1,42 @@
+#### Команды увеличивают размер корневого логического тома в системе виртуализации Proxmox VE (или любой другой системе с LVM) за счет добавления нового физического диска.
+
+Для начала посмотрим сколько места занимает корневой диск и есть ли свободное место для его увеличения в размере.
+
+<img width="1366" height="159" alt="image" src="https://github.com/user-attachments/assets/bd012cd2-5444-411c-bc4e-37e655a4c11b" />
+
+<img width="1386" height="438" alt="image" src="https://github.com/user-attachments/assets/e9dfaf51-1b77-45f1-a662-ca19fec3000d" />
+
+1. Добавление диска в группу томов
+
+Расширяем существующую группу томов (Volume Group) с именем pve<br>
+Включаем новый физический диск или раздел /dev/sdd в пул памяти pve. Это делает свободное место диска доступным для распределения
+```bash
+vgextend pve /dev/sdd
+```
+<img width="1299" height="56" alt="image" src="https://github.com/user-attachments/assets/4d90c8c3-545c-450a-95fd-4db1fc7ee55c" />
+2. Увеличиваем логический том
+```bash
+lvextend -L +100G /dev/pve/root
+```
+Увеличивает размер целевого логического тома (Logical Volume) с именем root
+
+Как работает: Выделяет дополнительные 100 Гигабайт (-L +100G) из пула группы томов и отдает их под корневой раздел (/dev/pve/root)
+
+<img width="1397" height="55" alt="image" src="https://github.com/user-attachments/assets/5889da4a-8155-47fd-a3de-e3886977f381" />
+
+3. Расширение файловой системы
+```bash
+resize2fs /dev/mapper/pve-root
+```
+Растягивает файловую систему (типа ext2, ext3 или ext4) на все обновленное пространство логического тома<br>
+Как работает: Пока вы не выполните эту команду, операционная система не увидит новые 100 ГБ, так как размер самой файловой системы оставался прежним<br>
+Команда безопасно выполняет расширение «на лету» без потери данных
+
+<img width="1251" height="94" alt="image" src="https://github.com/user-attachments/assets/204983e5-7f3e-475a-8908-c8bce4046a63" />
+
+<img width="1202" height="181" alt="image" src="https://github.com/user-attachments/assets/596c2357-3a5c-4636-9b2a-d41b5f0b6920" />
+
+<img width="1184" height="452" alt="image" src="https://github.com/user-attachments/assets/d70cdc1c-d391-4855-b444-da7894f1ca53" />
+
+>[!Warning]
+> - Команда ``resize2fs`` сработает только для ext4. Если у вас XFS, понадобится команда ``xfs_growfs``
