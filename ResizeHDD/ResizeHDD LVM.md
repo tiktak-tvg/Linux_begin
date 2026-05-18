@@ -6,15 +6,17 @@
 
 <img width="1386" height="438" alt="image" src="https://github.com/user-attachments/assets/e9dfaf51-1b77-45f1-a662-ca19fec3000d" />
 
-1. Добавление диска в группу томов
+##### 1. Добавление диска в группу томов
 
 Расширяем существующую группу томов (Volume Group) с именем pve<br>
-Включаем новый физический диск или раздел /dev/sdd в пул памяти pve. Это делает свободное место диска доступным для распределения
+Включаем новый физический диск или раздел /dev/sdd (или sdb) в пул памяти pve. Это делает свободное место диска доступным для распределения
 ```bash
 vgextend pve /dev/sdd
 ```
+
 <img width="1299" height="56" alt="image" src="https://github.com/user-attachments/assets/4d90c8c3-545c-450a-95fd-4db1fc7ee55c" />
-2. Увеличиваем логический том
+
+##### 2. Увеличиваем логический том
 ```bash
 lvextend -L +100G /dev/pve/root
 ```
@@ -24,7 +26,7 @@ lvextend -L +100G /dev/pve/root
 
 <img width="1397" height="55" alt="image" src="https://github.com/user-attachments/assets/5889da4a-8155-47fd-a3de-e3886977f381" />
 
-3. Расширение файловой системы
+##### 3. Расширение файловой системы
 ```bash
 resize2fs /dev/mapper/pve-root
 ```
