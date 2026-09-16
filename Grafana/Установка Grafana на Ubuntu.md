@@ -96,6 +96,6 @@ grafana-cli admin reset-admin-password new-password
 
 Вместо new-password введите новый пароль.
 ```
-### Как установить систему мониторинга Grafana на VPS, работающий под управлением CentOS
+
 
 
